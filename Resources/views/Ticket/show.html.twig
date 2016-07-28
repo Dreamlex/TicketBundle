@@ -1,0 +1,130 @@
+{% extends '@DreamlexTicket/Ticket/layout.html.twig' %}
+{% import 'DreamlexTicketBundle:Macros:ticket_macros.html.twig' as macros %}
+
+{% block content %}
+
+    <p>
+        <a href="{{ path('ticket.ticket.index') }}" class="btn btn-default">{{ 'ticket.button.back_to_list'|trans }}</a>
+    </p>
+
+    <h2>
+        {{ 'ticket.label.form.subject'|trans }}:{{ ticket.subject }}
+        <br>
+        {{ 'ticket.label.grid.id' |trans }}:{{ ticket.id|trans }}
+    </h2>
+
+    <div class="panel panel-default ticket-panel">
+        <div class="row">
+            <div class="col-sm-2 pull-left">
+                <label>{{ 'ticket.label.created_by'|trans }}</label>
+                <br>
+                {{ ticket.user }}
+            </div>
+            <div class="col-sm-1  ">
+                <label>{{ 'ticket.label.status.status'|trans }}</label>
+                <br>
+                {{ macros.status_label(ticket.status, ('ticket.label.status.' ~ ticket.status)|trans) }}
+            </div>
+            <div class="col-sm-1 col-sm-offset-1">
+                <label>{{ 'ticket.label.form.priority'|trans }}</label>
+                <br>
+                {{ macros.priority_label(ticket.priority, ticket.priority|trans) }}
+            </div>
+            <div class="col-sm-2 col-sm-offset-1">
+                <label>{{ 'ticket.label.form.category.title'|trans }}</label>
+                <br>
+                {{ ticket.category }}
+            </div>
+            <div class="col-sm-3 pull-right">
+                {{ 'ticket.label.form.changed'|trans }}:{{ ticket.lastMessageAt|localizeddate}}
+                {{ 'ticket.label.form.created'|trans }}:{{ ticket.createdAt|localizeddate() }}
+            </div>
+        </div>
+    </div>
+    {% for flash_message in app.session.flashBag.get('notice') %}
+        <div class="flash-notice alert alert-success">
+            {{ flash_message }}
+        </div>
+    {% endfor %}
+    {% if ticket.status=='closed' %}
+        <div class="alert alert-success">{{ 'ticket.message.reopen_ticket' |trans }}</div>
+    {% endif %}
+    <hr>
+
+    {% set previousStatus = null %}
+    {% set previousPriority = null %}
+
+    {% for message in ticket.Messages %}
+
+        {% if previousStatus and previousStatus != message.status %}
+            {#{{ message.user }}#}
+            {{ macros.status_alert(message.user, message.status, ('label.ticket.status_' ~ message.status)|trans) }}
+        {% endif %}
+
+        {% if previousPriority and previousPriority != message.priority %}
+            {{ macros.priority_alert(message.user, message.priority, ('label.ticket.status'~message.priority)|trans) }}
+        {% endif %}
+
+        {% if message.message|length > 0 or message.media %}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    {{ message.user }}
+                    <span class="pull-right">
+                {% if message.user.hasRole('ROLE_TICKET_ADMIN') %}<span
+                        class="label label-danger">{{ 'admin'|trans }}</span>
+                {% endif %}
+                        <small><i>{{ message.createdAt|localizeddate('long','short',app.request.locale) }}</i></small>
+                    </span>
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-12">
+                        {{ message.message|nl2br }}
+                    </div>
+                    <div class="col-md-12">
+                        {% if message.media and message.media.providerName=="sonata.media.provider.ticket_image" %}
+                            <a class="media" href="{% path message.media, 'big' %}"
+                               data-featherlight="image">{% thumbnail message.media, 'small' %}</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        {% set previousStatus = message.status %}
+        {% set previousPriority = message.priority %}
+    {% endfor %}
+
+    <hr/>
+    {% if ticket.status=='closed' %}
+        <div class="alert alert-success">{{ 'ticket.message.reopen_ticket'|trans }}</div>
+    {% endif %}
+
+    {{ form_start(form, {'attr':{'novalidate':'novalidate'}}) }}
+    {{ form_row(form.message) }}
+    {{ form_row(form.media) }}
+
+    <div class="form-group">
+        {{ form_label(form.priority) }}
+        <div class="col-sm-2">
+            {{ form_widget(form.priority) }}
+        </div>
+        <div class="col-sm-2">
+
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-9 btn-group">
+            {{ form_widget(form.submit) }}
+            {{ form_widget(form.changePriority) }}
+            {% if ticket.status == 'closed' %}
+                {{ form_widget(form.closeTicket, {'attr':{'disabled':'disabled'}}) }}
+            {% else %}
+                {{ form_widget(form.closeTicket) }}
+            {% endif %}
+            <a href="{{ path('ticket.ticket.index') }}"
+               class="btn btn-default">{{ 'ticket.button.back_to_list'|trans }}</a>
+        </div>
+    </div>
+    {{ form_end(form) }}
+{% endblock content %}
+

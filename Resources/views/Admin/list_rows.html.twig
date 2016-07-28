@@ -1,0 +1,9 @@
+{% extends 'SonataAdminBundle:CRUD:base_list.html.twig' %}
+
+{% block table_body %}
+    {% for object in admin.datagrid.results %}
+        <tr {{ not object.isRead and not object.lastUser.hasRole('ROLE_ADMIN')? 'class="success"' }} >
+            {% include admin.getTemplate('inner_list_row') %}
+        </tr>
+    {% endfor %}
+{% endblock %}

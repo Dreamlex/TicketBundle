@@ -1,0 +1,150 @@
+{% extends '::bootstrap_grid.html.twig' %}
+
+{% block grid_filters %}
+
+{% endblock %}
+{% block grid_search %}
+    <form id="{{ grid.hash }}_search" action="{{ grid.routeUrl }}" method="post">
+        <div class="row">
+            <div class="col-xs-2 pull-right text-right">
+                <div class="">
+                    <a href="{{ path('ticket.ticket.create') }}" id="btn-create" class="btn btn-block btn-success"><span
+                                class="fa fa-plus"></span> {{ 'ticket.button.create_ticket'|trans }}</a>
+                    <a href="" class="btn btn-warning btn-block"
+                       onclick="return {{ grid.hash }}_reset();">{{ 'ticket.button.reset'|trans }}</a>
+                </div>
+            </div>
+            {% for column in grid.columns %}
+                {% if column.id == 'status' %}
+                    <div class="col-xs-2 text-center">
+                        {{ grid_filter(column, grid)|raw }}
+                    </div>
+                {% elseif column.id == 'priority' %}
+                    <div class="col-xs-3 text-center">
+                        {{ grid_filter(column, grid)|raw }}
+                    </div>
+                {% elseif column.id == 'category.title' %}
+                    <div class="col-xs-3 text-center">
+                        {{ grid_filter(column,grid)|raw }}
+                    </div>
+                {% elseif column.id == 'createdAt' %}
+                    <div class="col-xs-2 text-center">
+                        {{ grid_filter(column,grid)|raw }}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </form>
+
+{% endblock grid_search %}
+
+
+{#Filter type#}
+{% block grid_column_filter_type_select %}
+    {% set from = column.data.from is defined ? column.data.from : null %}
+    <label for="{{ grid.hash }}[{{ column.id }}][from][]">{{ ('ticket.label.grid.'~ column.id)|trans }}</label>
+    <select name="{{ grid.hash }}[{{ column.id }}][from][]"
+            class="form-control ticket-filters" data-placeholder="{{ ('ticket.placeholder.'~ column.id)|trans }}"
+            id="{{ grid.hash }}[{{ column.id }}]" multiple="multiple">
+        <option value=""></option>
+        {#<<====fix for clearing filter#}
+        {% for key, value in column.values %}
+            <option
+                    value="{{ key }}" {% if key in from %} selected="selected"{% endif %}>{{ key|trans }}</option>
+        {% endfor %}
+    </select>
+{% endblock %}
+
+{% block grid_column_createdAt_filter %}
+    {% set from = column.data.from is defined ? column.data.from : null %}
+    {% set to = column.data.to is defined ? column.data.to : null %}
+    <span class="grid-filter-input-query">
+        <label for="{{ grid.hash }}[{{ column.id }}[from]"></label>
+<div class="inner-addon left-addon">
+    <i class="glyphicon glyphicon-calendar"></i>
+    <input type="{{ column.inputType }}" value="{{ from }}" class="form-control date-input"
+           name="{{ grid.hash }}[{{ column.id }}][from]" id="{{ grid.hash }}__{{ column.id }}__query__from"/>
+</div>
+        <input type="{{ column.inputType }}" value="{{ to }}" class="grid-filter-input-query-to" hidden="hidden"
+               name="{{ grid.hash }}[{{ column.id }}][to]" id="{{ grid.hash }}__{{ column.id }}__query__to"/>
+        </span>
+{% endblock %}
+{% block grid_ticket_column_status_priority_cell %}
+    {{ block('grid_ticket_column_status_priority_join_cell') }}
+{% endblock %}
+{% block grid_ticket_column_category_subject_cell %}
+    {{ block('grid_ticket_column_category_subject_join_cell') }}
+{% endblock %}
+{% block grid_ticket_column_created_updated_cell %}
+    {{ block('grid_ticket_column_created_updated_join_cell') }}
+{% endblock %}
+{% block grid_ticket_column_created_updated_join_cell %}
+    {% for key, index in column.joinColumns -%}
+        {% set value = row.field(index) %}
+        {% set sourceValue = value %}
+        {% import 'DreamlexTicketBundle:Macros:ticket_macros.html.twig' as macros %}
+        {% if loop.last==1 %}<em>{{ value|localizeddate }}</em>{% else %}
+            <strong>{{ value|localizeddate }}</strong>
+            <br>
+        {% endif %}
+    {%- endfor %}
+{% endblock grid_ticket_column_created_updated_join_cell %}
+
+{% block grid_ticket_column_category_subject_join_cell %}
+    {% for key, index in column.joinColumns -%}
+        {% set value = row.field(index) %}
+        {% set sourceValue = value %}
+        {% if loop.last==1 %}<em>{{ block('grid_column_cell') | raw }}{{ column.separator | raw }}</em>{% else %}
+            <strong>{{ block('grid_column_cell') | raw }}{{ column.separator | raw }}</strong>
+            <br>
+        {% endif %}
+    {%- endfor %}
+{% endblock grid_ticket_column_category_subject_join_cell %}
+
+{% block grid_ticket_column_status_priority_join_cell %}
+    {% for key, index in column.joinColumns -%}
+        {% set value = row.field(index) %}
+        {% set sourceValue = value %}
+        {% import 'DreamlexTicketBundle:Macros:ticket_macros.html.twig' as macros %}
+        {% if loop.last==1 %}{{ macros.priority_label(value, value|trans, true) }}{% else %}
+            {{ macros.status_label(value, ('ticket.label.status.' ~ value)|trans) }}
+            &nbsp;
+        {% endif %}
+    {%- endfor %}
+{% endblock grid_ticket_column_status_priority_join_cell %}
+
+{% block grid_pager %}
+    {% if pagerfanta %}
+        {{ grid_pagerfanta(grid) }}
+    {% else %}
+        <div class="form-inline center">
+
+            <p class="form-control-static">{{ grid_pager_totalcount(grid) }}</p>
+
+            {{ grid_pager_selectpage(grid) }}
+
+        </div>
+    {% endif %}
+{% endblock grid_pager %}
+{# ---------------------------------------------------- grid_pager_selectpage -------------------------------------------------- #}
+{% block grid_pager_selectpage %}
+    <p class="form-control-static">{{ 'Page'|trans }}</p>
+
+    <div class="input-group">
+        <span class="input-group-btn">
+            <button class="btn btn-md btn-success" {% if grid.page <= 0 %}disabled="disabled"{% endif %}
+                    onclick="return {{ grid.hash }}_previousPage();"><i class="fa fa-arrow-left"></i></button>
+        </span>
+
+        <input type="text" class="form-control" value="{{ grid.page + 1 }}" size="2"
+               onkeypress="return {{ grid.hash }}_enterPage(event, parseInt(this.value)-1);"/>
+
+        <span class="input-group-btn">
+            <button class="btn btn-md btn-success"
+                    {% if grid.page >= grid.pageCount-1 %}disabled="disabled"{% endif %}
+                    onclick="return {{ grid.hash }}_nextPage();"><i class="fa fa-arrow-right"></i></button>
+        </span>
+    </div>
+    <p class="form-control-static">{{'of %count%'|trans({'%count%' : grid.pageCount }) }}</p>
+
+{% endblock grid_pager_selectpage %}

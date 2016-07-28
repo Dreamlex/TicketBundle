@@ -1,0 +1,38 @@
+category: "category-2"
+isRead: "0"
+subject: "Хочу вывести средства"
+status: "open"
+priority: "high"
+createdAt: "-1 month"
+user: "test-user"
+lastUser: "test-user"
+messages:
+        message1:
+                    user: "test-user"
+                    status: "open"
+                    priority: "high"
+                    createdAt: "-1 month"
+                    message: |
+                              Привет!
+                              Памагите вывести деньги. Я жму кнопку в правом верхнем углу а оно мне выдает что надо добавтиь кашелёк. Мне кашелек падарила мама на день раждения, потаму я эго дававть не магу. мама если узнает будет меня ругать крепко . высылаю вам фотку кашеллька.
+                              Памагите плс!
+                    mediaFile: "p(22).jpg"
+                    mediaName: "p(22)"
+        message2:
+                    user: "test-admin"
+                    status: "open"
+                    priority: "medium"
+                    createdAt: "now"
+                    message: |
+                              
+                    mediaFile: "p(23).jpg"
+                    mediaName: "p(23)"
+        message3:
+                    user: "test-admin"
+                    status: "closed"
+                    priority: "medium"
+                    createdAt: ""
+                    message: |
+
+                    mediaFile: "p(20).jpg"
+                    mediaName: "p(20)"

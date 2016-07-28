@@ -1,0 +1,8 @@
+{% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
+
+{% block field %}
+    {% if object.media and object.media.providerName=="sonata.media.provider.ticket_image" %}
+        <a href="{% path object.media, 'reference' %}"
+           data-featherlight="image">{% thumbnail object.media, 'small' %}</a>
+    {% endif %}
+{% endblock %}

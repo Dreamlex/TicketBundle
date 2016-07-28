@@ -1,0 +1,6 @@
+{% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
+{% import 'DreamlexTicketBundle:Macros:ticket_macros.html.twig' as macros %}
+
+{% block field %}
+    {{ macros.priority_label(object.priority, object.priority|trans) }}
+{% endblock %}

@@ -1,0 +1,17 @@
+ticket:
+      date:
+          today: Today
+          yesterday: Yesterday
+          last7days: Last 7 days
+          last30days: Last 30 days
+          thismonth: This Month
+          lastmonth: Last Month
+          custom: Custom Range
+          label:
+                apply: Apply
+                cancel: Cancel
+      button_new: New
+      button_reply: Reply
+      reply: FUCKING REPLY
+      validate:
+              subject: Field Subject can't be empty

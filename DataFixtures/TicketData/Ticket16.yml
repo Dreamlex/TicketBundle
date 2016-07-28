@@ -1,0 +1,28 @@
+category: "category-2"
+isRead: "0"
+subject: "Изменение нумерации сообщений"
+status: "open"
+priority: "high"
+createdAt: "-1 day"
+user: "test-user"
+lastUser: "test-user"
+messages:
+        message2:
+                    user: "test-user"
+                    status: "open"
+                    priority: "high"
+                    createdAt: "-1 day"
+                    message: |
+                              Это сообщение должно быть первым, хотя его индекс 2
+                    mediaFile: "p(35).jpg"
+                    mediaName: "p(35)"
+        message1:
+                    user: "test-admin"
+                    status: "open"
+                    priority: "low"
+                    createdAt: "now"
+                    message: |
+                              Это сообщение должно быть вторым, хотя его индекс 1
+
+                    mediaFile: "p(36).jpg"
+                    mediaName: "p(36)"

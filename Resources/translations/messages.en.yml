@@ -1,0 +1,59 @@
+(optional): (необязательно)
+low: 'Низкий'
+medium: 'Средний'
+high: 'Высокий'
+ticket:
+       label:
+            status:
+                  closed: 'Закрыт'
+                  open: 'Открыт'
+                  in_progress: 'В процессе'
+                  information_requested: 'information_requested'
+                  on_hold: 'on_hold'
+                  resolved: 'resolved'
+                  status: 'Статус'
+            priority:
+                  low: 'Низкий'
+                  medium: 'Средний'
+                  high: 'Высокий'
+            ticket_list: 'Список тикетов'
+            ticket_create: 'Create Ticket'
+            created_by: 'Создано'
+            form:
+                mark_solved: 'Решено?'
+                category.title: 'Категория'
+                status: 'Статус'
+                priority: 'Приоритет'
+                subject: 'Тема'
+                message: 'Сообщение'
+                image: 'Изображение'
+                changed: 'Изменен'
+                created: 'Создан'
+            grid:
+                id: 'ID'
+                category_subject: '<strong>Тема</strong><br><em>Категория</em>'
+                status_priority: '<strong>Статус</strong><br><em>Приоритет</em>'
+                created_updated: '<strong>Последнее сообщение</strong><br><em>Создано</em>'
+                Actions: 'Действия'
+                category.title: 'Категория'
+                status: 'Статус'
+                priority: 'Приоритет'
+       button:
+              reply: 'Ответить'
+              new: 'Новый'
+              create: 'Создать'
+              create_ticket: 'Создать тикет'
+              back_to_list: 'Вернуться к списку'
+              reset: 'Сбросить'
+       message:
+              reopen_ticket: 'Добавьте сообщение чтобы заново открыть тикет'
+              priority_changed: 'Приоритет изменен'
+              status_changed: 'Статус изменен'
+              no_tickets: 'У вас нет тикетов'
+       placeholder:
+              category.title: Выберите категорию
+              status: Выберите статус
+              priority: Выберите приоритет
+              form:
+                  subject: 'Например тема'
+                  message: 'Пример сообщения'

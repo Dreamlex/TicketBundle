@@ -1,0 +1,83 @@
+services:
+    app.ticket_voter:
+        class: Dreamlex\Bundle\TicketBundle\Security\Authorization\Voter\TicketVoter
+        arguments: ["@security.access.decision_manager"]
+        public: false
+        tags:
+            - { name: security.voter }
+        # small performance boost
+        public: false
+#admin interface
+    dreamlex_ticket.admin.category:
+        class: Dreamlex\Bundle\TicketBundle\Admin\CategoryAdmin
+        arguments:
+            - ~
+            - Dreamlex\Bundle\TicketBundle\Entity\Category
+            - "PixSortableBehaviorBundle:SortableAdmin"
+        calls:
+            - [ setTranslationDomain, ['admin']] # //TODO убрать или оставить перевод админки
+            - [ setPositionService, ["@pix_sortable_behavior.position"]]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Tickets, label: Category }
+
+    dreamlex_ticket.admin.ticket:
+        class: Dreamlex\Bundle\TicketBundle\Admin\TicketAdmin
+        arguments: [~, Dreamlex\Bundle\TicketBundle\Entity\Ticket, DreamlexTicketBundle:TicketAdmin]
+        calls:
+            - [ addChild, ["@dreamlex_ticket.admin.message"]]
+            - [ setTemplate, [list, DreamlexTicketBundle:Admin:list_rows.html.twig]]
+            - [ setTokenStorage, ["@security.token_storage"] ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Tickets, label: Ticket }
+
+    dreamlex_ticket.admin.message:
+        class: Dreamlex\Bundle\TicketBundle\Admin\MessageAdmin
+        arguments: [~, Dreamlex\Bundle\TicketBundle\Entity\Message, DreamlexTicketBundle:MessageAdmin]
+        calls:
+              - [ setTokenStorage, ["@security.token_storage"] ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Tickets, label: Message, show_in_dashboard: false  }
+#media provider
+    sonata.media.provider.ticket_image:
+        class: Dreamlex\Bundle\TicketBundle\Provider\TicketImageProvider
+        arguments:
+            - sonata.media.provider.ticket_image
+            - "@sonata.media.filesystem.local"
+            - "@sonata.media.cdn.server"
+            - "@sonata.media.generator.default"
+            - "@sonata.media.thumbnail.format"
+            - ['jpg', 'png', 'jpeg']
+            - ['image/pjpeg', 'image/jpeg', 'image/png', 'image/x-png']
+            - "@sonata.media.adapter.image.gd"
+            - "@sonata.media.metadata.proxy"
+        calls:
+            - [ setResizer, ["@sonata.media.resizer.simple"] ]
+            - [ setRouter, ["@router.default"] ]
+            - [ setTemplates, [ { helper_thumbnail: DreamlexTicketBundle:Provider:thumbnail.html.twig, helper_view: DreamlexTicketBundle:Provider:view_image.html.twig } ] ]
+        tags:
+            - { name: sonata.media.provider }
+#form handlers
+    dreamlex_ticket.show_form_handler:
+        class: Dreamlex\Bundle\TicketBundle\Form\Handler\TicketShowFormHandler
+        arguments:
+            - "@dreamlex_ticket.ticket_manager"
+
+    dreamlex_ticket.create_form_handler:
+        class: Dreamlex\Bundle\TicketBundle\Form\Handler\TicketCreateFormHandler
+        arguments:
+            - "@dreamlex_ticket.ticket_manager"
+#entity managers
+    dreamlex_ticket.ticket_manager:
+        class: Dreamlex\Bundle\TicketBundle\Entity\Manager\TicketManager
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "@security.token_storage"
+            - "@dreamlex_ticket.message_manager"
+
+    dreamlex_ticket.message_manager:
+        class: Dreamlex\Bundle\TicketBundle\Entity\Manager\MessageManager
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "@security.token_storage"
+
+

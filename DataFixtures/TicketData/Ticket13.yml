@@ -1,0 +1,18 @@
+category: "category-0"
+isRead: "0"
+subject: "Скрин без текста"
+status: "open"
+priority: "high"
+createdAt: "now"
+user: "test-user"
+lastUser: "test-user"
+messages:
+        message1:
+                    user: "test-user"
+                    status: "open"
+                    priority: "high"
+                    createdAt: "now"
+                    message: |
+
+                    mediaFile: "p(32).jpg"
+                    mediaName: "p(32)"

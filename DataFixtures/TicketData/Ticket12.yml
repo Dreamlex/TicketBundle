@@ -1,0 +1,18 @@
+category: "category-2"
+isRead: "1"
+subject: "ТЕстирование с изменением изрид на 1"
+status: "open"
+priority: "high"
+createdAt: "now"
+user: "test-user"
+lastUser: "test-user"
+messages:
+        message1:
+                    user: "test-admin"
+                    status: "closed"
+                    priority: "low"
+                    createdAt: "-1 month"
+                    message: | а что будет если так сделать...
+
+                    mediaFile: ""
+                    mediaName: ""

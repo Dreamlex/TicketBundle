@@ -1,0 +1,18 @@
+category: "category-4"
+isRead: "1"
+subject: "Хочу рекламировать Вас!"
+status: "closed"
+priority: "high"
+createdAt: "-1 hours"
+user: "test-user"
+lastUser: "test-admin"
+messages:
+        message1:
+                    user: "test-admin"
+                    status: "closed"
+                    priority: "high"
+                    createdAt: ""
+                    message: |
+
+                    mediaFile: ""
+                    mediaName: ""

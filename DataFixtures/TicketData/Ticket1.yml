@@ -1,0 +1,40 @@
+category: "category-0"
+isRead: "1"
+subject: "Предложение по улучшению биржи"
+status: "closed"
+priority: "low"
+createdAt: "-1 month"
+user: "test-user"
+lastUser: "test-user"
+messages:
+        message1:
+                    user: "test-user"
+                    status: "open"
+                    priority: "low"
+                    createdAt: "-1 month"
+                    message: |
+                              Добрый день!
+                              Меня зовут Вася и я постащик. Мне все часто говорят: “Привет Вася, поставщик! Но в душе я космонавт. Почему мне нельзя летать, ведь я на физкультуре получал одни тройки, потому что курил “Тройку” в подворотнях. Тогда других сигарет не было. Точнее были, но это я в папы стрелял. Мальборо на то время - роскошь. Хотя и сейчас с этим курсом доллара это роскошь. Тяжело жить. Сделайте сервис, чтобы он приносил мне капусту, а я ничего не делал. Плс.
+                              С уважением Вася.
+                    mediaFile: "p(1).jpg"
+                    mediaName: "p(1)"
+        message2:
+                    user: "test-admin"
+                    status: "open"
+                    priority: "low"
+                    createdAt: "-1 day"
+                    message: |
+                              Добрый день, Вася, мы очень ждали что вы наконец-то объявитесь.
+                              Не уходите никуда. Вашу койку еще не заняли. Скоро мы вас заберем!
+                    mediaFile: ""
+                    mediaName: ""
+        message:
+                    user: "test-user"
+                    status: "closed"
+                    priority: "low"
+                    createdAt: "now"
+                    message: |
+                              
+                    mediaFile: ""
+                    mediaName: ""
+        

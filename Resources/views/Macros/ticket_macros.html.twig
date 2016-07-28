@@ -1,0 +1,84 @@
+{% macro status_label(status, text) %}
+    {% spaceless %}
+        {% if status == 'open' %}
+            <span class="label label-success ticket-label"><i
+                        class="fa fa-folder-open"></i>&nbsp;{{ text|trans }}</span>
+        {% elseif status == 'in_progress' %}
+            <span class="label label-info ticket-label"><i class="fa fa-folder-open"></i>&nbsp;{{ text|trans }}</span>
+        {% elseif status == 'information_requested' %}
+            <span class="label label-info ticket-label"><i class="fa fa-folder-open"></i>&nbsp;{{ text|trans }}</span>
+        {% elseif status == 'on_hold' %}
+            <span class="label label-info ticket-label"><i class="fa fa-folder-open"></i>&nbsp;{{ text|trans }}</span>
+        {% elseif status == 'resolved' %}
+            <span class="label label-success ticket-label"><i
+                        class="fa fa-folder-open"></i>&nbsp;{{ text|trans }}</span>
+        {% elseif status == 'closed' %}
+            <span class="label label-danger ticket-label"><i
+                        class="fa fa-folder-close"></i>&nbsp;{{ text|trans }}</span>
+        {% endif %}
+    {% endspaceless %}
+{% endmacro %}
+{% macro status_alert(user, status, text) %}
+    {% spaceless %}
+        {% if status == 'open' %}
+            <div class="alert alert-warning" role="alert"><i
+                        class="fa fa-folder-open"></i>&nbsp;{{ 'ticket.message.status_changed'|trans({'%status%': text }) }}
+                <em>{{ user }}</em>
+            </div>
+        {% elseif status == 'closed' %}
+            <div class="alert alert-danger" role="alert"><i
+                        class="fa fa-folder-open-o"></i>&nbsp;{{ 'ticket.message.status_changed'|trans({'%status%': text }) }}
+                <em>{{ user }}</em>
+            </div>
+            {#{% elseif status == 'in_progress' %}#}
+            {#<div class="alert alert-info" role="alert"><i#}
+            {#class="fa fa-folder-open"></i>&nbsp;{{ 'ticket.message.status_changed'|trans({'%status%': text }) }}#}
+            {#</div>#}
+            {#{% elseif status == 'information_requested' %}#}
+            {#<div class="alert alert-info" role="alert"><i#}
+            {#class="fa fa-folder-open"></i>&nbsp;{{ 'ticket.message.status_changed '|trans({'%status%': text }) }}#}
+            {#</div>#}
+            {#{% elseif status == 'on_hold' %}#}
+            {#<div class="alert alert-info" role="alert"><i#}
+            {#class="fa fa-folder-open"></i>&nbsp;{{ 'ticket.message.status_changed'|trans({'%status%': text }) }}#}
+            {#</div>#}
+            {#{% elseif status == 'resolved' %}#}
+            {#<div class="alert alert-success" role="alert"><i#}
+            {#class="fa fa-folder-open"></i>&nbsp;{{ 'ticket.message.status_changed'|trans({'%status%': text }) }}#}
+            {#</div>#}
+        {% endif %}
+    {% endspaceless %}
+{% endmacro %}
+
+{% macro priority_label(priority, text) %}
+    {% spaceless %}
+        {% if priority == 'low' %}
+            <span class="label label-info ticket-label-priority"><i class="fa fa-arrow-down"></i>{{ text |trans }}</span>
+        {% elseif priority == 'medium' %}
+            <span class="label label-warning ticket-label-priority"><i
+                        class="fa fa-arrow-up"></i> &nbsp;{{ text|trans }}</span>
+        {% else %}
+            <span class="label label-danger ticket-label-priority"><i class="fa fa-arrow-up"></i> &nbsp;{{ text|trans }}</span>
+        {% endif %}
+    {% endspaceless %}
+{% endmacro %}
+
+{% macro priority_alert(user, priority, text) %}
+    {% spaceless %}
+        {% if priority == 'low' %}
+            <div class="alert alert-info"
+                 role="alert"><i class="fa fa-arrow-down"></i>{{ 'ticket.message.priority_changed'|trans({'%priority%': text }) }}
+                <em>{{ user }}</em></div>
+        {% elseif priority == 'medium' %}
+            <div class="alert alert-warning" role="alert"><i
+                        class="fa fa-arrow-up"></i>&nbsp;{{ 'ticket.message.priority_changed'|trans({'%priority%': text }) }}
+                <em>{{ user }}</em>
+            </div>
+        {% else %}
+            <div class="alert alert-danger" role="alert"><i
+                        class="fa fa-arrow-up"></i>&nbsp;{{ 'ticket.message.priority_changed'|trans({'%priority%': text }) }}
+                <em>{{ user }}</em>
+            </div>
+        {% endif %}
+    {% endspaceless %}
+{% endmacro %}

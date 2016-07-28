@@ -1,0 +1,4 @@
+ticket:
+       validate:
+                subject: Field Subject can't be empty
+                content: Fill message or media fields

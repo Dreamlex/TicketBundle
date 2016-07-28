@@ -1,0 +1,17 @@
+ticket:
+      date:
+          today: Сегодня
+          yesterday: Вчера
+          last7days: Последние 7 дней
+          last30days: Последние 30 дней
+          thismonth: Этот месяц
+          lastmonth: Предыдущий месяц
+          custom: Свой диапазон
+          label:
+                apply: Применить
+                cancel: Отмена
+      button_new: Новый
+      button_reply: Ответить
+      reply: no ответить
+      validate:
+              subject: Поле Тема не может быть пустым

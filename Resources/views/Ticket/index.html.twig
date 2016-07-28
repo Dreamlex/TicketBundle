@@ -1,0 +1,19 @@
+{% extends 'DreamlexTicketBundle:Ticket:layout.html.twig' %}
+{% block content %}
+    <h1>{{ 'ticket.label.ticket_list'|trans }}</h1>
+
+    {{ grid_search(grid, 'DreamlexTicketBundle:Ticket:bootstrap_grid.html.twig') }}
+    <hr>
+    {% for flash_message in app.session.flashBag.get('notice') %}
+        <div class="flash-notice alert alert-success">
+            {{ flash_message }}
+        </div>
+    {% endfor %}
+    {% for flash_message in app.session.flashBag.get('danger') %}
+        <div class="flash-notice alert alert-danger">
+            {{ flash_message }}
+        </div>
+    {% endfor %}
+
+    {{ grid(grid, 'DreamlexTicketBundle:Ticket:bootstrap_grid.html.twig') }}
+{% endblock %}
