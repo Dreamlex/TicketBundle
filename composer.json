@@ -1,0 +1,37 @@
+{
+  "name" : "dreamlex/ticketbundle",
+  "description" : "Dreamlex ticket bundle",
+  "type" : "symfony-bundle",
+  "authors" : [{
+    "name" : "demo",
+    "email" : "demo@company.com"
+  }],
+  "keywords" : [
+    "tickets"
+  ],
+  "license" : [
+    "MIT"
+  ],
+  "require" : {
+    "apy/datagrid-bundle": "2.2.16",
+    "sonata-project/admin-bundle": "^3.1",
+    "sonata-project/doctrine-orm-admin-bundle": "^3.0",
+    "sonata-project/user-bundle": "^3.0",
+    "sonata-project/classification-bundle": "^3.0",
+    "sonata-project/media-bundle": "^3.0",
+    "sonata-project/translation-bundle": "^2.0",
+  },
+  "autoload" : {
+    "psr-0" : {
+      "Dreamlex\\TicketBundle" : ""
+    }
+  },
+  "target-dir" : "Dreamlex/TicketBundle",
+  "repositories" : [{
+  }],
+  "extra" : {
+    "branch-alias" : {
+      "dev-master" : "1"
+    }
+  }
+}
