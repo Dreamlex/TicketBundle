@@ -22,7 +22,7 @@ use Symfony\Component\Yaml\Yaml;
 
 /**
  * Class LoadTicket
- * @package Dreamlex\Bundle\TicketBundle\DataFixtures\ORM
+ * @package Dreamlex\TicketBundle\DataFixtures\ORM
  */
 class LoadTicket extends AbstractFixture implements ContainerAwareInterface, OrderedFixtureInterface
 {

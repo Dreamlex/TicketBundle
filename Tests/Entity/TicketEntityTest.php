@@ -37,9 +37,9 @@ class TicketEntityTest extends KernelTestCase
     public function testTicketAddRemoveMessage()
     {
         $ticket = new Ticket();
-        $user = $this->createMock('SellMMO\Sonata\UserBundle\Entity\User');
-        $category = $this->createMock('Dreamlex\Bundle\TicketBundle\Entity\Category');
-        $message = $this->createMock('Dreamlex\Bundle\TicketBundle\Entity\Message');
+        $user = $this->createMock('SellMMO\Sonata\UserBundle\Entity\User'); //TODO USER ENTITY
+        $category = $this->createMock('Dreamlex\TicketBundle\Entity\Category');
+        $message = $this->createMock('Dreamlex\TicketBundle\Entity\Message');
         $ticket->setUser($user)
             ->setSubject('subject')
             ->setCategory($category)

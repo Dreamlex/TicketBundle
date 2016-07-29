@@ -65,7 +65,7 @@ class CategoryEntityTest extends KernelTestCase
      */
     public function testGetCategoryTickets($category)
     {
-        $ticket = $this->createMock('Dreamlex\Bundle\TicketBundle\Entity\Ticket');
+        $ticket = $this->createMock('Dreamlex\TicketBundle\Entity\Ticket');
         $category->addTicket($ticket);
         $ticketList = $category->getTickets();
         self::assertNotNull($ticketList);
