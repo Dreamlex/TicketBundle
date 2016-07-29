@@ -73,7 +73,7 @@ class Ticket
     private $isRead;
 
     /**
-     * @ORM\OneToMany(targetEntity="Dreamlex\Bundle\TicketBundle\Entity\Message", mappedBy="ticket", cascade={"all"})
+     * @ORM\OneToMany(targetEntity="Dreamlex\TicketBundle\Entity\Message", mappedBy="ticket", cascade={"all"})
      * @Assert\Type(type="object", message="The value {{ value }} is not a valid {{ type }}")
      * @Assert\Valid()
      */
@@ -93,7 +93,7 @@ class Ticket
     private $lastUser;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Dreamlex\Bundle\TicketBundle\Entity\Category", inversedBy="tickets")
+     * @ORM\ManyToOne(targetEntity="Dreamlex\TicketBundle\Entity\Category", inversedBy="tickets")
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id", nullable=false)
      * @GRID\Column( field="category.title", visible=false, operators={"like","isNull"}, defaultOperator="like", operatorsVisible=true, selectMulti=true,  filter="select", selectFrom="source")
      */

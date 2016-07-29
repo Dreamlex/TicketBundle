@@ -9,7 +9,7 @@
 namespace Dreamlex\TicketBundle\Provider;
 
 
-use Dreamlex\CoreBundle\Provider\LightWeightImageProvider;
+use Dreamlex\Bundle\CoreBundle\Provider\LightWeightImageProvider;
 use Sonata\MediaBundle\Model\MediaInterface;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
 use Symfony\Component\Form\FormBuilder;

@@ -81,7 +81,7 @@ class Message
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Dreamlex\Bundle\TicketBundle\Entity\Ticket", inversedBy="messages")
+     * @ORM\ManyToOne(targetEntity="Dreamlex\TicketBundle\Entity\Ticket", inversedBy="messages")
      * @ORM\JoinColumn(name="ticket_id", referencedColumnName="id", nullable=false)
      */
     private $ticket;
