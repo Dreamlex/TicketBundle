@@ -23,7 +23,7 @@ class TicketType extends AbstractType
     {
         $builder
             ->add('category', EntityType::class, [
-                    'class' => 'Dreamlex\Bundle\TicketBundle\Entity\Category',
+                    'class' => 'Dreamlex\TicketBundle\Entity\Category',
                     'label' => 'ticket.label.form.category.title',
                     'choice_label' => 'title',
                 ]
