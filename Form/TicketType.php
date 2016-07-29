@@ -47,7 +47,7 @@ class TicketType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'Dreamlex\Bundle\TicketBundle\Entity\Ticket',
+            'data_class' => 'Dreamlex\TicketBundle\Entity\Ticket',
             'show_legend' => false,
         ]);
     }

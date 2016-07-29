@@ -107,7 +107,7 @@ class TicketMessageType extends AbstractType
     {
         $resolver->setDefaults(
             [
-                'data_class' => 'Dreamlex\Bundle\TicketBundle\Entity\Message',
+                'data_class' => 'Dreamlex\TicketBundle\Entity\Message',
                 'show_legend' => false,
             ]
         );
