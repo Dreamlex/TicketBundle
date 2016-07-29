@@ -13,7 +13,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class TicketMessageType
- * @package Dreamlex\Bundle\TicketBundle\Form
+ * @package Dreamlex\TicketBundle\Form
  */
 class TicketMessageType extends AbstractType
 {

@@ -7,7 +7,8 @@ services:
             - { name: security.voter }
         # small performance boost
         public: false
-#admin interface
+
+#----------------------admin interface
     dreamlex_ticket.admin.category:
         class: Dreamlex\TicketBundle\Admin\CategoryAdmin
         arguments:
@@ -56,6 +57,14 @@ services:
             - [ setTemplates, [ { helper_thumbnail: DreamlexTicketBundle:Provider:thumbnail.html.twig, helper_view: DreamlexTicketBundle:Provider:view_image.html.twig } ] ]
         tags:
             - { name: sonata.media.provider }
+#media type
+    file.media.type:
+        class: Dreamlex\TicketBundle\Form\Type\FileMediaType
+        arguments:
+            - '@sonata.media.pool'
+            - SellMMO\Sonata\MediaBundle\Entity\Media #//TODO Сущность для Media
+        tags:
+            - { name: form.type }
 #form handlers
     dreamlex_ticket.show_form_handler:
         class: Dreamlex\TicketBundle\Form\Handler\TicketShowFormHandler

@@ -11,7 +11,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class TicketType
- * @package Dreamlex\Bundle\TicketBundle\Form
+ * @package Dreamlex\TicketBundle\Form
  */
 class TicketType extends AbstractType
 {
