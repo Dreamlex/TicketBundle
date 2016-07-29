@@ -1,8 +1,8 @@
 <?php
 
-namespace Dreamlex\Bundle\TicketBundle\Controller;
+namespace Dreamlex\TicketBundle\Controller;
 
-use SellMMO\Sonata\MediaBundle\Entity\Media;
+use Dreamlex\CoreBundle\Entity\Media;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;

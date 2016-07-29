@@ -1,6 +1,6 @@
 <?php
 
-namespace Dreamlex\Bundle\TicketBundle\Controller;
+namespace Dreamlex\TicketBundle\Controller;
 
 use Sonata\AdminBundle\Controller\CRUDController;
 

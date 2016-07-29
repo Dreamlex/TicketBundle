@@ -1,8 +1,7 @@
 <?php
 
-namespace Dreamlex\Bundle\TicketBundle\Form;
+namespace Dreamlex\TicketBundle\Form;
 
-use Dreamlex\Bundle\TicketBundle\Entity\Category;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;

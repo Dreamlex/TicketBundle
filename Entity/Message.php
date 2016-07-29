@@ -1,5 +1,5 @@
 <?php
-namespace Dreamlex\Bundle\TicketBundle\Entity;
+namespace Dreamlex\TicketBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use SellMMO\Sonata\MediaBundle\Entity\Media; //TODO Зависимость

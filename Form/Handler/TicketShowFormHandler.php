@@ -6,10 +6,10 @@
  * Time: 16:48
  */
 
-namespace Dreamlex\Bundle\TicketBundle\Form\Handler;
+namespace Dreamlex\TicketBundle\Form\Handler;
 
-use Dreamlex\Bundle\TicketBundle\Entity\Manager\TicketManager;
-use Dreamlex\Bundle\TicketBundle\Entity\Message;
+use Dreamlex\TicketBundle\Entity\Manager\TicketManager;
+use Dreamlex\TicketBundle\Entity\Message;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\SubmitButton;
 use Symfony\Component\HttpFoundation\Request;

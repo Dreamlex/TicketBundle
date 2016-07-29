@@ -1,9 +1,9 @@
 <?php
 
-namespace Dreamlex\Bundle\TicketBundle\Form;
+namespace Dreamlex\TicketBundle\Form;
 
-use Dreamlex\Bundle\TicketBundle\Entity\Message;
-use Dreamlex\Bundle\TicketBundle\Form\Type\FileMediaType;
+use Dreamlex\TicketBundle\Entity\Message;
+use Dreamlex\TicketBundle\Form\Type\FileMediaType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;

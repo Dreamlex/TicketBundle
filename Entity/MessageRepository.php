@@ -1,6 +1,6 @@
 <?php
 
-namespace Dreamlex\Bundle\TicketBundle\Entity;
+namespace Dreamlex\TicketBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 

@@ -6,13 +6,12 @@
  * Time: 17:55
  */
 
-namespace Dreamlex\Bundle\TicketBundle\Security\Authorization\Voter;
+namespace Dreamlex\TicketBundle\Security\Authorization\Voter;
 
-use Dreamlex\Bundle\TicketBundle\Entity\Ticket;
+use Dreamlex\TicketBundle\Entity\Ticket;
 use SellMMO\Sonata\UserBundle\Entity\User;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\AccessDecisionManager;
-use Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 
 /**

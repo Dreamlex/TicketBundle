@@ -1,7 +1,8 @@
 <?php
 
-namespace Dreamlex\Bundle\TicketBundle\DependencyInjection;
+namespace Dreamlex\TicketBundle\DependencyInjection;
 
+use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
@@ -19,11 +20,22 @@ class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('dreamlex_ticket');
+        $rootNode
+            ->children()
+            ->scalarNode('user_entity')
+            ->cannotBeEmpty()->end();
 
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
+        $this->addMediaSection($rootNode);
 
         return $treeBuilder;
+    }
+
+
+    public function addMediaSection(ArrayNodeDefinition $rootNode)
+    {
+        $rootNode
+            ->children()
+                ->scalarNode('media_entity')
+                ->cannotBeEmpty()->end();
     }
 }

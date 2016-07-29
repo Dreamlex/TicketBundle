@@ -6,10 +6,10 @@
  * Time: 10:06
  */
 
-namespace Dreamlex\Bundle\TicketBundle\Tests\Controller;
+namespace Dreamlex\TicketBundle\Tests\Controller;
 
-use Dreamlex\Bundle\TicketBundle\Controller\MediaController;
-use Dreamlex\Bundle\TicketBundle\Provider\TicketImageProvider;
+use Dreamlex\TicketBundle\Controller\MediaController;
+use Dreamlex\TicketBundle\Provider\TicketImageProvider;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**

@@ -1,14 +1,14 @@
 <?php
 
-namespace Dreamlex\Bundle\TicketBundle\Controller;
+namespace Dreamlex\TicketBundle\Controller;
 
 use APY\DataGridBundle\Grid\Action\RowAction;
 use APY\DataGridBundle\Grid\Row;
 use APY\DataGridBundle\Grid\Source\Entity;
 use Doctrine\ORM\QueryBuilder;
-use Dreamlex\Bundle\TicketBundle\Entity\Ticket;
-use Dreamlex\Bundle\TicketBundle\Form\TicketMessageType;
-use Dreamlex\Bundle\TicketBundle\Form\TicketType;
+use Dreamlex\TicketBundle\Entity\Ticket;
+use Dreamlex\TicketBundle\Form\TicketMessageType;
+use Dreamlex\TicketBundle\Form\TicketType;
 use SellMMO\Sonata\UserBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;

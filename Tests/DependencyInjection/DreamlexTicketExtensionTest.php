@@ -6,9 +6,9 @@
  * Time: 15:39
  */
 
-namespace Dreamlex\Bundle\TicketBundle\Tests\DependencyInjection;
+namespace Dreamlex\TicketBundle\Tests\DependencyInjection;
 
-use Dreamlex\Bundle\TicketBundle\DependencyInjection\DreamlexTicketExtension;
+use Dreamlex\TicketBundle\DependencyInjection\DreamlexTicketExtension;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 

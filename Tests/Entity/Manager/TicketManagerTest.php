@@ -6,10 +6,10 @@
  * Time: 12:36
  */
 
-namespace Dreamlex\Bundle\TicketBundle\Tests\Entity\Manager;
+namespace Dreamlex\TicketBundle\Tests\Entity\Manager;
 
-use Dreamlex\Bundle\TicketBundle\Entity\Manager\TicketManager;
-use Dreamlex\Bundle\TicketBundle\Entity\Ticket;
+use Dreamlex\TicketBundle\Entity\Manager\TicketManager;
+use Dreamlex\TicketBundle\Entity\Ticket;
 use SellMMO\Sonata\UserBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 

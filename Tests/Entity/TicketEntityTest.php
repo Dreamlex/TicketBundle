@@ -6,9 +6,9 @@
  * Time: 9:17
  */
 
-namespace Dreamlex\Bundle\TicketBundle\Tests\Entity;
+namespace Dreamlex\TicketBundle\Tests\Entity;
 
-use Dreamlex\Bundle\TicketBundle\Entity\Ticket;
+use Dreamlex\TicketBundle\Entity\Ticket;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**

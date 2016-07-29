@@ -6,10 +6,10 @@
  * Time: 11:36
  */
 
-namespace Dreamlex\Bundle\TicketBundle\Provider;
+namespace Dreamlex\TicketBundle\Provider;
 
 
-use Dreamlex\Bundle\CoreBundle\Provider\LightWeightImageProvider;
+use Dreamlex\CoreBundle\Provider\LightWeightImageProvider;
 use Sonata\MediaBundle\Model\MediaInterface;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
 use Symfony\Component\Form\FormBuilder;

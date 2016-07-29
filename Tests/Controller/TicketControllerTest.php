@@ -1,6 +1,6 @@
 <?php
 
-namespace Dreamlex\Bundle\TicketBundle\Tests\Controller;
+namespace Dreamlex\TicketBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\DomCrawler\Field\ChoiceFormField;

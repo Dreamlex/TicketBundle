@@ -1,6 +1,6 @@
 <?php
 
-namespace Dreamlex\Bundle\TicketBundle\Admin;
+namespace Dreamlex\TicketBundle\Admin;
 
 use Pix\SortableBehaviorBundle\Services\PositionHandler;
 use Sonata\AdminBundle\Admin\AbstractAdmin;

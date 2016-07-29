@@ -6,13 +6,13 @@
  * Time: 11:35
  */
 
-namespace Dreamlex\Bundle\TicketBundle\DataFixtures\ORM;
+namespace Dreamlex\TicketBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Dreamlex\Bundle\TicketBundle\Entity\Message;
-use Dreamlex\Bundle\TicketBundle\Entity\Ticket;
+use Dreamlex\TicketBundle\Entity\Message;
+use Dreamlex\TicketBundle\Entity\Ticket;
 use Sonata\MediaBundle\Model\Media;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;

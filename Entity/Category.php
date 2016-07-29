@@ -1,5 +1,5 @@
 <?php
-namespace Dreamlex\Bundle\TicketBundle\Entity;
+namespace Dreamlex\TicketBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;

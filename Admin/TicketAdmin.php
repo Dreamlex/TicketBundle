@@ -1,9 +1,9 @@
 <?php
 
-namespace Dreamlex\Bundle\TicketBundle\Admin;
+namespace Dreamlex\TicketBundle\Admin;
 
-use Dreamlex\Bundle\TicketBundle\Entity\Message;
-use Dreamlex\Bundle\TicketBundle\Entity\Ticket;
+use Dreamlex\TicketBundle\Entity\Message;
+use Dreamlex\TicketBundle\Entity\Ticket;
 use JMS\DiExtraBundle\Annotation\Inject;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;

@@ -1,5 +1,5 @@
 <?php
-namespace Dreamlex\Bundle\TicketBundle\Entity;
+namespace Dreamlex\TicketBundle\Entity;
 
 use APY\DataGridBundle\Grid\Mapping as GRID;
 use Doctrine\Common\Collections\ArrayCollection;

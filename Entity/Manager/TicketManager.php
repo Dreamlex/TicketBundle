@@ -6,11 +6,11 @@
  * Time: 13:56
  */
 
-namespace Dreamlex\Bundle\TicketBundle\Entity\Manager;
+namespace Dreamlex\TicketBundle\Entity\Manager;
 
 use Doctrine\Common\Persistence\ObjectManager;
-use Dreamlex\Bundle\TicketBundle\Entity\Message;
-use Dreamlex\Bundle\TicketBundle\Entity\Ticket;
+use Dreamlex\TicketBundle\Entity\Message;
+use Dreamlex\TicketBundle\Entity\Ticket;
 use SellMMO\Sonata\UserBundle\Entity\User;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
