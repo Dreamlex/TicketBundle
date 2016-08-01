@@ -42,13 +42,12 @@ class DreamlexTicketExtension extends Extension
 
         $collector = DoctrineCollector::getInstance();
 
-        $collector->addAssociation('Dreamlex\TicketBundle\Entity\Message', 'mapOneToMany', array(
+        $collector->addAssociation($config['class']['messages'], 'mapManyToOne', array(
             'fieldName' => 'media',
             'targetEntity' => $config['class']['media'],
             'cascade' => array(
                 'persist',
             ),
-            'mappedBy' => 'media',
             'joinColumns' => array(
                 array(
                     'name' => 'media_id',

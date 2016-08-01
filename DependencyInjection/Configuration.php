@@ -25,6 +25,7 @@ class Configuration implements ConfigurationInterface
                 ->arrayNode('class')
                     ->addDefaultsIfNotSet()
                         ->children()
+                            ->scalarNode('messages')->defaultValue('Dreamlex\\TicketBundle\\Entity\\Messages')->end()
                             ->scalarNode('media')->defaultValue('Application\\Sonata\\MediaBundle\\Entity\\Media')->end()
                             ->scalarNode('user')->defaultValue('Application\\Sonata\\UserBundle\\Entity\\User')->end()
                     ->end()
