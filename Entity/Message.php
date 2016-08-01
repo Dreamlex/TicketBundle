@@ -69,8 +69,6 @@ class Message
 
     /**
      * @Assert\Valid()
-     * @ORM\ManyToOne(targetEntity="SellMMO\Sonata\MediaBundle\Entity\Media",cascade={"persist"})
-     * @ORM\JoinColumn(name="media_id", referencedColumnName="id")
      */
     private $media;
 
