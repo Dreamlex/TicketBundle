@@ -2,6 +2,7 @@
 
 namespace Dreamlex\TicketBundle\DependencyInjection;
 
+use Sonata\EasyExtendsBundle\Mapper\DoctrineCollector;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
@@ -26,6 +27,38 @@ class DreamlexTicketExtension extends Extension
         $loader->load('services.yml');
     }
 
+
+    /**
+     * @param array $config
+     */
+    public function registerDoctrineMapping(array $config)
+    {
+        foreach ($config['class'] as $type => $class) {
+            if (!class_exists($class)) {
+                return;
+            }
+        }
+
+        $collector = DoctrineCollector::getInstance();
+
+        $collector->addAssociation('Dreamlex\TicketBundle\Entity\Message', 'mapOneToMany', array(
+            'fieldName' => 'media',
+            'targetEntity' => $config['class']['media'],
+            'cascade' => array(
+                'persist',
+            ),
+            'mappedBy' => 'media',
+            'joinColumns' => array(
+                array(
+                    'name' => 'media_id',
+                    'referencedColumnName' => 'id',
+                    'nullable' => false,
+                ),
+            ),
+        ));
+
+    }
+
     /**
      * @return string
      */
@@ -33,4 +66,6 @@ class DreamlexTicketExtension extends Extension
     {
         return 'dreamlex_ticket';
     }
+
+
 }

@@ -22,20 +22,16 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('dreamlex_ticket');
         $rootNode
             ->children()
-            ->scalarNode('user_entity')
-            ->cannotBeEmpty()->end();
-
-        $this->addMediaSection($rootNode);
+                ->arrayNode('class')
+                    ->addDefaultsIfNotSet()
+                        ->children()
+                            ->scalarNode('media')->defaultValue('Application\\Sonata\\MediaBundle\\Entity\\Media')->end()
+                            ->scalarNode('user')->defaultValue('Application\\Sonata\\UserBundle\\Entity\\User')->end()
+                    ->end()
+                ->end()
+            ->end();
 
         return $treeBuilder;
     }
 
-
-    public function addMediaSection(ArrayNodeDefinition $rootNode)
-    {
-        $rootNode
-            ->children()
-                ->scalarNode('media_entity')
-                ->cannotBeEmpty()->end();
-    }
 }
