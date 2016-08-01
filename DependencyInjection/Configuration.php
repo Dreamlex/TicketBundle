@@ -22,14 +22,8 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('dreamlex_ticket');
         $rootNode
             ->children()
-                ->arrayNode('class')
-                    ->addDefaultsIfNotSet()
-                        ->children()
-                            ->scalarNode('messages')->defaultValue('Dreamlex\\TicketBundle\\Entity\\Messages')->end()
-                            ->scalarNode('media')->defaultValue('Application\\Sonata\\MediaBundle\\Entity\\Media')->end()
-                            ->scalarNode('user')->defaultValue('Application\\Sonata\\UserBundle\\Entity\\User')->end()
-                    ->end()
-                ->end()
+                ->scalarNode('user_class')->isRequired()->cannotBeEmpty()->end()
+                ->scalarNode('user_primary_key')->isRequired()->cannotBeEmpty()->end()
             ->end();
 
         return $treeBuilder;

@@ -1,4 +1,5 @@
 services:
+#---------------------ticket voter
     app.ticket_voter:
         class: Dreamlex\TicketBundle\Security\Authorization\Voter\TicketVoter
         arguments: ["@security.access.decision_manager"]
@@ -7,6 +8,15 @@ services:
             - { name: security.voter }
         # small performance boost
         public: false
+
+#mapping listner
+    dreamlex_ticket.listner:
+        class: Dreamlex\TicketBundle\EventListner\LoadMetadata
+        arguments:
+            - %dreamlex_ticket.user.class%
+            - %dreamlex_ticket.user.primary_key%
+        tags:
+            - { name: doctrine.event_listener, event: loadClassMetadata }
 
 #----------------------admin interface
     dreamlex_ticket.admin.category:

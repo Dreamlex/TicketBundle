@@ -31,5 +31,13 @@ class Media extends BaseMedia
 ##Setting User Entity
 extend sonata BaseUser and use trait
 ```php
+use Dreamlex\TicketBundle\Model\UserInterface;
 
+class User extends BaseUser implement UserInterface
+{
+    use UserTrait;
+    
+    //your own code...
+    
+ }
 ```

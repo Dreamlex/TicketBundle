@@ -14,7 +14,7 @@ use Dreamlex\TicketBundle\Entity\Ticket;
 trait UserTrait
 {
     /**
-     * @ORM\OneToMany(targetEntity="Dreamlex\Bundle\TicketBundle\Entity\Ticket", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="Dreamlex\TicketBundle\Entity\Ticket", mappedBy="user")
      */
     private $tickets;
 

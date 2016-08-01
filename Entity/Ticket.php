@@ -80,8 +80,8 @@ class Ticket
     private $messages;
 
     /**
-     * @ORM\ManyToOne(targetEntity="SellMMO\Sonata\UserBundle\Entity\User", inversedBy="tickets")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
+     * @ORM\ManyToOne(targetEntity="\Dreamlex\TicketBundle\Model\UserInterface", inversedBy="tickets")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="?id_from_external_entity?", nullable=false)
      */
     private $user;
 

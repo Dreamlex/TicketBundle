@@ -25,39 +25,11 @@ class DreamlexTicketExtension extends Extension
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
-        $this->registerDoctrineMapping($config);
+
+        $container->setParameter('dreamlex_ticket.user.class', $config['user_class']);
+        $container->setParameter('dreamlex_ticket.user.primary_key', $config['user_primary_key']);
     }
 
-
-    /**
-     * @param array $config
-     */
-    public function registerDoctrineMapping(array $config)
-    {
-        foreach ($config['class'] as $type => $class) {
-            if (!class_exists($class)) {
-                return;
-            }
-        }
-
-        $collector = DoctrineCollector::getInstance();
-
-        $collector->addAssociation($config['class']['messages'], 'mapManyToOne', array(
-            'fieldName' => 'media',
-            'targetEntity' => $config['class']['media'],
-            'cascade' => array(
-                'persist',
-            ),
-            'joinColumns' => array(
-                array(
-                    'name' => 'media_id',
-                    'referencedColumnName' => 'id',
-                    'nullable' => false,
-                ),
-            ),
-        ));
-
-    }
 
     /**
      * @return string

@@ -69,12 +69,14 @@ class Message
 
     /**
      * @Assert\Valid()
+     * @ORM\ManyToOne(targetEntity="SellMMO\Sonata\MediaBundle\Entity\Media",cascade={"persist"})
+     * @ORM\JoinColumn(name="media_id", referencedColumnName="id")
      */
     private $media;
 
     /**
-     * @ORM\ManyToOne(targetEntity="SellMMO\Sonata\UserBundle\Entity\User")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
+     * @ORM\ManyToOne(targetEntity="\Dreamlex\TicketBundle\Model\UserInterface")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="?id_from_external_entity?", nullable=false)
      */
     private $user;
 
