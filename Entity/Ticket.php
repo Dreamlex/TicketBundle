@@ -80,8 +80,7 @@ class Ticket
     private $messages;
 
     /**
-     * @ORM\ManyToOne(targetEntity="\Dreamlex\TicketBundle\Model\UserInterface", inversedBy="tickets")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="?id_from_external_entity?", nullable=false)
+     *
      */
     private $user;
 

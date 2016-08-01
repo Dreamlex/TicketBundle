@@ -69,13 +69,11 @@ class Message
 
     /**
      * @Assert\Valid()
-
      */
     private $media;
 
     /**
-     * @ORM\ManyToOne(targetEntity="\Dreamlex\TicketBundle\Model\UserInterface")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="?id_from_external_entity?", nullable=false)
+     *
      */
     private $user;
 
