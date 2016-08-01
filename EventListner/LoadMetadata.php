@@ -68,6 +68,9 @@ class LoadMetadata {
                     )
                 )
             );
+            $classMetadata->mapManyToOne($mapping);
+        }
+        if($class_name == "Dreamlex\TicketBundle\Entity\Message") {
             $mappingMedia = array(
                 'targetEntity' => $this->mediaEntity,
                 'fieldName' => 'media',
@@ -81,7 +84,6 @@ class LoadMetadata {
                     )
                 )
             );
-            $classMetadata->mapManyToOne($mapping);
             $classMetadata->mapManyToOne($mappingMedia);
         }
     }

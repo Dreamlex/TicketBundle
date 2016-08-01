@@ -29,15 +29,22 @@ class Media extends BaseMedia
 ```
 
 ##Setting User Entity
-extend sonata BaseUser and use trait
+extend Sonata or FOS  BaseUser and use trait
 ```php
-use Dreamlex\TicketBundle\Model\UserInterface;
 
-class User extends BaseUser implement UserInterface
+class User extends BaseUser 
 {
     use UserTrait;
     
     //your own code...
     
  }
+```
+##Setting app/config/config.yml
+
+``` yml
+dreamlex_ticket:
+    user_class: Path\To\Yours\User\Entity\User
+    user_primary_key: id
+    media_entity: Path\To\Yours\Sonata\Media\Entity\Media
 ```

@@ -1,8 +1,14 @@
 (optional): (необязательно)
+Items per page: 'Записей на странице'
 low: 'Низкий'
 medium: 'Средний'
 high: 'Высокий'
 ticket:
+       flash:
+            created: 'Тикет создан'
+            closed: 'Тикет закрыт'
+            changed_priority: 'Приоритет изменен'
+            answer_added: 'Ваш ответ добавлен'
        label:
             status:
                   closed: 'Закрыт'
@@ -17,10 +23,9 @@ ticket:
                   medium: 'Средний'
                   high: 'Высокий'
             ticket_list: 'Список тикетов'
-            ticket_create: 'Create Ticket'
+            ticket_create: 'Создать тикет'
             created_by: 'Создано'
             form:
-                mark_solved: 'Решено?'
                 category.title: 'Категория'
                 status: 'Статус'
                 priority: 'Приоритет'
@@ -45,6 +50,8 @@ ticket:
               create_ticket: 'Создать тикет'
               back_to_list: 'Вернуться к списку'
               reset: 'Сбросить'
+              change.priority: 'Изменить приоритет'
+              close_ticket: 'Закрыть тикет'
        message:
               reopen_ticket: 'Добавьте сообщение чтобы заново открыть тикет'
               priority_changed: 'Приоритет изменен'
@@ -57,3 +64,8 @@ ticket:
               form:
                   subject: 'Например тема'
                   message: 'Пример сообщения'
+
+'%count% Results,': '%count% Результатов,'
+Page: Страница
+'of %count%': 'из %count%'
+', Display': ', Показать'

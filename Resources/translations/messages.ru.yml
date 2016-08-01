@@ -64,3 +64,8 @@ ticket:
               form:
                   subject: 'Например тема'
                   message: 'Пример сообщения'
+
+'%count% Results,': '%count% Результатов,'
+Page: Страница
+'of %count%': 'из %count%'
+', Display': ', Показать'
