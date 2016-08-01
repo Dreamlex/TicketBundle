@@ -70,6 +70,7 @@ class LoadMetadata {
             );
             $mappingMedia = array(
                 'targetEntity' => $this->mediaEntity,
+                'fieldName' => 'media',
                 'cascade' => array(
                     'persist',
                 ),
