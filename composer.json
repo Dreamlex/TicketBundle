@@ -41,8 +41,6 @@
   },
   "target-dir": "Dreamlex/TicketBundle",
   "repositories": [
-    {
-    }
   ],
   "extra": {
     "branch-alias": {
