@@ -25,6 +25,7 @@ class Media extends BaseMedia
 }
 ```
 
+---
 ##Setting User Entity
 extend Sonata or FOS  BaseUser and use trait
 ```php
@@ -37,6 +38,7 @@ class User extends BaseUser
     
  }
 ```
+---
 ##Setting app/config/config.yml
 
 ``` yml
@@ -45,3 +47,4 @@ dreamlex_ticket:
     user_primary_key: id
     media_entity: Path\To\Yours\Sonata\Media\Entity\Media
 ```
+---
