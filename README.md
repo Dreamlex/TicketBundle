@@ -1,10 +1,7 @@
 Dreamlex Ticket Bundle
 =======================
 
-Ticket bundle for symfony 
-
-Setting Bundle
-=====
+#Setting Bundle
 ##Setting media entity
 Extend sonata BaseMedia and use MediaTrait
 ```php
