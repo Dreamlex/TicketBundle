@@ -1,6 +1,6 @@
 Dreamlex Ticket Bundle
 =======================
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/51241f96-c603-4bc1-a185-5f04c15c86c2/mini.png)](https://insight.sensiolabs.com/projects/51241f96-c603-4bc1-a185-5f04c15c86c2)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/872d9e36-1211-4f17-aa8d-dc8c3f9e5d3f/mini.png)](https://insight.sensiolabs.com/projects/872d9e36-1211-4f17-aa8d-dc8c3f9e5d3f)
 [![Build Status](https://travis-ci.org/Dreamlex/TicketBundle.svg?branch=master)](https://travis-ci.org/Dreamlex/TicketBundle)
 #Setting Bundle
 ##Setting media entity
