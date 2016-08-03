@@ -22,6 +22,8 @@ matrix:
       env: SYMFONY_VERSION=3.0.*
     - php: 5.6
       env: SYMFONY_VERSION="3.1.*"
+    - php: 5.6
+      env: SYMFONY_VERSION="3.2.*@dev"
   allow_failures:
     - php: nightly
     - php: hhvm
@@ -40,6 +42,7 @@ before_script:
   - composer global require phpunit/phpunit fabpot/php-cs-fixer --no-update
   - composer global update --prefer-dist --no-interaction
   - if [ "$SYMFONY_VERSION" != "" ]; then composer require "symfony/symfony:${SYMFONY_VERSION}" --no-update; fi;
-- composer update --prefer-dist --no-interaction $COMPOSER_FLAGS
+  - composer update --prefer-dist --no-interaction $COMPOSER_FLAGS
 
-script: phpunit --coverage-text -c phpunit.xml.dist
+script:
+  - phpunit
