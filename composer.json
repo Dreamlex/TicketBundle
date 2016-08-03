@@ -34,6 +34,11 @@
     "pixassociates/sortable-behavior-bundle": "dev-master",
     "gedmo/doctrine-extensions": "^2.4"
   },
+  "require-dev": {
+    "symfony/form": "^2.8 || ^3.0",
+    "symfony/phpunit-bridge": "^2.8 || ^3.0",
+    "phpunit/phpunit": "^5.4"
+  },
   "autoload": {
     "psr-0": {
       "Dreamlex\\TicketBundle": ""

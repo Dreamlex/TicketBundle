@@ -20,6 +20,12 @@ class TicketControllerTest extends WebTestCase
     const DATE_FROM = '2016-07-28 00:00:00';
     const DATE_TO = '2016-07-28 23:59:59';
 
+    public function testDummyTest()
+    {
+        $a = 1;
+        static::assertEquals(1,$a);
+    }
+
     /**
      * Вывод списка тикетов
      */

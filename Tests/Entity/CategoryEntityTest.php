@@ -9,7 +9,6 @@
 namespace Dreamlex\TicketBundle\Tests\Entity;
 
 use Dreamlex\TicketBundle\Entity\Category;
-use Dreamlex\TicketBundle\Entity\Ticket;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**
@@ -78,7 +77,7 @@ class CategoryEntityTest extends KernelTestCase
      * {@inheritDoc}
      *
      */
-    protected function tearDown($category)
+    protected function tearDown()
     {
         parent::tearDown();
         $this->em->close();
