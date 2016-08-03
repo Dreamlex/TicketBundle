@@ -2,6 +2,7 @@
 
 namespace Dreamlex\TicketBundle\Controller;
 
+use Dreamlex\CoreBundle\Entity\Media;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,6 +21,7 @@ class MediaController extends Controller //TODO Перенести в TicketBund
     public function getTicketBigImage($id, $format)
     {
         $mediaManager = $this->get('sonata.media.manager.media');
+        /** @var Media $media */
         $media = $mediaManager->findOneBy(['id' => $id]);
         if ($media) {
             $repository = $this->getDoctrine()->getRepository('DreamlexTicketBundle:Message');

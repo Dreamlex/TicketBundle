@@ -9,52 +9,49 @@
 namespace Dreamlex\TicketBundle\Tests\Entity;
 
 use Dreamlex\TicketBundle\Entity\Ticket;
-use Symfony\Component\Validator\Constraints\DateTime;
+use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**
  * Class TicketEntityTest
  * @package Dreamlex\Bundle\TicketBundle\Tests\Entity
  */
-class TicketEntityTest extends \PHPUnit_Framework_TestCase
+class TicketEntityTest extends KernelTestCase
 {
+    /**
+     * @var \Doctrine\ORM\EntityManager $em
+     */
+    private $em;
 
-    private $object;
-    public function setUp()
+    /**
+     * {@inheritDoc}
+     */
+    protected function setUp()
     {
-        $this->object = new Ticket();
+        self::bootKernel();
+
+        $this->em = static::$kernel->getContainer()
+            ->get('doctrine')
+            ->getManager();
     }
-    public function tearDown()
-    {
-        unset($this->object);
-    }
-    public function testObjectCreated()
-    {
-        static::assertInstanceOf(Ticket::class, $this->object);
-    }
+
     public function testTicketAddRemoveMessage()
     {
         $ticket = new Ticket();
+        $user = $this->createMock('SellMMO\Sonata\UserBundle\Entity\User'); //TODO USER ENTITY
         $category = $this->createMock('Dreamlex\TicketBundle\Entity\Category');
         $message = $this->createMock('Dreamlex\TicketBundle\Entity\Message');
-        $user = $this->createMock('Sonata\UserBundle\Entity\BaseUser');
-        $datetime = new DateTime();
-        $ticket
+        $ticket->setUser($user)
             ->setSubject('subject')
             ->setCategory($category)
             ->addMessage($message)
             ->setPriority('low')
-            ->setUser($user)
-            ->setLastUser($user)
             ->setIsRead('false')
-            ->setStatus('open')
-            ->setLastMessageAt($ticket->getCreatedAt());
+            ->setStatus('open');
         self::assertEquals('subject',$ticket->getSubject());
         self::assertEquals($category,$ticket->getCategory());
-        self::assertEquals($ticket->getCreatedAt(),$ticket->getLastMessageAt());
         self::assertNotNull($ticket->getMessages());
-        self::assertEquals('subject',$ticket);
+        self::assertEquals('subject',$ticket->__toString());
         $ticket->removeMessage($message);
         self::assertEmpty($ticket->getMessages());
     }
-
 }

@@ -8,13 +8,12 @@
 
 namespace Dreamlex\TicketBundle\Provider;
 
-
-use Dreamlex\Bundle\CoreBundle\Provider\LightWeightImageProvider;
+use Sonata\MediaBundle\Provider\ImageProvider;
 use Sonata\MediaBundle\Model\MediaInterface;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
 use Symfony\Component\Form\FormBuilder;
 
-class TicketImageProvider extends LightWeightImageProvider
+class TicketImageProvider extends ImageProvider
 {
     /**
      * @var Router

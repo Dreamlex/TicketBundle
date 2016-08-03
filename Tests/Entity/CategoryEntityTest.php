@@ -9,14 +9,32 @@
 namespace Dreamlex\TicketBundle\Tests\Entity;
 
 use Dreamlex\TicketBundle\Entity\Category;
+use Dreamlex\TicketBundle\Entity\Ticket;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**
  * Class CategoryEntityTest
- * @package Dreamlex\TicketBundle\Tests\Entity
+ * @package Dreamlex\Bundle\TicketBundle\Tests\Entity
  */
-class CategoryEntityTest extends \PHPUnit_Framework_TestCase
+class CategoryEntityTest extends KernelTestCase
 {
+    /**
+     * @var \Doctrine\ORM\EntityManager $em
+     */
+    private $em;
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function setUp()
+    {
+        self::bootKernel();
+
+        $this->em = static::$kernel->getContainer()
+            ->get('doctrine')
+            ->getManager();
+    }
+
     /**
      * @return Category
      */
@@ -29,15 +47,14 @@ class CategoryEntityTest extends \PHPUnit_Framework_TestCase
         ];
         $category->setTitle($categoryOptions['title']);
         $category->setPosition($categoryOptions['position']);
-        $idValue = 100;
-        $reflector = new \ReflectionClass('Dreamlex\TicketBundle\Entity\Category');
-        $id = $reflector->getProperty('id');
-        $id->setAccessible(true);
-        $id->setValue($category,$idValue);
+        $this->em->persist($category);
+        $this->em->flush($category);
         self::assertEquals($categoryOptions['title'], $category->getTitle());
         self::assertEquals($categoryOptions['position'], $category->getPosition());
-        self::assertEquals($idValue, $category->getId());
-        self::assertEquals($categoryOptions['title'],$category);
+        self::assertNotNull($category->getId());
+
+        $this->em->remove($category);
+        $this->em->flush();
 
         return $category;
     }
@@ -55,5 +72,16 @@ class CategoryEntityTest extends \PHPUnit_Framework_TestCase
         $category->removeTicket($ticket);
         $ticketList = $category->getTickets();
         self::assertEmpty($ticketList);
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     */
+    protected function tearDown($category)
+    {
+        parent::tearDown();
+        $this->em->close();
+        $this->em = null; // avoid memory leaks
     }
 }

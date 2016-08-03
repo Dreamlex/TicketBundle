@@ -1,30 +1,19 @@
 {
-  "name": "dreamlex/ticketbundle",
-  "description": "Dreamlex ticket bundle",
-  "type": "symfony-bundle",
-  "authors": [
-    {
-      "name": "Dreamlex Team",
-      "email": "demo@company.com"
-    }
-  ],
-  "keywords": [
+  "name" : "dreamlex/ticketbundle",
+  "description" : "Dreamlex ticket bundle",
+  "type" : "symfony-bundle",
+  "authors" : [{
+    "name" : "Dreamlex Team",
+    "email" : "demo@company.com"
+  }],
+  "keywords" : [
     "tickets"
   ],
-  "license": [
+  "license" : [
     "MIT"
   ],
-  "require": {
-    "php": ">=5.3.9",
-    "symfony/symfony": "2.8.*",
-    "doctrine/orm": "~2.4.0",
-    "doctrine/dbal": "~2.4.5",
-    "doctrine/doctrine-bundle": "~1.4",
-    "symfony/swiftmailer-bundle": "~2.3",
-    "sensio/distribution-bundle": "~5.0",
-    "sensio/framework-extra-bundle": "^3.0.2",
+  "require" : {
     "apy/datagrid-bundle": "2.2.16",
-    "jms/di-extra-bundle": "^1.7",
     "sonata-project/admin-bundle": "^3.1",
     "sonata-project/doctrine-orm-admin-bundle": "^3.0",
     "sonata-project/user-bundle": "^3.0",
@@ -32,25 +21,19 @@
     "sonata-project/media-bundle": "^3.0",
     "sonata-project/translation-bundle": "^2.0",
     "pixassociates/sortable-behavior-bundle": "dev-master",
-    "gedmo/doctrine-extensions": "^2.4",
-    "stof/doctrine-extensions-bundle": "~1.2"
+    "gedmo/doctrine-extensions": "^2.4"
   },
-  "require-dev": {
-    "symfony/form": "^2.8 || ^3.0",
-    "symfony/phpunit-bridge": "^2.8 || ^3.0",
-    "phpunit/phpunit": "^5.4"
-  },
-  "autoload": {
-    "psr-0": {
-      "Dreamlex\\TicketBundle": ""
+  "autoload" : {
+    "psr-0" : {
+      "Dreamlex\\TicketBundle" : ""
     }
   },
-  "target-dir": "Dreamlex/TicketBundle",
-  "repositories": [
-  ],
-  "extra": {
-    "branch-alias": {
-      "dev-master": "1.0.x-dev"
+  "target-dir" : "Dreamlex/TicketBundle",
+  "repositories" : [{
+  }],
+  "extra" : {
+    "branch-alias" : {
+      "dev-master" : "1.0.x-dev"
     }
   }
 }

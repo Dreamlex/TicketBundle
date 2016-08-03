@@ -8,45 +8,65 @@
 
 namespace Dreamlex\TicketBundle\Tests\Entity\Manager;
 
-use Dreamlex\TicketBundle\Entity\Manager\MessageManager;
 use Dreamlex\TicketBundle\Entity\Manager\TicketManager;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
+use Dreamlex\TicketBundle\Entity\Ticket;
+use SellMMO\Sonata\UserBundle\Entity\User;
+use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**
  * Class TicketManagerTest
  * @package Dreamlex\Bundle\TicketBundle\Tests\Entity\Manager
  */
-class TicketManagerTest extends WebTestCase
+class TicketManagerTest extends KernelTestCase
 {
+    /**
+     * @var \Doctrine\ORM\EntityManager
+     */
+    private $em;
+    /**
+     * @var TicketManager
+     */
     private $tm;
-    private $om;
-    private $tokenStorage;
-    private $messageManager;
 
     /**
      * {@inheritDoc}
      */
     protected function setUp()
     {
-        $this->om = $this->createMock('Doctrine\ORM\EntityManager');
-        $this->tokenStorage = new TokenStorage();
-        $this->messageManager = new MessageManager($this->om, $this->tokenStorage);
-        $this->tm = new TicketManager($this->om, $this->tokenStorage, $this->messageManager);
+        self::bootKernel();
+
+        $this->em = static::$kernel->getContainer()
+            ->get('doctrine')
+            ->getManager();
+        $this->tm = static::$kernel->getContainer()->get('dreamlex_ticket.ticket_manager');
     }
 
     /**
      *
      */
-    public function testGetManagers()
+    public function testMarkTicketIsRead()
     {
-        self::assertInstanceOf(TicketManager::class, $this->tm);
-        self::assertInstanceOf(MessageManager::class, $this->messageManager);
-    }
+            //Ticket
+        $ticket = $this->em
+            ->getRepository('DreamlexTicketBundle:Ticket')
+            ->findOneBy(['id' => '6']);
+            //Admin TestUser
+        $userAdmin = $this->em->getRepository('SellMMOSonataUserBundle:User')
+            ->findOneBy(['username' => 'test-admin']);
+            //TestUser
+        $userUser = $this->em->getRepository('SellMMOSonataUserBundle:User')
+            ->findOneBy(['username' => 'test-user']);
 
-    public function testCreateTicket()
-    {
+        $ticket->setIsRead(false);
+        $ticket->setLastUser($userAdmin);
 
+        self::assertEquals(false, $ticket->getIsRead());
+
+        $this->tm->markTicketIsRead($ticket, $userUser);
+        $this->em->flush($ticket);
+
+        self::assertEquals(true, $ticket->getIsRead());
+        self::assertEquals($userUser, $ticket->getUser());
     }
 
     /**
@@ -55,5 +75,8 @@ class TicketManagerTest extends WebTestCase
     protected function tearDown()
     {
         parent::tearDown();
+
+        $this->em->close();
+        $this->em = null; // avoid memory leaks
     }
 }

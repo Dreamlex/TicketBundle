@@ -11,8 +11,8 @@ namespace Dreamlex\TicketBundle\Entity\Manager;
 use Doctrine\Common\Persistence\ObjectManager;
 use Dreamlex\TicketBundle\Entity\Message;
 use Dreamlex\TicketBundle\Entity\Ticket;
+use SellMMO\Sonata\UserBundle\Entity\User;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Class TicketManager
@@ -62,7 +62,7 @@ class TicketManager
 
     /**
      * @param Ticket  $ticket
-     * @param boolean    $isCloseTicket
+     * @param bool    $isCloseTicket
      * @param Message $message
      */
     public function updateTicket(Ticket $ticket, bool $isCloseTicket, Message $message)
@@ -83,9 +83,8 @@ class TicketManager
 
     /**
      * @param Ticket $ticket
-     * @param TokenStorageInterface $currentUser
      */
-    public function markTicketIsRead(Ticket $ticket, TokenStorageInterface $currentUser)
+    public function markTicketIsRead(Ticket $ticket, User $currentUser) //TODO Зависимость User
     {
         if (!$ticket->getIsRead() && $ticket->getLastUser() !== $currentUser) {
             $ticket->setIsRead(true);

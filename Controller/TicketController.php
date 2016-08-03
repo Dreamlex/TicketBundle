@@ -9,6 +9,7 @@ use Doctrine\ORM\QueryBuilder;
 use Dreamlex\TicketBundle\Entity\Ticket;
 use Dreamlex\TicketBundle\Form\TicketMessageType;
 use Dreamlex\TicketBundle\Form\TicketType;
+use SellMMO\Sonata\UserBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -33,6 +34,7 @@ class TicketController extends Controller
      */
     public function indexAction(Request $request)
     {
+        /** @var User $user */
         $user = $this->getUser();
         $source = new Entity('DreamlexTicketBundle:Ticket');
         $source->addHint(
@@ -86,12 +88,13 @@ class TicketController extends Controller
      * @Route("/create", name="ticket.ticket.create")
      * @Template()
      * @param Request $request
-     * @Security("has_role('ROLE_USER')")
+     *
      * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
      * @throws \LogicException
      */
     public function createAction(Request $request)
     {
+        $this->denyAccessUnlessGranted('ROLE_USER');
         $translator = $this->get('translator');
         $ticketManager = $this->get('dreamlex_ticket.ticket_manager');
         $ticket = $ticketManager->createTicket();
@@ -128,6 +131,7 @@ class TicketController extends Controller
         $translator = $this->get('translator');
 
         $ticketManager = $this->get('dreamlex_ticket.ticket_manager');
+        /** @var User $user */
         $ticketManager->markTicketIsRead($ticket, $this->getUser());
 
         $messageManager = $this->get('dreamlex_ticket.message_manager');

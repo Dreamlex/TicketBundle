@@ -9,14 +9,31 @@
 namespace Dreamlex\TicketBundle\Tests\Entity;
 
 use Dreamlex\TicketBundle\Entity\Message;
-
+use Dreamlex\TicketBundle\Entity\Ticket;
+use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**
  * Class MessageEntityTest
- * @package Dreamlex\TicketBundle\Tests\Entity
+ * @package Dreamlex\Bundle\TicketBundle\Tests\Entity
  */
-class MessageEntityTest extends \PHPUnit_Framework_TestCase
+class MessageEntityTest extends KernelTestCase
 {
+    /**
+     * @var \Doctrine\ORM\EntityManager $em
+     */
+    private $em;
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function setUp()
+    {
+        self::bootKernel();
+
+        $this->em = static::$kernel->getContainer()
+            ->get('doctrine')
+            ->getManager();
+    }
     /**
      * @return Message
      */
@@ -39,11 +56,11 @@ class MessageEntityTest extends \PHPUnit_Framework_TestCase
         /** @var Message $message */
         $message->setMessage('message');
         $idValue = 100;
-        $reflector = new \ReflectionClass('Dreamlex\TicketBundle\Entity\Message');
+        $reflector = new \ReflectionClass('Dreamlex\Bundle\TicketBundle\Entity\Message');
         $id = $reflector->getProperty('id');
         $id->setAccessible(true);
         $id->setValue($message,$idValue);
         self::assertEquals($idValue,$message->getId());
-        self::assertEquals('message', $message);
+        self::assertEquals('message', $message->__toString());
     }
 }

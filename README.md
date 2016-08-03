@@ -1,8 +1,10 @@
 Dreamlex Ticket Bundle
 =======================
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/872d9e36-1211-4f17-aa8d-dc8c3f9e5d3f/mini.png)](https://insight.sensiolabs.com/projects/872d9e36-1211-4f17-aa8d-dc8c3f9e5d3f)
-[![Build Status](https://travis-ci.org/Dreamlex/TicketBundle.svg?branch=master)](https://travis-ci.org/Dreamlex/TicketBundle)
-#Setting Bundle
+
+Ticket bundle for symfony 
+
+Setting Bundle
+=====
 ##Setting media entity
 Extend sonata BaseMedia and use MediaTrait
 ```php
@@ -26,7 +28,6 @@ class Media extends BaseMedia
 }
 ```
 
----
 ##Setting User Entity
 extend Sonata or FOS  BaseUser and use trait
 ```php
@@ -39,7 +40,6 @@ class User extends BaseUser
     
  }
 ```
----
 ##Setting app/config/config.yml
 
 ``` yml
@@ -48,4 +48,3 @@ dreamlex_ticket:
     user_primary_key: id
     media_entity: Path\To\Yours\Sonata\Media\Entity\Media
 ```
----
