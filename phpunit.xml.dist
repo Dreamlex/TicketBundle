@@ -9,10 +9,14 @@
          processIsolation="false"
          stopOnFailure="false"
          syntaxCheck="false"
-         bootstrap="vendor/autoload.php"
+         bootstrap="./Tests/bootstrap.php">"
         >
+    <php>
+        <env name="SYMFONY_DEPRECATIONS_HELPER" value="weak" />
+    </php>
+
     <testsuites>
-        <testsuite name="CleentfaarCIBundle Test Suite">
+        <testsuite name="DreamlexTicket Test Suite">
             <directory>./Tests/</directory>
         </testsuite>
     </testsuites>

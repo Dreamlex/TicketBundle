@@ -13,27 +13,10 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**
  * Class CategoryEntityTest
- * @package Dreamlex\Bundle\TicketBundle\Tests\Entity
+ * @package Dreamlex\TicketBundle\Tests\Entity
  */
-class CategoryEntityTest extends KernelTestCase
+class CategoryEntityTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @var \Doctrine\ORM\EntityManager $em
-     */
-    private $em;
-
-    /**
-     * {@inheritDoc}
-     */
-    protected function setUp()
-    {
-        self::bootKernel();
-
-        $this->em = static::$kernel->getContainer()
-            ->get('doctrine')
-            ->getManager();
-    }
-
     /**
      * @return Category
      */
@@ -46,14 +29,15 @@ class CategoryEntityTest extends KernelTestCase
         ];
         $category->setTitle($categoryOptions['title']);
         $category->setPosition($categoryOptions['position']);
-        $this->em->persist($category);
-        $this->em->flush($category);
+        $idValue = 100;
+        $reflector = new \ReflectionClass('Dreamlex\TicketBundle\Entity\Category');
+        $id = $reflector->getProperty('id');
+        $id->setAccessible(true);
+        $id->setValue($category,$idValue);
         self::assertEquals($categoryOptions['title'], $category->getTitle());
         self::assertEquals($categoryOptions['position'], $category->getPosition());
-        self::assertNotNull($category->getId());
-
-        $this->em->remove($category);
-        $this->em->flush();
+        self::assertEquals($idValue, $category->getId());
+        self::assertEquals($categoryOptions['title'],$category);
 
         return $category;
     }
@@ -71,16 +55,5 @@ class CategoryEntityTest extends KernelTestCase
         $category->removeTicket($ticket);
         $ticketList = $category->getTickets();
         self::assertEmpty($ticketList);
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     */
-    protected function tearDown()
-    {
-        parent::tearDown();
-        $this->em->close();
-        $this->em = null; // avoid memory leaks
     }
 }

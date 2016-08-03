@@ -4,7 +4,6 @@ namespace Dreamlex\TicketBundle\Admin;
 
 use Dreamlex\TicketBundle\Entity\Message;
 use Dreamlex\TicketBundle\Entity\Ticket;
-use JMS\DiExtraBundle\Annotation\Inject;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;

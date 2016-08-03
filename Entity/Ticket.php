@@ -4,7 +4,7 @@ namespace Dreamlex\TicketBundle\Entity;
 use APY\DataGridBundle\Grid\Mapping as GRID;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use SellMMO\Sonata\UserBundle\Entity\User; //TODO Зависимость
+use Sonata\UserBundle\Entity\BaseUser as User;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
