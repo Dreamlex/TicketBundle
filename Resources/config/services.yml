@@ -46,7 +46,7 @@ services:
         class: Dreamlex\TicketBundle\Admin\MessageAdmin
         arguments: [~, Dreamlex\TicketBundle\Entity\Message, DreamlexTicketBundle:MessageAdmin]
         calls:
-              - [ setTokenStorage, ["@security.token_storage"] ]
+            - [ setTokenStorage, ["@security.token_storage"] ]
         tags:
             - { name: sonata.admin, manager_type: orm, group: Tickets, label: Message, show_in_dashboard: false  }
 #media provider

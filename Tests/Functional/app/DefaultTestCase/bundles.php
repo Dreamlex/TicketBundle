@@ -12,8 +12,9 @@
 return array(
     new \Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
     new \Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-    new \Dreamlex\TicketBundle\DreamlexTicketBundle(),
-    new \Pix\SortableBehaviorBundle\PixSortableBehaviorBundle(),
     new \Symfony\Bundle\SecurityBundle\SecurityBundle(),
-    new \FOS\UserBundle\FOSUserBundle(),
+    new \Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
+    new \Dreamlex\TicketBundle\DreamlexTicketBundle(),
+//    new \FOS\UserBundle\FOSUserBundle(),
+    new \Pix\SortableBehaviorBundle\PixSortableBehaviorBundle(),
 );
