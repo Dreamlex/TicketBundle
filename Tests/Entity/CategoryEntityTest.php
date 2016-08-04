@@ -78,7 +78,7 @@ class CategoryEntityTest extends KernelTestCase
      * {@inheritDoc}
      *
      */
-    protected function tearDown($category)
+    protected function tearDown()
     {
         parent::tearDown();
         $this->em->close();

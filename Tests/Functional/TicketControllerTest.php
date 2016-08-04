@@ -1,8 +1,7 @@
 <?php
 
-namespace Dreamlex\TicketBundle\Tests\Controller;
+namespace Dreamlex\TicketBundle\Tests\Functional;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\DomCrawler\Field\ChoiceFormField;
 use Symfony\Component\DomCrawler\Field\FileFormField;
 use Symfony\Component\DomCrawler\Field\InputFormField;
@@ -20,13 +19,17 @@ class TicketControllerTest extends WebTestCase
     const DATE_FROM = '2016-07-28 00:00:00';
     const DATE_TO = '2016-07-28 23:59:59';
 
+    public function setUp()
+    {
+        $this->client = $this->createClient(array('test_case' => 'DefaultTestCase'));
+    }
     /**
      * Вывод списка тикетов
      */
     public function testTicketList()
     {
         $client = static::createClient(
-            [],
+            ['test_case' => 'DefaultTestCase'],
             [
                 'PHP_AUTH_USER' => self::TEST_USER,
                 'PHP_AUTH_PW' => self::TEST_PASSWORD,

@@ -1,4 +1,4 @@
-{% extends 'DreamlexTicketBundle:Ticket:layout.html.twig' %}
+{% extends 'layout.html.twig' %}
 {% block content %}
     <h1>{{ 'ticket.label.ticket_list'|trans }}</h1>
 
@@ -15,5 +15,5 @@
         </div>
     {% endfor %}
 
-    {{ grid(grid, 'DreamlexTicketBundle:Ticket:bootstrap_grid.html.twig') }}
+    {{ grid(grid, 'bootstrap_grid.html.twig') }}
 {% endblock %}

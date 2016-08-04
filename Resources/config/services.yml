@@ -73,7 +73,7 @@ services:
         class: Dreamlex\TicketBundle\Form\Type\FileMediaType
         arguments:
             - '@sonata.media.pool'
-            - SellMMO\Sonata\MediaBundle\Entity\Media #//TODO Сущность для Media
+            - %dreamlex_ticket.user.media_entity%
         tags:
             - { name: form.type }
 #form handlers

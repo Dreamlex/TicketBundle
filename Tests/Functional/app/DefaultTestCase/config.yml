@@ -1,0 +1,25 @@
+imports:
+    - { resource: ../config/default.yml }
+
+framework:
+    serializer:
+        enabled: true
+
+dreamlex_ticket:
+    user_class: dummy
+    user_primary_key: id
+    media_entity: dummy
+
+fos_user:
+    db_driver:      orm # can be orm or odm
+    firewall_name:  main
+    user_class:     SellMMO\Sonata\UserBundle\Entity\User
+    group:
+        group_class:   SellMMO\Sonata\UserBundle\Entity\Group
+    profile:  # Authentication Form
+        form:
+            type:               fos_user_profile
+            handler:            fos_user.profile.form.handler.default
+            name:               fos_user_profile_form
+            validation_groups:  [Authentication] # Please note : this is not the default value
+

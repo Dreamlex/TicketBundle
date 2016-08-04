@@ -1,0 +1,4 @@
+dreamlex_ticket:
+    resource: "@DreamlexTicketBundle/Controller/"
+    type:     annotation
+    prefix:   /ticket
