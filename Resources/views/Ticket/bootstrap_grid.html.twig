@@ -83,8 +83,8 @@
         {% set value = row.field(index) %}
         {% set sourceValue = value %}
         {% import 'DreamlexTicketBundle:Macros:ticket_macros.html.twig' as macros %}
-        {% if loop.last==1 %}<em>{{ value|localizeddate }}</em>{% else %}
-            <strong>{{ value|localizeddate }}</strong>
+        {% if loop.last==1 %}<em>{{ value|localizeddate('medium','short') }}</em>{% else %}
+            <strong>{{ value|localizeddate('medium','short') }}</strong>
             <br>
         {% endif %}
     {%- endfor %}
