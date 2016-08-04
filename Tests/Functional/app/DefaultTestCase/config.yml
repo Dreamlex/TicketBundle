@@ -40,6 +40,9 @@ doctrine:
 sonata_media:
     class:
         media: SellMMO\Sonata\MediaBundle\Entity\Media
+        gallery: SellMMO\Sonata\MediaBundle\Entity\Gallery
+        gallery_has_media: SellMMO\Sonata\MediaBundle\Entity\GalleryHasMedia
+        category: SellMMO\Sonata\ClassificationBundle\Entity\Category
     default_context: default
     db_driver: doctrine_orm # or doctrine_mongodb, doctrine_phpcr
     contexts:
