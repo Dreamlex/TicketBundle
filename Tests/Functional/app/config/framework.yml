@@ -4,7 +4,8 @@ framework:
     test: ~
     form: ~
     csrf_protection: ~
-    session: ~
+    session:
+          storage_id: session.storage.mock_file
     default_locale: en
     templating:
         engines: ['php']

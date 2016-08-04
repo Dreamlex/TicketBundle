@@ -1,0 +1,5 @@
+parameters:
+    database_host:      localhost
+    database_name:      test
+    database_user:      root
+    database_password:  root

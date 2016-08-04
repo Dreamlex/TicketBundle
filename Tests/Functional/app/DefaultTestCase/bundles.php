@@ -15,6 +15,9 @@ return array(
     new \Symfony\Bundle\SecurityBundle\SecurityBundle(),
     new \Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
     new \Dreamlex\TicketBundle\DreamlexTicketBundle(),
+    new \Sonata\MediaBundle\SonataMediaBundle(),
+    new \Symfony\Bundle\TwigBundle\TwigBundle(),
+
 //    new \FOS\UserBundle\FOSUserBundle(),
     new \Pix\SortableBehaviorBundle\PixSortableBehaviorBundle(),
 );
