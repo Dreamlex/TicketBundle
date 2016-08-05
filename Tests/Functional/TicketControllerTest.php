@@ -20,7 +20,6 @@ class TicketControllerTest extends WebTestCase
 {
     /** @var  Client */
     private $client;
-    private $em;
     //TODO Всё перепроверить
     //TODO Указать даты
     const TEST_USER = 'test-user';
@@ -29,13 +28,11 @@ class TicketControllerTest extends WebTestCase
     const DATE_FROM = '2016-07-28 00:00:00';
     const DATE_TO = '2016-07-28 23:59:59';
 
-    public function setUp()
+    public static function setUpBeforeClass()
     {
-        $this->client = static::createClient(array('test_case' => 'DefaultTestCase'));
-
         static::$kernel = static::createKernel(array('test_case' => 'DefaultTestCase'));
         static::$kernel->boot();
-        $this->em = static::$kernel->getContainer()
+        $em = static::$kernel->getContainer()
             ->get('doctrine')
             ->getManager()
         ;
@@ -45,9 +42,15 @@ class TicketControllerTest extends WebTestCase
         $loader->addFixture(new LoadTicketCategories());
         $loader->addFixture(new LoadTicket());
 
-        $purger = new ORMPurger($this->em);
-        $executor = new ORMExecutor($this->em, $purger);
+        $purger = new ORMPurger($em);
+        $executor = new ORMExecutor($em, $purger);
         $executor->execute($loader->getFixtures());
+    }
+    public function setUp()
+    {
+        $this->client = static::createClient(array('test_case' => 'DefaultTestCase'));
+
+
 
         parent::setUp();
     }

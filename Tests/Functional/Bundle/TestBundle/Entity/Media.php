@@ -13,7 +13,7 @@ use Sonata\MediaBundle\Entity\BaseMedia;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="media__media") <yourname> <youremail>
+ * @ORM\Table(name="media")
  */
 class Media extends BaseMedia
 {
