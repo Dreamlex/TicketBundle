@@ -7,7 +7,7 @@ framework:
 
 dreamlex_ticket:
     user_class: Dreamlex\TicketBundle\Tests\Functional\Bundle\TestBundle\Entity\User
-    media_entity: Dreamlex\TicketBundle\Tests\Functional\Bundle\TestBundle\EntityMedia
+    media_entity: Dreamlex\TicketBundle\Tests\Functional\Bundle\TestBundle\Entity\Media
 
 security:
     firewalls:
