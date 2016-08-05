@@ -19,10 +19,9 @@ class LoadMetadata {
     protected $primary_key;
     protected $mediaEntity;
 
-    public function __construct($userRepository, $primary_key, $mediaEntity)
+    public function __construct($userRepository, $mediaEntity)
     {
         $this->userRepository = $userRepository;
-        $this->primary_key = $primary_key;
         $this->mediaEntity = $mediaEntity;
     }
 
