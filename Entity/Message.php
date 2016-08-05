@@ -2,8 +2,8 @@
 namespace Dreamlex\TicketBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use SellMMO\Sonata\MediaBundle\Entity\Media; //TODO Зависимость
-use SellMMO\Sonata\UserBundle\Entity\User; //TODO Зависимость
+//use Dreamlex\TicketBundle\Tests\Functional\Bundle\MediaBundle\Entity\Media; //TODO Зависимость
+//use SellMMO\Sonata\UserBundle\Entity\User; //TODO Зависимость
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
@@ -206,11 +206,11 @@ class Message
     /**
      * Set media
      *
-     * @param Media $media
+     * @param  $media
      *
      * @return Message
      */
-    public function setMedia(Media $media = null)
+    public function setMedia( $media = null)
     {
         $this->media = $media;
 
@@ -220,7 +220,7 @@ class Message
     /**
      * Get media
      *
-     * @return Media
+     * @return
      */
     public function getMedia()
     {
@@ -230,11 +230,11 @@ class Message
     /**
      * Set user
      *
-     * @param User $user
+     * @param  $user
      *
      * @return Message
      */
-    public function setUser(User $user)
+    public function setUser( $user)
     {
         $this->user = $user;
 
@@ -244,7 +244,7 @@ class Message
     /**
      * Get user
      *
-     * @return User
+     * @return
      */
     public function getUser()
     {

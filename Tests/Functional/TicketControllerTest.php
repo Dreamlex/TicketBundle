@@ -8,6 +8,8 @@ use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Dreamlex\TicketBundle\DataFixtures\ORM\LoadTicket;
 use Dreamlex\TicketBundle\DataFixtures\ORM\LoadTicketCategories;
 use Dreamlex\TicketBundle\DataFixtures\ORM\LoadTicketUsers;
+use Gedmo\Translatable\Entity\Translation;
+use Symfony\Bridge\Doctrine\DataFixtures\ContainerAwareLoader;
 use Symfony\Component\DomCrawler\Field\ChoiceFormField;
 use Symfony\Component\DomCrawler\Field\FileFormField;
 use Symfony\Component\DomCrawler\Field\InputFormField;
@@ -19,7 +21,7 @@ use Symfony\Component\HttpKernel\Client;
 class TicketControllerTest extends WebTestCase
 {
     /** @var  Client */
-    private $client;
+    protected $client;
     //TODO Всё перепроверить
     //TODO Указать даты
     const TEST_USER = 'test-user';
@@ -28,30 +30,29 @@ class TicketControllerTest extends WebTestCase
     const DATE_FROM = '2016-07-28 00:00:00';
     const DATE_TO = '2016-07-28 23:59:59';
 
-    public static function setUpBeforeClass()
+
+    public function setUp()
     {
+
+        $this->client = static::createClient(array('test_case' => 'DefaultTestCase'));
+
+
         static::$kernel = static::createKernel(array('test_case' => 'DefaultTestCase'));
         static::$kernel->boot();
         $em = static::$kernel->getContainer()
             ->get('doctrine')
-            ->getManager()
-        ;
-
-        $loader = new Loader();
+            ->getManager();
+        parent::setUp();
+        $loader = new ContainerAwareLoader($this->container);
         $loader->addFixture(new LoadTicketUsers());
         $loader->addFixture(new LoadTicketCategories());
         $loader->addFixture(new LoadTicket());
 
         $purger = new ORMPurger($em);
         $executor = new ORMExecutor($em, $purger);
-        $executor->execute($loader->getFixtures(),true);
+        $executor->execute($loader->getFixtures(), true);
     }
-    public function setUp()
-    {
-        $this->client = static::createClient(array('test_case' => 'DefaultTestCase'));
 
-        parent::setUp();
-    }
     /**
      * Вывод списка тикетов
      */

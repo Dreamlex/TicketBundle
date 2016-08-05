@@ -4,7 +4,6 @@ namespace Dreamlex\TicketBundle\Entity;
 use APY\DataGridBundle\Grid\Mapping as GRID;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use SellMMO\Sonata\UserBundle\Entity\User; //TODO Зависимость
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -316,11 +315,11 @@ class Ticket
     /**
      * Set user
      *
-     * @param User $user
+     * @param  $user
      *
      * @return Ticket
      */
-    public function setUser(User $user)
+    public function setUser($user)
     {
         $this->user = $user;
 
@@ -330,7 +329,7 @@ class Ticket
     /**
      * Get lastUser
      *
-     * @return User
+     * @return
      */
     public function getLastUser()
     {
@@ -340,11 +339,11 @@ class Ticket
     /**
      * Set lastUser
      *
-     * @param User $lastUser
+     * @param  $lastUser
      *
      * @return Ticket
      */
-    public function setLastUser(User $lastUser)
+    public function setLastUser( $lastUser)
     {
         $this->lastUser = $lastUser;
 

@@ -42,11 +42,15 @@ class LoadTicketUsers extends AbstractFixture implements FixtureInterface, Conta
 
     /**
      * @param ObjectManager $om
+     * @throws \Symfony\Component\DependencyInjection\Exception\ServiceCircularReferenceException
+     * @throws \Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException
      */
     public function load(ObjectManager $om)
     {
+        /** @var $manager \FOS\UserBundle\Doctrine\UserManager */
         $userManager = $this->container->get('fos_user.user_manager');
         $user = $userManager->findUserByUsername('test-user');
+
         if (\is_null($user)) {
             $user = $userManager->createUser();
             $user->setUsername('test-user')

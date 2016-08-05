@@ -6,6 +6,6 @@ framework:
     csrf_protection: ~
     session:
             storage_id: session.storage.mock_file
-    default_locale: en
+    default_locale: ru
     templating:
         engines: ['php']

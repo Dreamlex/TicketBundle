@@ -11,12 +11,32 @@
 
 namespace Dreamlex\TicketBundle\Tests\Functional;
 
+use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
+use Doctrine\Common\DataFixtures\Purger\ORMPurger;
+use Doctrine\ORM\Tools\SchemaTool;
+use Symfony\Bridge\Doctrine\DataFixtures\ContainerAwareLoader;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase as BaseWebTestCase;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpKernel\Kernel;
 
 class WebTestCase extends BaseWebTestCase
 {
+    /**
+     * @var \Doctrine\Common\Persistence\ObjectManager
+     */
+    protected $em;
+    protected static $schemaSetUp = false;
+
+    /**
+     * @var \Symfony\Component\DependencyInjection\Container
+     */
+    protected $container;
+
+    /**
+     * @var \Symfony\Bundle\FrameworkBundle\Client
+     */
+    protected $client;
+
     protected function deleteTmpDir($testCase)
     {
         if (!file_exists($dir = sys_get_temp_dir().'/'.Kernel::VERSION.'/'.$testCase)) {
@@ -34,6 +54,37 @@ class WebTestCase extends BaseWebTestCase
         return 'Dreamlex\TicketBundle\Tests\Functional\app\AppKernel';
     }
 
+    protected function setUp()
+    {
+        if (!class_exists('Twig_Environment')) {
+            $this->markTestSkipped('Twig is not available.');
+        }
+        if (null === $this->em) {
+            $this->em = $this->client->getContainer()->get('doctrine')->getManager();
+            if (!static::$schemaSetUp) {
+                $st = new SchemaTool($this->em);
+                $classes = $this->em->getMetadataFactory()->getAllMetadata();
+                $st->dropSchema($classes);
+                $st->createSchema($classes);
+                static::$schemaSetUp = true;
+            }
+        }
+        $this->container = static::$kernel->getContainer();
+        parent::setUp();
+    }
+//    protected function executeFixtures(ContainerAwareLoader $loader)
+//    {
+//        $purger = new ORMPurger();
+//        $executor = new ORMExecutor($this->em, $purger);
+//        $executor->execute($loader->getFixtures());
+//    }
+//    protected function loadFixturesFromDirectory($directory)
+//    {
+//        $loader = new ContainerAwareLoader($this->container);
+//        $loader->loadFromDirectory($directory);
+//        $this->executeFixtures($loader);
+//    }
+
     protected static function createKernel(array $options = array())
     {
         $class = self::getKernelClass();
@@ -41,6 +92,7 @@ class WebTestCase extends BaseWebTestCase
         if (!isset($options['test_case'])) {
             throw new \InvalidArgumentException('The option "test_case" must be set.');
         }
+
 
         return new $class(
             $options['test_case'],

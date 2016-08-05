@@ -54,14 +54,16 @@ doctrine:
                   driver:   pdo_sqlite
                   path:     '%kernel.cache_dir%/db.sqlite'
                   charset:  UTF8
+          types:
+              json: Sonata\Doctrine\Types\JsonType
     orm:
             auto_generate_proxy_classes: "%kernel.debug%"
             naming_strategy: doctrine.orm.naming_strategy.underscore
             auto_mapping: true
             filters:
-                    softdeleteable:
-                        class: Gedmo\SoftDeleteable\Filter\SoftDeleteableFilter
-                        enabled: true
+                softdeleteable:
+                    class: Gedmo\SoftDeleteable\Filter\SoftDeleteableFilter
+                    enabled: true
             mappings:
                 translatable:
                     type: annotation
@@ -69,6 +71,24 @@ doctrine:
                     prefix: Gedmo\Translatable\Entity
                     # make sure vendor library location is correct
                     dir: "%kernel.root_dir%/../../../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translatable/Entity"
+                SonataClassificationBundle: ~
+
+                FOSUserBundle: ~
+                DreamlexTicketBundle:
+                    type: annotation
+                    prefix: Dreamlex\TicketBundle\Entity
+                    dir: "%kernel.root_dir%/../../../Entity"
+                TestBundle:
+                    mapping: true
+                    prefix: Dreamlex\TicketBundle\Tests\Functional\Bundle\TestBundle\Entity
+                    type: annotation
+                    dir: "%kernel.root_dir%/../Bundle/TestBundle/Entity"
+#                ClassificationBundle:
+#                    type: xml
+#                    prefix: Dreamlex\TicketBundle\Tests\Functional\Bundle\ClassificationBundle\Entity
+#                    dir: "%kernel.root_dir%/../Bundle/ClassificationBundle/Entity"
+
+
 stof_doctrine_extensions:
     default_locale: ru
     translation_fallback: true
@@ -81,6 +101,9 @@ stof_doctrine_extensions:
 sonata_media:
     class:
         media:  Dreamlex\TicketBundle\Tests\Functional\Bundle\TestBundle\Entity\Media
+        category: Dreamlex\TicketBundle\Tests\Functional\Bundle\ClassificationBundle\Entity\Category
+        gallery: Dreamlex\TicketBundle\Tests\Functional\Bundle\MediaBundle\Entity\Gallery
+        gallery_has_media: Dreamlex\TicketBundle\Tests\Functional\Bundle\MediaBundle\Entity\GalleryHasMedia
     default_context: default
     db_driver: doctrine_orm # or doctrine_mongodb, doctrine_phpcr
     contexts:
@@ -101,6 +124,7 @@ sonata_media:
                small: { width: 100 , quality: 100}
                big:   { width: 1200 , quality: 100}
 
+
     cdn:
         server:
             path: /uploads/media # http://media.sonata-project.org/
@@ -116,3 +140,25 @@ sonata_translation:
     # here enable the types you need
     gedmo:
         enabled: true
+    
+sonata_classification:
+    class:
+        tag:          Dreamlex\TicketBundle\Tests\Functional\Bundle\ClassificationBundle\Entity\Tag
+        category:     Dreamlex\TicketBundle\Tests\Functional\Bundle\ClassificationBundle\Entity\Category
+        collection:   Dreamlex\TicketBundle\Tests\Functional\Bundle\ClassificationBundle\Entity\Collection
+        context:      Dreamlex\TicketBundle\Tests\Functional\Bundle\ClassificationBundle\Entity\Context
+        media:        Dreamlex\TicketBundle\Tests\Functional\Bundle\TestBundle\Entity\Media
+
+
+fos_user:
+    db_driver:      orm # can be orm or odm
+    firewall_name:  main
+    user_class:     Dreamlex\TicketBundle\Tests\Functional\Bundle\TestBundle\Entity\User
+swiftmailer:
+    transport: "%mailer_transport%"
+    host:      "%mailer_host%"
+    username:  "%mailer_user%"
+    password:  "%mailer_password%"
+    spool:     { type: memory }
+
+        # //TODO create config for fos_user -- nedded for LoadUsersFixture
