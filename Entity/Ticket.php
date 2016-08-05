@@ -85,8 +85,6 @@ class Ticket
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="SellMMO\Sonata\UserBundle\Entity\User")
-     * @ORM\JoinColumn(name="last_user_id", referencedColumnName="id", nullable=false)
      * @Grid\Column(field="lastUser.id", visible=false)
      */
     private $lastUser;

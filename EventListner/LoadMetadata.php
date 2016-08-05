@@ -46,13 +46,25 @@ class LoadMetadata {
                 'joinColumns' => array(
                     array(
                         'name' => 'user_id',
-                        'referencedColumnName' => $this->primary_key,
+                        'referencedColumnName' => 'id',
+                        'nullable' => false
+                    )
+                )
+            );
+            $mapping2 = array(
+                'targetEntity' => $this->userRepository,
+                'fieldName' => 'lastUser',
+                'joinColumns' => array(
+                    array(
+                        'name' => 'last_user_id',
+                        'referencedColumnName' => 'id',
                         'nullable' => false
                     )
                 )
             );
 
             $classMetadata->mapManyToOne($mapping);
+            $classMetadata->mapManyToOne($mapping2);
         }
         if($class_name == "Dreamlex\TicketBundle\Entity\Message") {
 
@@ -63,14 +75,11 @@ class LoadMetadata {
                 'joinColumns' => array(
                     array(
                         'name' => 'user_id',
-                        'referencedColumnName' => $this->primary_key,
+                        'referencedColumnName' => 'id',
                         'nullable' => false
                     )
                 )
             );
-            $classMetadata->mapManyToOne($mapping);
-        }
-        if($class_name == "Dreamlex\TicketBundle\Entity\Message") {
             $mappingMedia = array(
                 'targetEntity' => $this->mediaEntity,
                 'fieldName' => 'media',
@@ -84,6 +93,7 @@ class LoadMetadata {
                     )
                 )
             );
+            $classMetadata->mapManyToOne($mapping);
             $classMetadata->mapManyToOne($mappingMedia);
         }
     }
