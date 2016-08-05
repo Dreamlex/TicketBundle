@@ -27,7 +27,6 @@ class DreamlexTicketExtension extends Extension
         $loader->load('services.yml');
 
         $container->setParameter('dreamlex_ticket.user.class', $config['user_class']);
-        $container->setParameter('dreamlex_ticket.user.primary_key', $config['user_primary_key']);
         $container->setParameter('dreamlex_ticket.user.media_entity', $config['media_entity']);
     }
 
