@@ -19,4 +19,5 @@ return array(
     new \Symfony\Bundle\TwigBundle\TwigBundle(),
     new \Sonata\CoreBundle\SonataCoreBundle(),
     new \Pix\SortableBehaviorBundle\PixSortableBehaviorBundle(),
+    new \Dreamlex\TicketBundle\Tests\Functional\Bundle\TestBundle\TestBundle(),
 );

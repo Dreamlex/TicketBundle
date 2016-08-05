@@ -6,7 +6,7 @@
  * Time: 9:32
  */
 
-namespace Dreamlex\TicketBundle\Tests\Functional\Entity;
+namespace Dreamlex\TicketBundle\Tests\Functional\Bundle\TestBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Sonata\MediaBundle\Entity\BaseMedia;
