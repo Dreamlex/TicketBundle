@@ -20,4 +20,5 @@ return array(
     new \Sonata\CoreBundle\SonataCoreBundle(),
     new \Pix\SortableBehaviorBundle\PixSortableBehaviorBundle(),
     new \Dreamlex\TicketBundle\Tests\Functional\Bundle\TestBundle\TestBundle(),
+    new \Sonata\TranslationBundle\SonataTranslationBundle(),
 );

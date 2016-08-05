@@ -90,3 +90,10 @@ sonata_media:
         local:
             directory:  "%kernel.root_dir%/../web/uploads/media"
             create:     false
+
+sonata_translation:
+    locales: [en, ru]
+    default_locale: ru
+    # here enable the types you need
+    gedmo:
+        enabled: true
