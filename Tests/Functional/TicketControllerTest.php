@@ -2,16 +2,25 @@
 
 namespace Dreamlex\TicketBundle\Tests\Functional;
 
+use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
+use Doctrine\Common\DataFixtures\Loader;
+use Doctrine\Common\DataFixtures\Purger\ORMPurger;
+use Dreamlex\TicketBundle\DataFixtures\ORM\LoadTicket;
+use Dreamlex\TicketBundle\DataFixtures\ORM\LoadTicketCategories;
+use Dreamlex\TicketBundle\DataFixtures\ORM\LoadTicketUsers;
 use Symfony\Component\DomCrawler\Field\ChoiceFormField;
 use Symfony\Component\DomCrawler\Field\FileFormField;
 use Symfony\Component\DomCrawler\Field\InputFormField;
+use Symfony\Component\HttpKernel\Client;
 
 /**
  * TicketTestController
  */
 class TicketControllerTest extends WebTestCase
 {
+    /** @var  Client */
     private $client;
+    private $em;
     //TODO Всё перепроверить
     //TODO Указать даты
     const TEST_USER = 'test-user';
@@ -22,8 +31,25 @@ class TicketControllerTest extends WebTestCase
 
     public function setUp()
     {
-        $this->client = $this->createClient(array('test_case' => 'DefaultTestCase'));
-        $this->client->getContainer()->get('security.token_storage');
+        $this->client = static::createClient(array('test_case' => 'DefaultTestCase'));
+
+        static::$kernel = static::createKernel(array('test_case' => 'DefaultTestCase'));
+        static::$kernel->boot();
+        $this->em = static::$kernel->getContainer()
+            ->get('doctrine')
+            ->getManager()
+        ;
+
+        $loader = new Loader();
+        $loader->addFixture(new LoadTicketUsers());
+        $loader->addFixture(new LoadTicketCategories());
+        $loader->addFixture(new LoadTicket());
+
+        $purger = new ORMPurger($this->em);
+        $executor = new ORMExecutor($this->em, $purger);
+        $executor->execute($loader->getFixtures());
+
+        parent::setUp();
     }
     /**
      * Вывод списка тикетов
@@ -31,8 +57,7 @@ class TicketControllerTest extends WebTestCase
     public function testTicketList()
     {
         $crawler = $this->client->request('GET', '/ticket/?_locale=ru');
-//        static::assertGreaterThan(0, $crawler->filter('html:contains("Список тикетов")')->count());
-        $this->assertEquals(0, $crawler->filter('html:contains("Список тикетов")')->count());
+        static::assertGreaterThan(0, $crawler->filter('html:contains("Список тикетов")')->count());
     }
 
 

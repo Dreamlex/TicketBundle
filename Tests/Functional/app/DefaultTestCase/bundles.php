@@ -18,6 +18,5 @@ return array(
     new \Sonata\MediaBundle\SonataMediaBundle(),
     new \Symfony\Bundle\TwigBundle\TwigBundle(),
 
-//    new \FOS\UserBundle\FOSUserBundle(),
     new \Pix\SortableBehaviorBundle\PixSortableBehaviorBundle(),
 );

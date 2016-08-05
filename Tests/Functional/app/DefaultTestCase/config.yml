@@ -9,6 +9,7 @@ dreamlex_ticket:
     user_class: dummy
     user_primary_key: id
     media_entity: dummy
+
 security:
     firewalls:
         test:
@@ -28,11 +29,11 @@ security:
                             roles:              [ROLE_USER, ROLE_ADMIN]
 doctrine:
     dbal:
-        driver:   pdo_mysql
-        host:     '%database_host%'
-        dbname:   '%database_name%'
-        user:     '%database_user%'
-        password: '%database_password%'
+          default_connection: default
+          connections:
+              default:
+                  driver:   pdo_sqlite
+                  path:     %kernel.cache_dir%/test.db
     orm:
             auto_generate_proxy_classes: "%kernel.debug%"
             naming_strategy: doctrine.orm.naming_strategy.underscore
@@ -40,9 +41,6 @@ doctrine:
 sonata_media:
     class:
         media: SellMMO\Sonata\MediaBundle\Entity\Media
-        gallery: SellMMO\Sonata\MediaBundle\Entity\Gallery
-        gallery_has_media: SellMMO\Sonata\MediaBundle\Entity\GalleryHasMedia
-        category: SellMMO\Sonata\ClassificationBundle\Entity\Category
     default_context: default
     db_driver: doctrine_orm # or doctrine_mongodb, doctrine_phpcr
     contexts:
