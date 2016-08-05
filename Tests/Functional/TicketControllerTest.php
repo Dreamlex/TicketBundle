@@ -44,13 +44,11 @@ class TicketControllerTest extends WebTestCase
 
         $purger = new ORMPurger($em);
         $executor = new ORMExecutor($em, $purger);
-        $executor->execute($loader->getFixtures());
+        $executor->execute($loader->getFixtures(),true);
     }
     public function setUp()
     {
         $this->client = static::createClient(array('test_case' => 'DefaultTestCase'));
-
-
 
         parent::setUp();
     }
