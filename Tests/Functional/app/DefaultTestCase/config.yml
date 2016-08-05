@@ -6,9 +6,8 @@ framework:
         enabled: true
 
 dreamlex_ticket:
-    user_class: Dreamlex\TicketBundle\Tests\Functional\TestBundle\Entity\User
-    user_primary_key: id
-    media_entity: Dreamlex\TicketBundle\Tests\Functional\TestBundle\Entity\Media
+    user_class: Dreamlex\TicketBundle\Tests\Functional\Bundle\TestBundle\Entity\User
+    media_entity: Dreamlex\TicketBundle\Tests\Functional\Bundle\TestBundle\EntityMedia
 
 security:
     firewalls:
@@ -41,7 +40,7 @@ doctrine:
 
 sonata_media:
     class:
-        media:  Dreamlex\TicketBundle\Tests\Functional\TestBundle\Entity\Media
+        media:  Dreamlex\TicketBundle\Tests\Functional\Bundle\TestBundle\Entity\Media
     default_context: default
     db_driver: doctrine_orm # or doctrine_mongodb, doctrine_phpcr
     contexts:
