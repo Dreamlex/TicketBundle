@@ -14,7 +14,6 @@ services:
         class: Dreamlex\TicketBundle\EventListner\LoadMetadata
         arguments:
             - %dreamlex_ticket.user.class%
-            - %dreamlex_ticket.user.primary_key%
             - %dreamlex_ticket.user.media_entity%
         tags:
             - { name: doctrine.event_listener, event: loadClassMetadata }
