@@ -6,9 +6,9 @@ framework:
         enabled: true
 
 dreamlex_ticket:
-    user_class: Dreamlex\TicketBundle\Tests\Functional\app\Entity\User
+    user_class: Dreamlex\TicketBundle\Tests\Functional\Entity\User
     user_primary_key: id
-    media_entity: Dreamlex\TicketBundle\Tests\Functional\app\Entity\Media
+    media_entity: Dreamlex\TicketBundle\Tests\Functional\Entity\Media
 
 security:
     firewalls:
@@ -38,9 +38,10 @@ doctrine:
             auto_generate_proxy_classes: "%kernel.debug%"
             naming_strategy: doctrine.orm.naming_strategy.underscore
             auto_mapping: true
+
 sonata_media:
     class:
-        media:  Dreamlex\TicketBundle\Tests\Functional\app\Entity\Media
+        media:  Dreamlex\TicketBundle\Tests\Functional\Entity\Media
     default_context: default
     db_driver: doctrine_orm # or doctrine_mongodb, doctrine_phpcr
     contexts:
@@ -60,26 +61,6 @@ sonata_media:
             formats:
                small: { width: 100 , quality: 100}
                big:   { width: 1200 , quality: 100}
-        news:  # the news context is mandatory
-            providers:
-                - sonata.media.provider.image
-                - sonata.media.provider.youtube
-            formats:
-                small: { width: 100 , quality: 70}
-                big:   { width: 800 , quality: 70}
-        sonata_collection:
-            providers:
-              - sonata.media.provider.image
-            formats:
-                preview: { width: 100, quality: 100}
-                wide:    { width: 820, quality: 100}
-
-        sonata_category:
-            providers:
-              - sonata.media.provider.image
-            formats:
-                preview: { width: 100, quality: 100}
-                wide:    { width: 820, quality: 100}
 
     cdn:
         server:

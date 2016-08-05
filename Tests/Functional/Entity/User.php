@@ -6,7 +6,7 @@
  * Time: 9:35
  */
 
-namespace Dreamlex\TicketBundle\Tests\Functional\app\Entity;
+namespace Dreamlex\TicketBundle\Tests\Functional\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Dreamlex\TicketBundle\Entity\Traits\UserTrait;

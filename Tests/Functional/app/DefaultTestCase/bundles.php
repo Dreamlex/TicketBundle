@@ -17,6 +17,6 @@ return array(
     new \Dreamlex\TicketBundle\DreamlexTicketBundle(),
     new \Sonata\MediaBundle\SonataMediaBundle(),
     new \Symfony\Bundle\TwigBundle\TwigBundle(),
-
+    new \Sonata\CoreBundle\SonataCoreBundle(),
     new \Pix\SortableBehaviorBundle\PixSortableBehaviorBundle(),
 );
