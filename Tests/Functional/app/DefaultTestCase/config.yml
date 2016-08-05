@@ -58,6 +58,25 @@ doctrine:
             auto_generate_proxy_classes: "%kernel.debug%"
             naming_strategy: doctrine.orm.naming_strategy.underscore
             auto_mapping: true
+            filters:
+                    softdeleteable:
+                        class: Gedmo\SoftDeleteable\Filter\SoftDeleteableFilter
+                        enabled: true
+            mappings:
+                translatable:
+                    type: annotation
+                    alias: Gedmo
+                    prefix: Gedmo\Translatable\Entity
+                    # make sure vendor library location is correct
+                    dir: "%kernel.root_dir%/../../../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translatable/Entity"
+stof_doctrine_extensions:
+    default_locale: ru
+    translation_fallback: true
+    orm:
+        default:
+            translatable:   true
+            sortable:       true
+            softdeleteable: true
 
 sonata_media:
     class:
