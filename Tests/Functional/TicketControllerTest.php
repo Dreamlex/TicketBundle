@@ -3,13 +3,15 @@
 namespace Dreamlex\TicketBundle\Tests\Functional;
 
 use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
-use Doctrine\Common\DataFixtures\Loader;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Dreamlex\TicketBundle\DataFixtures\ORM\LoadTicket;
 use Dreamlex\TicketBundle\DataFixtures\ORM\LoadTicketCategories;
 use Dreamlex\TicketBundle\DataFixtures\ORM\LoadTicketUsers;
-use Gedmo\Translatable\Entity\Translation;
 use Symfony\Bridge\Doctrine\DataFixtures\ContainerAwareLoader;
+use Symfony\Bundle\FrameworkBundle\Console\Application;
+use Symfony\Component\Console\Input\ArrayInput;
+use Symfony\Component\Console\Output\BufferedOutput;
+use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\DomCrawler\Field\ChoiceFormField;
 use Symfony\Component\DomCrawler\Field\FileFormField;
 use Symfony\Component\DomCrawler\Field\InputFormField;
@@ -18,7 +20,7 @@ use Symfony\Component\HttpKernel\Client;
 /**
  * TicketTestController
  */
-class TicketControllerTest extends WebTestCase
+class TicketControllerTest extends FunctionalWebTestCase
 {
     /** @var  Client */
     protected $client;
@@ -30,28 +32,76 @@ class TicketControllerTest extends WebTestCase
     const DATE_FROM = '2016-07-28 00:00:00';
     const DATE_TO = '2016-07-28 23:59:59';
 
-
+    /**
+     * {@inheritDoc}
+     */
     public function setUp()
     {
-
-        $this->client = static::createClient(array('test_case' => 'DefaultTestCase'));
-
-
-        static::$kernel = static::createKernel(array('test_case' => 'DefaultTestCase'));
-        static::$kernel->boot();
-        $em = static::$kernel->getContainer()
-            ->get('doctrine')
-            ->getManager();
+        $this->client = static::createClient(array('test_case' => 'DefaultTestCase'), [
+            'PHP_AUTH_USER' => self::TEST_USER,
+            'PHP_AUTH_PW' => self::TEST_PASSWORD,
+        ]);
         parent::setUp();
+
+
+
+        $application = new Application(static::$kernel);
+        $application->setAutoExit(false);
+
+        $input = new ArrayInput(array(
+            'command' => 'doctrine:schema:update', '--dump-sql' => true, '--force' => true, '--complete' => true
+        ));
+
+//        $output = new NullOutput();
+//        $application->run($input, $output);
+
+        $output = new BufferedOutput();
+        $application->run($input, $output);
+
+        // return the output, don't use if you used NullOutput()
+        $content = $output->fetch();
+
+//        echo $content;
+
+        $application = new Application(static::$kernel);
+        $application->setAutoExit(false);
+
+        $input = new ArrayInput(array(
+            'command' => 'sonata:media:fix-media-context', '-vvv' => true
+        ));
+
+//        $output = new NullOutput();
+//        $application->run($input, $output);
+
+        $output = new BufferedOutput();
+        $application->run($input, $output);
+
+        // return the output, don't use if you used NullOutput()
+        $content = $output->fetch();
+
+//        echo $content;exit();
+
+
         $loader = new ContainerAwareLoader($this->container);
         $loader->addFixture(new LoadTicketUsers());
         $loader->addFixture(new LoadTicketCategories());
         $loader->addFixture(new LoadTicket());
 
-        $purger = new ORMPurger($em);
-        $executor = new ORMExecutor($em, $purger);
+        $purger = new ORMPurger($this->em);
+        $executor = new ORMExecutor($this->em, $purger);
         $executor->execute($loader->getFixtures(), true);
     }
+
+//    /**
+//     * {@inheritDoc}
+//     */
+//    protected function tearDown()
+//    {
+//        parent::tearDown();
+//
+//        $this->em->close();
+//        $this->em = null; // avoid memory leaks
+//    }
 
     /**
      * Вывод списка тикетов
@@ -59,6 +109,7 @@ class TicketControllerTest extends WebTestCase
     public function testTicketList()
     {
         $crawler = $this->client->request('GET', '/ticket/?_locale=ru');
+        echo $crawler->html();
         static::assertGreaterThan(0, $crawler->filter('html:contains("Список тикетов")')->count());
     }
 

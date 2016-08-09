@@ -6,8 +6,8 @@ framework:
         enabled: true
 
 dreamlex_ticket:
-    user_class: Dreamlex\TicketBundle\Tests\Functional\Bundle\TestBundle\Entity\User
-    media_entity: Dreamlex\TicketBundle\Tests\Functional\Bundle\TestBundle\Entity\Media
+    user_class: Dreamlex\TicketBundle\Tests\Functional\Sonata\UserBundle\Entity\User
+    media_entity: Dreamlex\TicketBundle\Tests\Functional\Sonata\MediaBundle\Entity\Media
 
 security:
     firewalls:
@@ -16,18 +16,18 @@ security:
                 secret: 'secret'
                 realm: 'secure-api'
     providers:            # Required
-            # Examples:
-            my_in_memory_provider:
-                memory:
-                    users:
-                        test-user:
-                            password:           test-user
-                            roles:              ROLE_USER
-                        test-admin:
-                            password:           test-admin
-                            roles:              [ROLE_USER, ROLE_ADMIN]
+        # Examples:
+        my_in_memory_provider:
+            memory:
+                users:
+                    test-user:
+                        password:           test-user
+                        roles:              ROLE_USER
+                    test-admin:
+                        password:           test-admin
+                        roles:              [ROLE_USER, ROLE_ADMIN]
     encoders:
-            Symfony\Component\Security\Core\User\User: plaintext
+        FOS\UserBundle\Model\UserInterface: plaintext
 
     firewalls:
         main:
@@ -48,41 +48,36 @@ twig:
     strict_variables: '%kernel.debug%'
 doctrine:
     dbal:
-          default_connection: default
-          connections:
-              default:
-                  driver:   pdo_sqlite
-                  path:     '%kernel.cache_dir%/db.sqlite'
-                  charset:  UTF8
+          driver:   pdo_sqlite
+          path:     '%kernel.cache_dir%/db.sqlite'
+          charset:  UTF8
           types:
               json: Sonata\Doctrine\Types\JsonType
     orm:
-            auto_generate_proxy_classes: "%kernel.debug%"
-            naming_strategy: doctrine.orm.naming_strategy.underscore
-            auto_mapping: true
-            filters:
-                softdeleteable:
-                    class: Gedmo\SoftDeleteable\Filter\SoftDeleteableFilter
-                    enabled: true
-            mappings:
-                translatable:
-                    type: annotation
-                    alias: Gedmo
-                    prefix: Gedmo\Translatable\Entity
-                    # make sure vendor library location is correct
-                    dir: "%kernel.root_dir%/../../../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translatable/Entity"
-                SonataClassificationBundle: ~
+        auto_generate_proxy_classes: "%kernel.debug%"
+        naming_strategy: doctrine.orm.naming_strategy.underscore
+        auto_mapping: true
+        mappings:
+            translatable:
+                type: annotation
+                alias: Gedmo
+                prefix: Gedmo\Translatable\Entity
+                # make sure vendor library location is correct
+                dir: "%kernel.root_dir%/../../../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translatable/Entity"
 
-                FOSUserBundle: ~
-                DreamlexTicketBundle:
-                    type: annotation
-                    prefix: Dreamlex\TicketBundle\Entity
-                    dir: "%kernel.root_dir%/../../../Entity"
-                TestBundle:
-                    mapping: true
-                    prefix: Dreamlex\TicketBundle\Tests\Functional\Bundle\TestBundle\Entity
-                    type: annotation
-                    dir: "%kernel.root_dir%/../Bundle/TestBundle/Entity"
+            SonataClassificationBundle: ~
+#
+            DreamlexSonataClassificationBundle: ~
+#                    type: xml
+#                    dir: "../Sonata/ClassificationBundle/Resources/config/doctrine"
+#                    prefix: Dreamlex\TicketBundle\Tests\Functional\Sonata\ClassificationBundle\Entity
+#                    is_bundle: true
+
+#                FOSUserBundle: ~
+#                DreamlexTicketBundle:
+#                    type: annotation
+#                    prefix: Dreamlex\TicketBundle\Entity
+#                    dir: "%kernel.root_dir%/../../../Entity"
 #                ClassificationBundle:
 #                    type: xml
 #                    prefix: Dreamlex\TicketBundle\Tests\Functional\Bundle\ClassificationBundle\Entity
@@ -100,10 +95,10 @@ stof_doctrine_extensions:
 
 sonata_media:
     class:
-        media:  Dreamlex\TicketBundle\Tests\Functional\Bundle\TestBundle\Entity\Media
-        category: Dreamlex\TicketBundle\Tests\Functional\Bundle\ClassificationBundle\Entity\Category
-        gallery: Dreamlex\TicketBundle\Tests\Functional\Bundle\MediaBundle\Entity\Gallery
-        gallery_has_media: Dreamlex\TicketBundle\Tests\Functional\Bundle\MediaBundle\Entity\GalleryHasMedia
+        media:  Dreamlex\TicketBundle\Tests\Functional\Sonata\MediaBundle\Entity\Media
+        category: Dreamlex\TicketBundle\Tests\Functional\Sonata\ClassificationBundle\Entity\Category
+        gallery: Dreamlex\TicketBundle\Tests\Functional\Sonata\MediaBundle\Entity\Gallery
+        gallery_has_media: Dreamlex\TicketBundle\Tests\Functional\Sonata\MediaBundle\Entity\GalleryHasMedia
     default_context: default
     db_driver: doctrine_orm # or doctrine_mongodb, doctrine_phpcr
     contexts:
@@ -143,17 +138,23 @@ sonata_translation:
     
 sonata_classification:
     class:
-        tag:          Dreamlex\TicketBundle\Tests\Functional\Bundle\ClassificationBundle\Entity\Tag
-        category:     Dreamlex\TicketBundle\Tests\Functional\Bundle\ClassificationBundle\Entity\Category
-        collection:   Dreamlex\TicketBundle\Tests\Functional\Bundle\ClassificationBundle\Entity\Collection
-        context:      Dreamlex\TicketBundle\Tests\Functional\Bundle\ClassificationBundle\Entity\Context
-        media:        Dreamlex\TicketBundle\Tests\Functional\Bundle\TestBundle\Entity\Media
+        tag:          Dreamlex\TicketBundle\Tests\Functional\Sonata\ClassificationBundle\Entity\Tag
+        category:     Dreamlex\TicketBundle\Tests\Functional\Sonata\ClassificationBundle\Entity\Category
+        collection:   Dreamlex\TicketBundle\Tests\Functional\Sonata\ClassificationBundle\Entity\Collection
+        context:      Dreamlex\TicketBundle\Tests\Functional\Sonata\ClassificationBundle\Entity\Context
+        media:        Dreamlex\TicketBundle\Tests\Functional\Sonata\MediaBundle\Entity\Media
 
 
 fos_user:
     db_driver:      orm # can be orm or odm
     firewall_name:  main
-    user_class:     Dreamlex\TicketBundle\Tests\Functional\Bundle\TestBundle\Entity\User
+    user_class:     Dreamlex\TicketBundle\Tests\Functional\Sonata\UserBundle\Entity\User
+    group:
+        group_class:   Dreamlex\TicketBundle\Tests\Functional\Sonata\UserBundle\Entity\Group
+        group_manager: sonata.user.orm.group_manager                    # If you're using doctrine orm (use sonata.user.mongodb.user_manager for mongodb)
+    service:
+        user_manager: sonata.user.orm.user_manager                      # If you're using doctrine orm (use sonata.user.mongodb.group_manager for mongodb)
+
 swiftmailer:
     transport: "%mailer_transport%"
     host:      "%mailer_host%"
@@ -162,3 +163,15 @@ swiftmailer:
     spool:     { type: memory }
 
         # //TODO create config for fos_user -- nedded for LoadUsersFixture
+
+monolog:
+    handlers:
+        main:
+            type: stream
+            path: "%kernel.logs_dir%/%kernel.environment%.log"
+            level: debug
+            channels: [!event]
+        console:
+            type:   console
+            level: debug
+            channels: [!event, !doctrine]

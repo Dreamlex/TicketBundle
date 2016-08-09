@@ -1,3 +1,3 @@
 security:
     encoders:
-        Dreamlex\TicketBundle\Tests\Functional\Bundle\TestBundle\Entity\User: plaintext
+        FOS\UserBundle\Model\UserInterface: plaintext

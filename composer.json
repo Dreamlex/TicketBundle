@@ -1,18 +1,20 @@
 {
-  "name" : "dreamlex/ticketbundle",
-  "description" : "Dreamlex ticket bundle",
-  "type" : "symfony-bundle",
-  "authors" : [{
-    "name" : "Dreamlex Team",
-    "email" : "demo@company.com"
-  }],
-  "keywords" : [
+  "name": "dreamlex/ticketbundle",
+  "description": "Dreamlex ticket bundle",
+  "type": "symfony-bundle",
+  "authors": [
+    {
+      "name": "Dreamlex Team",
+      "email": "demo@company.com"
+    }
+  ],
+  "keywords": [
     "tickets"
   ],
-  "license" : [
+  "license": [
     "MIT"
   ],
-  "require" : {
+  "require": {
     "php": ">=5.3.9",
     "symfony/symfony": "2.8.*",
     "symfony/swiftmailer-bundle": "~2.3",
@@ -34,18 +36,19 @@
     "gedmo/doctrine-extensions": "2.4.*",
     "twig/extensions": "^1.3"
   },
-  "autoload" : {
-    "psr-0" : {
-      "Dreamlex\\TicketBundle" : ""
+  "autoload": {
+    "psr-0": {
+      "Dreamlex\\TicketBundle": ""
     }
   },
-  "target-dir" : "Dreamlex/TicketBundle",
-  "extra" : {
-    "branch-alias" : {
-      "dev-master" : "1.0.x-dev"
+  "target-dir": "Dreamlex/TicketBundle",
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0.x-dev"
     }
   },
   "require-dev": {
-    "phpunit/phpunit": "5.4.*"
+    "phpunit/phpunit": "5.4.*",
+    "symfony/monolog-bundle": "~2.4"
   }
 }
