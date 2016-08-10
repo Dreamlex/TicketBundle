@@ -8,4 +8,4 @@ framework:
         storage_id: session.storage.mock_file
     default_locale: ru
     templating:
-        engines: ['php']
+            engines: [twig]

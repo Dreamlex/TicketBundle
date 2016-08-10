@@ -3,3 +3,4 @@
 vendor/
 /composer.lock
 /Tests/Functional/web/
+/Tests/Functional/web/uploads/media/ticket/

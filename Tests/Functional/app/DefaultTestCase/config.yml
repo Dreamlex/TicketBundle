@@ -1,5 +1,6 @@
 imports:
     - { resource: ../config/default.yml }
+    - { resource: sonata.yml }
 
 framework:
     serializer:
@@ -12,20 +13,11 @@ dreamlex_ticket:
 security:
     firewalls:
         test:
-            http_digest:
-                secret: 'secret'
-                realm: 'secure-api'
+             http_basic: ~
     providers:            # Required
-        # Examples:
-        my_in_memory_provider:
-            memory:
-                users:
-                    test-user:
-                        password:           test-user
-                        roles:              ROLE_USER
-                    test-admin:
-                        password:           test-admin
-                        roles:              [ROLE_USER, ROLE_ADMIN]
+        fos_userbundle:
+            id: fos_user.user_manager
+
     encoders:
         FOS\UserBundle\Model\UserInterface: plaintext
 
@@ -46,6 +38,7 @@ security:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+
 doctrine:
     dbal:
           driver:   pdo_sqlite
@@ -93,58 +86,6 @@ stof_doctrine_extensions:
             sortable:       true
             softdeleteable: true
 
-sonata_media:
-    class:
-        media:  Dreamlex\TicketBundle\Tests\Functional\Sonata\MediaBundle\Entity\Media
-        category: Dreamlex\TicketBundle\Tests\Functional\Sonata\ClassificationBundle\Entity\Category
-        gallery: Dreamlex\TicketBundle\Tests\Functional\Sonata\MediaBundle\Entity\Gallery
-        gallery_has_media: Dreamlex\TicketBundle\Tests\Functional\Sonata\MediaBundle\Entity\GalleryHasMedia
-    default_context: default
-    db_driver: doctrine_orm # or doctrine_mongodb, doctrine_phpcr
-    contexts:
-        default:  # the default context is mandatory
-            providers:
-                - sonata.media.provider.dailymotion
-                - sonata.media.provider.youtube
-                - sonata.media.provider.image
-                - sonata.media.provider.file
-            formats:
-                small: { width: 100 , quality: 70}
-                big:   { width: 500 , quality: 70}
-        ticket:
-            providers:
-               - sonata.media.provider.ticket_image
-               - sonata.media.provider.file
-            formats:
-               small: { width: 100 , quality: 100}
-               big:   { width: 1200 , quality: 100}
-
-
-    cdn:
-        server:
-            path: /uploads/media # http://media.sonata-project.org/
-
-    filesystem:
-        local:
-            directory:  "%kernel.root_dir%/../web/uploads/media"
-            create:     false
-
-sonata_translation:
-    locales: [en, ru]
-    default_locale: ru
-    # here enable the types you need
-    gedmo:
-        enabled: true
-    
-sonata_classification:
-    class:
-        tag:          Dreamlex\TicketBundle\Tests\Functional\Sonata\ClassificationBundle\Entity\Tag
-        category:     Dreamlex\TicketBundle\Tests\Functional\Sonata\ClassificationBundle\Entity\Category
-        collection:   Dreamlex\TicketBundle\Tests\Functional\Sonata\ClassificationBundle\Entity\Collection
-        context:      Dreamlex\TicketBundle\Tests\Functional\Sonata\ClassificationBundle\Entity\Context
-        media:        Dreamlex\TicketBundle\Tests\Functional\Sonata\MediaBundle\Entity\Media
-
-
 fos_user:
     db_driver:      orm # can be orm or odm
     firewall_name:  main
@@ -175,3 +116,20 @@ monolog:
             type:   console
             level: debug
             channels: [!event, !doctrine]
+
+apy_data_grid:
+    theme: "::bootstrap_grid.html.twig"
+
+# Assetic Configuration
+assetic:
+    debug:          "%kernel.debug%"
+#    bundles:        [ ]
+    java: /usr/bin/java
+    filters:
+      cssrewrite: ~
+      uglifyjs2:
+        bin:        "%uglifyjs2_path%"
+      uglifycss:
+        bin:        "%uglifycss_path%"
+      typescript:
+        apply_to:    \.ts

@@ -1,0 +1,50 @@
+sonata_media:
+    class:
+        media:  Dreamlex\TicketBundle\Tests\Functional\Sonata\MediaBundle\Entity\Media
+        category: Dreamlex\TicketBundle\Tests\Functional\Sonata\ClassificationBundle\Entity\Category
+        gallery: Dreamlex\TicketBundle\Tests\Functional\Sonata\MediaBundle\Entity\Gallery
+        gallery_has_media: Dreamlex\TicketBundle\Tests\Functional\Sonata\MediaBundle\Entity\GalleryHasMedia
+    default_context: default
+    db_driver: doctrine_orm # or doctrine_mongodb, doctrine_phpcr
+    contexts:
+        default:  # the default context is mandatory
+            providers:
+                - sonata.media.provider.dailymotion
+                - sonata.media.provider.youtube
+                - sonata.media.provider.image
+                - sonata.media.provider.file
+            formats:
+                small: { width: 100 , quality: 70}
+                big:   { width: 500 , quality: 70}
+        ticket:
+            providers:
+               - sonata.media.provider.ticket_image
+               - sonata.media.provider.file
+            formats:
+               small: { width: 100 , quality: 100}
+               big:   { width: 1200 , quality: 100}
+
+
+    cdn:
+        server:
+            path: /uploads/media # http://media.sonata-project.org/
+
+    filesystem:
+        local:
+            directory:  "%kernel.root_dir%/../web/uploads/media"
+            create:     false
+
+sonata_translation:
+    locales: [en, ru]
+    default_locale: ru
+    # here enable the types you need
+    gedmo:
+        enabled: true
+
+sonata_classification:
+    class:
+        tag:          Dreamlex\TicketBundle\Tests\Functional\Sonata\ClassificationBundle\Entity\Tag
+        category:     Dreamlex\TicketBundle\Tests\Functional\Sonata\ClassificationBundle\Entity\Category
+        collection:   Dreamlex\TicketBundle\Tests\Functional\Sonata\ClassificationBundle\Entity\Collection
+        context:      Dreamlex\TicketBundle\Tests\Functional\Sonata\ClassificationBundle\Entity\Context
+        media:        Dreamlex\TicketBundle\Tests\Functional\Sonata\MediaBundle\Entity\Media

@@ -52,16 +52,8 @@ class TicketControllerTest extends FunctionalWebTestCase
             'command' => 'doctrine:schema:update', '--dump-sql' => true, '--force' => true, '--complete' => true
         ));
 
-//        $output = new NullOutput();
-//        $application->run($input, $output);
-
         $output = new BufferedOutput();
         $application->run($input, $output);
-
-        // return the output, don't use if you used NullOutput()
-        $content = $output->fetch();
-
-//        echo $content;
 
         $application = new Application(static::$kernel);
         $application->setAutoExit(false);
@@ -70,16 +62,10 @@ class TicketControllerTest extends FunctionalWebTestCase
             'command' => 'sonata:media:fix-media-context', '-vvv' => true
         ));
 
-//        $output = new NullOutput();
-//        $application->run($input, $output);
+
 
         $output = new BufferedOutput();
         $application->run($input, $output);
-
-        // return the output, don't use if you used NullOutput()
-        $content = $output->fetch();
-
-//        echo $content;exit();
 
 
         $loader = new ContainerAwareLoader($this->container);
@@ -92,16 +78,6 @@ class TicketControllerTest extends FunctionalWebTestCase
         $executor->execute($loader->getFixtures(), true);
     }
 
-//    /**
-//     * {@inheritDoc}
-//     */
-//    protected function tearDown()
-//    {
-//        parent::tearDown();
-//
-//        $this->em->close();
-//        $this->em = null; // avoid memory leaks
-//    }
 
     /**
      * Вывод списка тикетов
@@ -109,7 +85,7 @@ class TicketControllerTest extends FunctionalWebTestCase
     public function testTicketList()
     {
         $crawler = $this->client->request('GET', '/ticket/?_locale=ru');
-        echo $crawler->html();
+        print_r($this->client->getResponse()->getContent());
         static::assertGreaterThan(0, $crawler->filter('html:contains("Список тикетов")')->count());
     }
 

@@ -31,4 +31,7 @@ return array(
     new \Dreamlex\TicketBundle\Tests\Functional\Sonata\ClassificationBundle\DreamlexSonataClassificationBundle(),
     new \Dreamlex\TicketBundle\Tests\Functional\Sonata\MediaBundle\DreamlexSonataMediaBundle(),
     new \Dreamlex\TicketBundle\Tests\Functional\Sonata\UserBundle\DreamlexSonataUserBundle(),
+    new \APY\DataGridBundle\APYDataGridBundle(),
+    new \Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle(),
+    new \Symfony\Bundle\AsseticBundle\AsseticBundle(),
 );

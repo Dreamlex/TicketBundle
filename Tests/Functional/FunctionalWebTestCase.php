@@ -60,6 +60,9 @@ class FunctionalWebTestCase extends WebTestCase
 
     protected function setUp()
     {
+        if (!class_exists('Twig_Environment')) {
+            $this->markTestSkipped('Twig is not available.');
+        }
         if (null === $this->em) {
             $this->em = $this->client->getContainer()->get('doctrine')->getManager();
             if (!static::$schemaSetUp) {
