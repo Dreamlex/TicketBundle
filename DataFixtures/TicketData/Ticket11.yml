@@ -12,7 +12,8 @@ messages:
         status: "closed"
         priority: "low"
         createdAt: "-1 month"
-        message: | а что будет если так сделать...
+        message: |
+                  а что будет если так сделать...
 
         mediaFile: ""
         mediaName: ""

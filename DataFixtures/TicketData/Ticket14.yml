@@ -12,7 +12,8 @@ messages:
                     status: "open"
                     priority: "high"
                     createdAt: "now"
-                    message: | заменил ластюзер на противоположный. что будет?)
+                    message: |
+                              заменил ластюзер на противоположный. что будет?)
 
                     mediaFile: "p(35).jpg"
                     mediaName: "p(32)"

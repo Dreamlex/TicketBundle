@@ -43,7 +43,7 @@ class FunctionalWebTestCase extends WebTestCase
      */
     protected function deleteTmpDir($testCase)
     {
-        if (!file_exists($dir = sys_get_temp_dir().'/'.Kernel::VERSION.'/'.$testCase)) {
+        if (!file_exists($dir = __DIR__.'/temp/'.$testCase)) {
             return;
         }
 

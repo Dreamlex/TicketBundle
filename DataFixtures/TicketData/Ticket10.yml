@@ -12,7 +12,8 @@ messages:
         status: "open"
         priority: "high"
         createdAt: "now"
-        message: | а что будет если так сделать...
+        message: |
+                  а что будет если так сделать...
 
         mediaFile: ""
         mediaName: ""

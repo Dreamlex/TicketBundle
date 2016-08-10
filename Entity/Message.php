@@ -281,7 +281,7 @@ class Message
     public function prePersist()
     {
         // if null, then new ticket
-        if (\is_null($this->getTicket()->getUser())) {
+        if (null === $this->getTicket()->getUser()) {
             $this->getTicket()->setUser($this->getUser());
         }
         $this->getTicket()->setLastUser($this->getUser());
@@ -291,7 +291,7 @@ class Message
         $this->getTicket()->setPriority($this->getPriority());
 
         // if ticket not closed, then it'll be set to null
-        if (\is_null($this->getStatus())) {
+        if (null === $this->getStatus()) {
             $this->setStatus($this->getTicket()->getStatus());
         } else {
             $this->getTicket()->setStatus($this->getStatus());

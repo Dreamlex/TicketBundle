@@ -12,7 +12,7 @@ messages:
                     status: "open"
                     priority: "high"
                     createdAt: "now"
-                    message: |
+                    message:
 
                     mediaFile: "p(32).jpg"
                     mediaName: "p(32)"

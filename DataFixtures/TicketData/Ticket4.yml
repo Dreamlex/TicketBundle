@@ -12,7 +12,7 @@ messages:
                     status: "closed"
                     priority: "high"
                     createdAt: ""
-                    message: |
+                    message:
 
                     mediaFile: ""
                     mediaName: ""

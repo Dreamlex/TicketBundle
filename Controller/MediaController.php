@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/media", options={"i18n": false})
  */
-class MediaController extends Controller //TODO Перенести в TicketBundle
+class MediaController extends Controller
 {
     /**
      * @Route("/get/{format}/{id}", name="ticket_get_big_img")
