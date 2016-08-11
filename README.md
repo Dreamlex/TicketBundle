@@ -5,7 +5,9 @@ Ticket bundle for symfony
 
 Setting Bundle
 =====
+#####Для доступа к картинкам с Административной части:
 
+Админ должен иметь Роль `ROLE_TICKET_ADMIN`
 ##Setting User Entity
 extend Sonata or FOS  BaseUser and use trait
 ```php

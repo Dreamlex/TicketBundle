@@ -12,10 +12,8 @@
 namespace Dreamlex\TicketBundle\Tests\Functional;
 
 use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\Tools\SchemaTool;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\HttpKernel\Kernel;
 
 class FunctionalWebTestCase extends WebTestCase
 {
@@ -61,20 +59,7 @@ class FunctionalWebTestCase extends WebTestCase
     protected function setUp()
     {
         if (!class_exists('Twig_Environment')) {
-            $this->markTestSkipped('Twig is not available.');
-        }
-        if (null === $this->em) {
-            $this->em = $this->client->getContainer()->get('doctrine')->getManager();
-            if (!static::$schemaSetUp) {
-                $st = new SchemaTool($this->em);
-
-                $classes = $this->em->getMetadataFactory()->getAllMetadata();
-
-                $st->dropSchema($classes);
-                $st->createSchema($classes);
-
-                static::$schemaSetUp = true;
-            }
+            static::markTestSkipped('Twig is not available.');
         }
 
         $this->container = static::$kernel->getContainer();

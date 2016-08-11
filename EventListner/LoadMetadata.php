@@ -16,7 +16,6 @@ use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
  */
 class LoadMetadata {
     protected $userRepository;
-    protected $primary_key;
     protected $mediaEntity;
 
     public function __construct($userRepository, $mediaEntity)

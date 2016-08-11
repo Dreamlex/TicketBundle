@@ -96,7 +96,6 @@ class TicketVoter extends Voter
     {
         // this assumes that the data object has a getOwner() method
         // to get the entity of the user who owns this data object
-        echo $ticket->getUser();
         return $user === $ticket->getUser();
     }
 }

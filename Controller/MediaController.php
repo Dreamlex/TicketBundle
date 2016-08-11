@@ -28,7 +28,7 @@ class MediaController extends Controller
             $message = $repository->findOneBy([
                 'media' => $media->getId(),
             ]);
-            if ($message->getTicket()->getUser() === $this->getUser() || $this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) { //TODO Заменить на ROLE_TICKET_ADMIN
+            if ($message->getTicket()->getUser() === $this->getUser() || $this->get('security.authorization_checker')->isGranted('ROLE_TICKET_ADMIN')) {
                 $provider = $this->get('sonata.media.provider.ticket_image');
                 $file = $provider->generateCustomUrl($media, $format);
                 $response = new Response();

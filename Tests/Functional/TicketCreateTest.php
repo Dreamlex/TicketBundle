@@ -8,16 +8,189 @@
 
 namespace Dreamlex\TicketBundle\Tests\Functional;
 
+use Symfony\Bundle\FrameworkBundle\Console\Application;
+use Symfony\Component\DependencyInjection\Container;
+use Symfony\Component\DomCrawler\Field\ChoiceFormField;
+use Symfony\Component\DomCrawler\Field\FileFormField;
+use Symfony\Component\DomCrawler\Field\InputFormField;
+use Symfony\Component\HttpKernel\Client;
 
-class TicketCreateTest extends \PHPUnit_Framework_TestCase
+class TicketCreateTest extends TicketWebTestCase
 {
-//TODO implement tests
+    /** @var  Client */
+    protected $client;
+    const TEST_USER = 'test-user';
+    const TEST_PASSWORD = 'test-user';
+    const TICKET_ID = '6';
+
     /**
-    показ
-    ошибка при создании тикета
-    создание с картинкой
-    показ флеша после создания
-    вывод ошибок на форме создания
-    запрет доступа к тикетам анонимным юзерам
+     * {@inheritDoc}
      */
+
+    public static function setUpBeforeClass()
+    {
+        # get the container
+        $client = static::createClient(['test_case' => 'DefaultTestCase']);
+        /** @var Container $container */
+        $container = $client->getContainer();
+        $application = new Application($client->getKernel());
+
+        # create a cli application
+        self::runDoctrineSchema($application);
+        self::runFixMedia($application);
+        self::executeFixtures($container);
+    }
+
+    public function setUp()
+    {
+        $this->client = static::createClient(array('test_case' => 'DefaultTestCase'), [
+            'PHP_AUTH_USER' => self::TEST_USER,
+            'PHP_AUTH_PW' => self::TEST_PASSWORD,
+        ]);
+
+        parent::setUp();
+    }
+
+    /**
+     *  создания тикета с текстом
+     */
+    public function testTicketCreateTextOnly()
+    {
+        $client = $this->client;
+        $client->followRedirects();
+        $crawler = $client->request('GET', '/ticket/create?_locale=ru');
+        $form = $crawler->selectButton('submit')->form();
+
+        /**  @var $category ChoiceFormField */
+        $category = $form['ticket[category]'];
+        $categoryOptions = $category->availableOptionValues();
+        $category->select($categoryOptions[4]);
+
+        $form['ticket[subject]'] = 'Testing Subject';
+        $form['ticket[messages][0][message]'] = 'Lorem Ipsum - це текст-"риба", що використовується в друкарстві та дизайні. Lorem Ipsum є, фактично, стандартною "рибою" аж з XVI сторіччя, коли невідомий друкар взяв шрифтову гранку та склав на ній підбірку зразків шрифтів. "Риба" не тільки успішно пережила п\'ять століть, але й прижилася в електронному верстуванні, залишаючись по суті незмінною. Вона популяризувалась в 60-их роках минулого сторіччя завдяки виданню зразків шрифтів Letraset, які містили уривки з Lorem Ipsum, і вдруге - нещодавно завдяки програмам комп\'ютерного верстування на кшталт Aldus Pagemaker, які використовували різні версії Lorem Ipsum';
+
+        /** @var $priority ChoiceFormField */
+        $priority = $form['ticket[messages][0][priority]'];
+        $priorityOptions = $priority->availableOptionValues();
+        $priority->select($priorityOptions[0]);
+
+        $crawler = $client->submit($form);
+
+        self::assertGreaterThan(0, $crawler->filter('html:contains("Тикет создан")')->count());
+    }
+
+    /**
+     * показ, Флеш после создания
+     */
+    public function testFlashShowAfterCreateTicket()
+    {
+        $client = $this->client;
+        $client->followRedirects();
+        $crawler = $client->request('GET', '/ticket/create?_locale=ru');
+        $form = $crawler->selectButton('Создать тикет')->form();
+        self::assertGreaterThan(0, $crawler->filter('html:contains("Создать тикет")')->count());
+
+        /**  @var $category ChoiceFormField */
+        $category = $form['ticket[category]'];
+        $categoryOptions = $category->availableOptionValues();
+        $category->select($categoryOptions[4]);
+
+        $form['ticket[subject]'] = 'Flash testing';
+        $form['ticket[messages][0][message]'] = 'Lorem Ipsum - це текст-"риба", що використовується в друкарстві та дизайні. Lorem Ipsum є, фактично, стандартною "рибою" аж з XVI сторіччя, коли невідомий друкар взяв шрифтову гранку та склав на ній підбірку зразків шрифтів. "Риба" не тільки успішно пережила п\'ять століть, але й прижилася в електронному верстуванні, залишаючись по суті незмінною. Вона популяризувалась в 60-их роках минулого сторіччя завдяки виданню зразків шрифтів Letraset, які містили уривки з Lorem Ipsum, і вдруге - нещодавно завдяки програмам комп\'ютерного верстування на кшталт Aldus Pagemaker, які використовували різні версії Lorem Ipsum';
+
+        /** @var $priority ChoiceFormField */
+        $priority = $form['ticket[messages][0][priority]'];
+        $priorityOptions = $priority->availableOptionValues();
+        $priority->select($priorityOptions[1]);
+
+        $crawler = $client->submit($form);
+        self::assertGreaterThan(0, $crawler->filter('html:contains("Тикет создан")')->count());
+    }
+
+    /**
+     * создание тикета с картинкой/показ флеша
+     */
+    public function testTicketCreateImageOnly()
+    {
+        $client = $this->client;
+        $client->followRedirects();
+        $crawler = $client->request('GET', '/ticket/create?_locale=ru');
+        $form = $crawler->selectButton('submit')->form();
+        /**  @var $category ChoiceFormField */
+        $category = $form['ticket[category]'];
+        $categoryOptions = $category->availableOptionValues();
+        $category->select($categoryOptions['2']);
+
+        $form['ticket[subject]'] = 'Ticket with image';
+
+        /** @var  $media FileFormField */
+        $media = $form['ticket[messages][0][media][binaryContent]'];
+        $media->upload(__DIR__.'/../Images/8.jpg');
+        /** @var $priority ChoiceFormField */
+        $priority = $form['ticket[messages][0][priority]'];
+        $priorityOptions = $priority->availableOptionValues();
+        $priority->select($priorityOptions[0]);
+        $crawler = $client->submit($form);
+        static::assertGreaterThan(0, $crawler->filter('html:contains("Тикет создан")')->count());
+    }
+
+    /**
+     * вывод ошибки пустое поле темы при создании тикета
+     */
+    public function testErrorSubjectCreatingTicket()
+    {
+        $client = $this->client;
+        $crawler = $client->request('GET', '/ticket/create?_locale=ru');
+
+        $form = $crawler->selectButton('submit')->form();
+
+        /**  @var $category ChoiceFormField */
+        $category = $form['ticket[category]'];
+        $categoryOptions = $category->availableOptionValues();
+        $category->select($categoryOptions['2']);
+
+        $form['ticket[messages][0][message]'] = 'Lorem Ipsum - це текст-"риба", що використовується в друкарстві та дизайні. Lorem Ipsum є, фактично, стандартною "рибою" аж з XVI сторіччя, коли невідомий друкар взяв шрифтову гранку та склав на ній підбірку зразків шрифтів. "Риба" не тільки успішно пережила п\'ять століть, але й прижилася в електронному верстуванні, залишаючись по суті незмінною. Вона популяризувалась в 60-их роках минулого сторіччя завдяки виданню зразків шрифтів Letraset, які містили уривки з Lorem Ipsum, і вдруге - нещодавно завдяки програмам комп\'ютерного верстування на кшталт Aldus Pagemaker, які використовували різні версії Lorem Ipsum';
+
+        $priority = $form['ticket[messages][0][priority]'];
+        /** @var $priority ChoiceFormField */
+        $priority->select('high');
+
+        $crawler = $client->submit($form);
+        self::assertGreaterThan(0, $crawler->filter('html:contains("Поле Тема не может быть пустым")')->count());
+    }
+
+    /**
+     * вывод ошибки заполните сообщения
+     */
+    public function testErrorMessageCreatingTicket()
+    {
+        $client = $this->client;
+        $crawler = $client->request('GET', '/ticket/create?_locale=ru');
+        $form = $crawler->selectButton('submit')->form();
+
+        /**  @var $category ChoiceFormField */
+        $category = $form['ticket[category]'];
+        $categoryOptions = $category->availableOptionValues();
+        $category->select($categoryOptions['2']);
+        $form['ticket[subject]'] = 'Subject with 3 category';
+
+        /** @var $priority ChoiceFormField */
+        $priority = $form['ticket[messages][0][priority]'];
+        $priorityOptions = $priority->availableOptionValues();
+        $priority->select($priorityOptions[0]);
+
+        $crawler = $client->submit($form);
+        self::assertGreaterThan(
+            0,
+            $crawler->filter('html:contains("Заполните поле Сообщение или загрузите изображение")')->count()
+        );
+    }
+
+    public function testTicketCreateMustLogin()
+    {
+        $client = static::createClient(['test_case' => 'DefaultTestCase']);
+        $client->request('GET', '/ticket/create?_locale=ru');
+        self::assertEquals(401,$client->getResponse()->getStatusCode());
+    }
+
 }
