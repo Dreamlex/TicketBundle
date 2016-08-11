@@ -1,4 +1,5 @@
 Dreamlex Ticket Bundle
+[![Build Status](https://travis-ci.org/Dreamlex/TicketBundle.svg?branch=master)](https://travis-ci.org/Dreamlex/TicketBundle)
 =======================
 
 Ticket bundle for symfony 
