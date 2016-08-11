@@ -3,6 +3,7 @@
 namespace Dreamlex\TicketBundle\Tests\Functional;
 
 use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
+use Doctrine\Common\DataFixtures\Loader;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Dreamlex\TicketBundle\DataFixtures\ORM\LoadTicket;
 use Dreamlex\TicketBundle\DataFixtures\ORM\LoadTicketCategories;
@@ -35,6 +36,28 @@ class TicketControllerTest extends FunctionalWebTestCase
     /**
      * {@inheritDoc}
      */
+//TODO implement setUpBeforeClass()
+//    public static function setUpBeforeClass()
+//    {
+//
+//        static::$kernel = static::createKernel(array('test_case' => 'DefaultTestCase'));
+//        static::$kernel->boot();
+//        $em = static::$kernel->getContainer()
+//            ->get('doctrine')
+//            ->getManager()
+//        ;
+//
+//        $loader = new Loader();
+//        $loader = new ContainerAwareLoader($this->container);
+//        $loader->addFixture(new LoadTicketUsers());
+//        $loader->addFixture(new LoadTicketCategories());
+//        $loader->addFixture(new LoadTicket());
+//
+//        $purger = new ORMPurger($em);
+//        $executor = new ORMExecutor($em, $purger);
+//        $executor->execute($loader->getFixtures(),true);
+//    }
+
     public function setUp()
     {
         $this->client = static::createClient(array('test_case' => 'DefaultTestCase'), [
@@ -42,7 +65,6 @@ class TicketControllerTest extends FunctionalWebTestCase
             'PHP_AUTH_PW' => self::TEST_PASSWORD,
         ]);
         parent::setUp();
-
 
 
         $application = new Application(static::$kernel);
@@ -61,7 +83,6 @@ class TicketControllerTest extends FunctionalWebTestCase
         $input = new ArrayInput(array(
             'command' => 'sonata:media:fix-media-context', '-vvv' => true
         ));
-
 
 
         $output = new BufferedOutput();
@@ -85,7 +106,6 @@ class TicketControllerTest extends FunctionalWebTestCase
     public function testTicketList()
     {
         $crawler = $this->client->request('GET', '/ticket/?_locale=ru');
-        print_r($this->client->getResponse()->getContent());
         static::assertGreaterThan(0, $crawler->filter('html:contains("Список тикетов")')->count());
     }
 
@@ -95,13 +115,7 @@ class TicketControllerTest extends FunctionalWebTestCase
      */
     public function testTicketCreateTextOnly()
     {
-        $client = static::createClient(
-            [],
-            [
-                'PHP_AUTH_USER' => self::TEST_USER,
-                'PHP_AUTH_PW' => self::TEST_PASSWORD,
-            ]
-        );
+        $client = $this->client;
         $client->followRedirects();
         $crawler = $client->request('GET', '/ticket/create?_locale=ru');
         $form = $crawler->selectButton('submit')->form();
@@ -129,13 +143,7 @@ class TicketControllerTest extends FunctionalWebTestCase
      */
     public function testFlashShowAfterCreateTicket()
     {
-        $client = static::createClient(
-            [],
-            [
-                'PHP_AUTH_USER' => self::TEST_USER,
-                'PHP_AUTH_PW' => self::TEST_PASSWORD,
-            ]
-        );
+        $client = $this->client;
         $client->followRedirects();
         $crawler = $client->request('GET', '/ticket/create?_locale=ru');
         $form = $crawler->selectButton('Создать тикет')->form();
@@ -162,13 +170,7 @@ class TicketControllerTest extends FunctionalWebTestCase
      */
     public function testTicketCreateImageOnly()
     {
-        $client = static::createClient(
-            [],
-            [
-                'PHP_AUTH_USER' => self::TEST_USER,
-                'PHP_AUTH_PW' => self::TEST_PASSWORD,
-            ]
-        );
+        $client = $this->client;
         $client->followRedirects();
         $crawler = $client->request('GET', '/ticket/create?_locale=ru');
         $form = $crawler->selectButton('submit')->form();
@@ -195,14 +197,12 @@ class TicketControllerTest extends FunctionalWebTestCase
      */
     public function testTicketShow()
     {
-        $client = static::createClient(
-            [],
-            [
-                'PHP_AUTH_USER' => self::TEST_USER,
-                'PHP_AUTH_PW' => self::TEST_PASSWORD,
-            ]
-        );
+        $client =  static::createClient(array('test_case' => 'DefaultTestCase'), [
+            'PHP_AUTH_USER' => self::TEST_USER,
+            'PHP_AUTH_PW' => self::TEST_PASSWORD,
+        ]);
         $crawler = $client->request('GET', '/ticket/'.self::TICKET_ID.'/show?_locale=ru');
+        print_r($client->getResponse()->getContent());
         self::assertTrue($client->getResponse()->isSuccessful());
         self::assertGreaterThan(
             0,
@@ -218,13 +218,7 @@ class TicketControllerTest extends FunctionalWebTestCase
      */
     public function testTicketShowAnotherUserFail()
     {
-        $client = static::createClient(
-            [],
-            [
-                'PHP_AUTH_USER' => 'test-admin',
-                'PHP_AUTH_PW' => 'test-admin',
-            ]
-        );
+        $client = static::createClient(['test_case'=>'DefaultTestCase']);
         $client->request('GET', '/ticket/'.self::TICKET_ID.'/show?_locale=ru');
         self::assertTrue($client->getResponse()->isForbidden());
         self::assertContains('Access Denied.', $client->getResponse()->getContent());
@@ -235,10 +229,10 @@ class TicketControllerTest extends FunctionalWebTestCase
      */
     public function testTicketShowAnonymousRedirect()
     {
-        $client = static::createClient();
+        $client = static::createClient(['test_case' => 'DefaultTestCase']);
         $client->request('GET', '/ticket/'.self::TICKET_ID.'/show?_locale=ru');
         self::assertEquals(
-            302,
+            401,
             $client->getResponse()->getStatusCode());
     }
 
@@ -247,15 +241,10 @@ class TicketControllerTest extends FunctionalWebTestCase
      */
     public function testErrorSubjectCreatingTicket()
     {
-        $client = static::createClient(
-            [],
-            [
-                'PHP_AUTH_USER' => self::TEST_USER,
-                'PHP_AUTH_PW' => self::TEST_PASSWORD,
-            ]
-        );
-        $client->followRedirects();
+        $client = $this->client;
+//        $client->followRedirects();
         $crawler = $client->request('GET', '/ticket/create?_locale=ru');
+
         $form = $crawler->selectButton('submit')->form();
 
         /**  @var $category ChoiceFormField */
@@ -270,6 +259,11 @@ class TicketControllerTest extends FunctionalWebTestCase
         $priority->select('high');
 
         $crawler = $client->submit($form);
+        $session = $this->client->getContainer()->get('session');
+        var_dump($session->getBag('flashes')->all()); // this print an empty array
+        print_r($client->getResponse()->getStatusCode());
+        $session = $client->getContainer()->get('session');
+//        print_r($client->getResponse()->getContent());
         self::assertGreaterThan(0, $crawler->filter('html:contains("Поле Тема не может быть пустым")')->count());
     }
 
@@ -278,13 +272,7 @@ class TicketControllerTest extends FunctionalWebTestCase
      */
     public function testErrorMessageCreatingTicket()
     {
-        $client = static::createClient(
-            [],
-            [
-                'PHP_AUTH_USER' => self::TEST_USER,
-                'PHP_AUTH_PW' => self::TEST_PASSWORD,
-            ]
-        );
+        $client = $this->client;
         $crawler = $client->request('GET', '/ticket/create?_locale=ru');
         $form = $crawler->selectButton('submit')->form();
 
@@ -311,13 +299,7 @@ class TicketControllerTest extends FunctionalWebTestCase
      */
     public function testTicketAddTextAnswer()
     {
-        $client = static::createClient(
-            [],
-            [
-                'PHP_AUTH_USER' => self::TEST_USER,
-                'PHP_AUTH_PW' => self::TEST_PASSWORD,
-            ]
-        );
+        $client = $this->client;
         $client->followRedirects();
         $crawler = $client->request('GET', '/ticket/'.self::TICKET_ID.'/show?_locale=ru');
         $form = $crawler->selectButton('Message[submit]')->form();
@@ -329,13 +311,7 @@ class TicketControllerTest extends FunctionalWebTestCase
 
     public function testMarkTicketIsRead()
     {
-        $client = static::createClient(
-            [],
-            [
-                'PHP_AUTH_USER' => self::TEST_USER,
-                'PHP_AUTH_PW' => self::TEST_PASSWORD,
-            ]
-        );
+        $client =$this->client;
         $client->followRedirects();
         $crawler = $client->request('GET', '/ticket/'.self::TICKET_ID.'/show?_locale=ru');
 
@@ -346,13 +322,7 @@ class TicketControllerTest extends FunctionalWebTestCase
      */
     public function testTicketAddImageAnswer()
     {
-        $client = static::createClient(
-            [],
-            [
-                'PHP_AUTH_USER' => self::TEST_USER,
-                'PHP_AUTH_PW' => self::TEST_PASSWORD,
-            ]
-        );
+        $client = $this->client;
         $client->followRedirects();
         $crawler = $client->request('GET', '/ticket/'.self::TICKET_ID.'/show?_locale=ru');
         $form = $crawler->selectButton('Message[submit]')->form();
@@ -372,13 +342,7 @@ class TicketControllerTest extends FunctionalWebTestCase
      */
     public function testTicketChangePriority()
     {
-        $client = static::createClient(
-            [],
-            [
-                'PHP_AUTH_USER' => self::TEST_USER,
-                'PHP_AUTH_PW' => self::TEST_PASSWORD,
-            ]
-        );
+        $client = $this->client;
         $client->followRedirects();
         $crawler = $client->request('GET', '/ticket/'.self::TICKET_ID.'/show?_locale=ru');
         $form = $crawler->selectButton('Message[changePriority]')->form();
@@ -396,13 +360,7 @@ class TicketControllerTest extends FunctionalWebTestCase
      */
     public function testTicketReplyErrors()
     {
-        $client = static::createClient(
-            [],
-            [
-                'PHP_AUTH_USER' => self::TEST_USER,
-                'PHP_AUTH_PW' => self::TEST_PASSWORD,
-            ]
-        );
+        $client = $this->client;
         $client->followRedirects();
         $crawler = $client->request('GET', '/ticket/'.self::TICKET_ID.'/show?_locale=ru');
         $form = $crawler->selectButton('Message[submit]')->form();
@@ -418,13 +376,7 @@ class TicketControllerTest extends FunctionalWebTestCase
      */
     public function testTicketCloseAction()
     {
-        $client = static::createClient(
-            [],
-            [
-                'PHP_AUTH_USER' => self::TEST_USER,
-                'PHP_AUTH_PW' => self::TEST_PASSWORD,
-            ]
-        );
+        $client = $this->client;
         $client->followRedirects();
         $crawler = $client->request('GET', '/ticket/'.self::TICKET_ID.'/show?_locale=ru');
         $form = $crawler->selectButton('Message[closeTicket]')->form();
@@ -440,13 +392,7 @@ class TicketControllerTest extends FunctionalWebTestCase
      */
     public function testTicketReOpen()
     {
-        $client = static::createClient(
-            [],
-            [
-                'PHP_AUTH_USER' => self::TEST_USER,
-                'PHP_AUTH_PW' => self::TEST_PASSWORD,
-            ]
-        );
+        $client = $this->client;
         $client->followRedirects();
         $crawler = $client->request('GET', '/ticket/'.self::TICKET_ID.'/show?_locale=ru');
         static:: assertGreaterThan(
@@ -469,13 +415,7 @@ class TicketControllerTest extends FunctionalWebTestCase
      */
     public function testTicketCategoryFilters()
     {
-        $client = static::createClient(
-            [],
-            [
-                'PHP_AUTH_USER' => self::TEST_USER,
-                'PHP_AUTH_PW' => self::TEST_PASSWORD,
-            ]
-        );
+        $client = $this->client;
         $client->followRedirects();
         $crawler = $client->request('GET', '/ticket/?_locale=ru');
         $form = $crawler->filter('form')->form();
@@ -499,13 +439,7 @@ class TicketControllerTest extends FunctionalWebTestCase
      */
     public function testTicketStatusFilters()
     {
-        $client = static::createClient(
-            [],
-            [
-                'PHP_AUTH_USER' => self::TEST_USER,
-                'PHP_AUTH_PW' => self::TEST_PASSWORD,
-            ]
-        );
+        $client = $this->client;
         $client->followRedirects();
         $crawler = $client->request('GET', '/ticket/?_locale=ru');
         $form = $crawler->filter('form')->form();
@@ -527,13 +461,7 @@ class TicketControllerTest extends FunctionalWebTestCase
      */
     public function testTicketPriorityFilters()
     {
-        $client = static::createClient(
-            [],
-            [
-                'PHP_AUTH_USER' => self::TEST_USER,
-                'PHP_AUTH_PW' => self::TEST_PASSWORD,
-            ]
-        );
+        $client = $this->client;
         $client->followRedirects();
         $crawler = $client->request('GET', '/ticket/?_locale=ru');
         $form = $crawler->filter('form')->form();
@@ -554,13 +482,7 @@ class TicketControllerTest extends FunctionalWebTestCase
      */
     public function testTicketDateFilters()
     {
-        $client = static::createClient(
-            [],
-            [
-                'PHP_AUTH_USER' => self::TEST_USER,
-                'PHP_AUTH_PW' => self::TEST_PASSWORD,
-            ]
-        );
+        $client = $this->client;
         $client->followRedirects();
         $crawler = $client->request('GET', '/ticket/?_locale=ru');
         $form = $crawler->filter('form')->form();

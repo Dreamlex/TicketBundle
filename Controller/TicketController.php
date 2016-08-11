@@ -9,7 +9,6 @@ use Doctrine\ORM\QueryBuilder;
 use Dreamlex\TicketBundle\Entity\Ticket;
 use Dreamlex\TicketBundle\Form\TicketMessageType;
 use Dreamlex\TicketBundle\Form\TicketType;
-use SellMMO\Sonata\UserBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -34,7 +33,6 @@ class TicketController extends Controller
      */
     public function indexAction(Request $request)
     {
-        /** @var User $user */
         $user = $this->getUser();
         $source = new Entity('DreamlexTicketBundle:Ticket');
         $source->addHint(
@@ -131,7 +129,6 @@ class TicketController extends Controller
         $translator = $this->get('translator');
 
         $ticketManager = $this->get('dreamlex_ticket.ticket_manager');
-        /** @var User $user */
         $ticketManager->markTicketIsRead($ticket, $this->getUser());
 
         $messageManager = $this->get('dreamlex_ticket.message_manager');

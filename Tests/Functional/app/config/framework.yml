@@ -1,8 +1,10 @@
 framework:
+    translator:      { fallbacks: [ru] }
     secret: test
     router: { resource: "%kernel.root_dir%/config/routing.yml" }
     test: ~
     form: ~
+    validation:      { enable_annotations: true }
     csrf_protection: ~
     session:
         storage_id: session.storage.mock_file

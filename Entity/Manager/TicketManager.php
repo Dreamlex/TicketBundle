@@ -11,7 +11,7 @@ namespace Dreamlex\TicketBundle\Entity\Manager;
 use Doctrine\Common\Persistence\ObjectManager;
 use Dreamlex\TicketBundle\Entity\Message;
 use Dreamlex\TicketBundle\Entity\Ticket;
-use SellMMO\Sonata\UserBundle\Entity\User;
+use Symfony\Component\Security\Core\User\UserInterface as User;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 /**
@@ -84,7 +84,7 @@ class TicketManager
     /**
      * @param Ticket $ticket
      */
-    public function markTicketIsRead(Ticket $ticket, User $currentUser) //TODO Зависимость User
+    public function markTicketIsRead(Ticket $ticket, User $currentUser)
     {
         if (!$ticket->getIsRead() && $ticket->getLastUser() !== $currentUser) {
             $ticket->setIsRead(true);

@@ -9,7 +9,7 @@
 namespace Dreamlex\TicketBundle\Security\Authorization\Voter;
 
 use Dreamlex\TicketBundle\Entity\Ticket;
-use SellMMO\Sonata\UserBundle\Entity\User;
+use Symfony\Component\Security\Core\User\UserInterface as User;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\AccessDecisionManager;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
@@ -96,6 +96,7 @@ class TicketVoter extends Voter
     {
         // this assumes that the data object has a getOwner() method
         // to get the entity of the user who owns this data object
+        echo $ticket->getUser();
         return $user === $ticket->getUser();
     }
 }

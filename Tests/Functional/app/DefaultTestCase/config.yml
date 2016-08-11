@@ -105,17 +105,17 @@ swiftmailer:
 
         # //TODO create config for fos_user -- nedded for LoadUsersFixture
 
-monolog:
-    handlers:
-        main:
-            type: stream
-            path: "%kernel.logs_dir%/%kernel.environment%.log"
-            level: debug
-            channels: [!event]
-        console:
-            type:   console
-            level: debug
-            channels: [!event, !doctrine]
+#monolog:
+#    handlers:
+#        main:
+#            type: stream
+#            path: "%kernel.logs_dir%/%kernel.environment%.log"
+#            level: debug
+#            channels: [!event]
+#        console:
+#            type:   console
+#            level: debug
+#            channels: [!event, !doctrine]
 
 apy_data_grid:
     theme: "::bootstrap_grid.html.twig"
