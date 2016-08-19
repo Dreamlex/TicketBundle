@@ -6,8 +6,28 @@ Ticket bundle for symfony
 Setting Bundle
 =====
 #####Для доступа к картинкам с Административной части:
-
 Админ должен иметь Роль `ROLE_TICKET_ADMIN`
+
+typpings
+--
+Install typings `npm i typings` and add in typings.json:
+```
+    "bazinga-translator": "registry:dt/bazinga-translator#0.0.0+20160724062856",
+    "daterangepicker": "registry:dt/daterangepicker#2.1.19+20160608082020",
+    "handlebars": "registry:dt/handlebars#3.0.3+20160317120654",
+    "jquery": "registry:dt/jquery#1.10.0+20160628074423",
+    "jquery.validation": "registry:dt/jquery.validation#1.13.1+20160626224847",
+    "moment": "registry:dt/moment#2.8.0+20160316155526",
+    "moment-node": "registry:dt/moment-node#2.11.1+20160511043338",
+    "select2": "registry:dt/select2#4.0.1+20160606153014",
+    "underscore": "registry:dt/underscore#1.7.0+20160622050840"
+    
+```
+    
+##composer.json
+`"pixassociates/sortable-behavior-bundle": "dev-master",`
+
+
 ##Setting User Entity
 extend Sonata or FOS  BaseUser and use trait
 ```php
@@ -25,7 +45,6 @@ class User extends BaseUser
 ``` yml
 dreamlex_ticket:
     user_class: Path\To\Yours\User\Entity\User
-    user_primary_key: id
     media_entity: Path\To\Yours\Sonata\Media\Entity\Media
 ```
 add libs to your bower.json
@@ -65,3 +84,8 @@ sonata_media:
                small: { width: 100 , quality: 100}
                big:   { width: 1200 , quality: 100}
 ```
+
+TODO
+--
+1. Translator type Bazinga in ticket.ts
+2. add `, {}, 'frontend'` in translations 

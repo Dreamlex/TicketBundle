@@ -5,7 +5,6 @@ namespace Dreamlex\TicketBundle\Admin;
 use Dreamlex\TicketBundle\Entity\Message;
 use Dreamlex\TicketBundle\Entity\Ticket;
 use Dreamlex\TicketBundle\Form\Type\FileMediaType;
-use SellMMO\Sonata\UserBundle\Entity\User;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -105,7 +104,6 @@ class MessageAdmin extends AbstractAdmin
     {
         /** @var Ticket $ticket */
         $ticket = $this->getParent()->getSubject();
-        /** @var User $user */
         $user = $this->tokenStorage->getToken()->getUser();
         if (!$ticket->getIsRead() && $user !== $ticket->getLastUser()) {
             $ticket->setIsRead(true);
@@ -139,7 +137,7 @@ class MessageAdmin extends AbstractAdmin
     {
         $formMapper
             ->add('message', TextareaType::class, [
-                'required' => true,
+                'required' => false,
             ])
             ->add('status', 'choice', [
                 'choices' => Message::getStatuses('ticket.status_'),
@@ -150,6 +148,7 @@ class MessageAdmin extends AbstractAdmin
             ->add('media', FileMediaType::class, [
                 'provider' => 'sonata.media.provider.ticket_image',
                 'context' => 'ticket',
+                'required'=> false
             ])
         ;
     }

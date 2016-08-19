@@ -1,5 +1,5 @@
 /// <reference path="/var/www/sell-mmo.loc/typings/index.d.ts" />
-declare var Translator: any;
+declare var Translator: BazingaTranslator;
 abstract class Ticket {
     grid: string;
     form: string;
@@ -68,15 +68,15 @@ class TicketDatePicker extends Ticket {
             opens: "left"
         };
         // Translations with Bazinga Translate Bundle
-        settings.ranges[Translator.trans("ticket.date.today")] = [moment(), moment()];
-        settings.ranges[Translator.trans("ticket.date.yesterday")] = [moment().subtract(1, "days"), moment().subtract(1, "days")];
-        settings.ranges[Translator.trans("ticket.date.last7days")] = [moment().subtract(6, "days"), moment()];
-        settings.ranges[Translator.trans("ticket.date.last30days")] = [moment().subtract(29, "days"), moment()];
-        settings.ranges[Translator.trans("ticket.date.thismonth")] = [moment().startOf("month"), moment().endOf("month")];
-        settings.ranges[Translator.trans("ticket.date.lastmonth")] = [moment().subtract(1, "month").startOf("month"), moment().subtract(1, "month").endOf("month")];
-        settings.locale["customRangeLabel"] = Translator.trans("ticket.date.custom");
-        settings.locale["applyLabel"] = Translator.trans("ticket.date.label.apply");
-        settings.locale["cancelLabel"] = Translator.trans("ticket.date.label.cancel");
+        settings.ranges[Translator.trans("ticket.date.today", {}, 'frontend')] = [moment(), moment()];
+        settings.ranges[Translator.trans("ticket.date.yesterday", {}, 'frontend')] = [moment().subtract(1, "days"), moment().subtract(1, "days")];
+        settings.ranges[Translator.trans("ticket.date.last7days", {}, 'frontend')] = [moment().subtract(6, "days"), moment()];
+        settings.ranges[Translator.trans("ticket.date.last30days", {}, 'frontend')] = [moment().subtract(29, "days"), moment()];
+        settings.ranges[Translator.trans("ticket.date.thismonth", {}, 'frontend')] = [moment().startOf("month"), moment().endOf("month")];
+        settings.ranges[Translator.trans("ticket.date.lastmonth", {}, 'frontend')] = [moment().subtract(1, "month").startOf("month"), moment().subtract(1, "month").endOf("month")];
+        settings.locale["customRangeLabel"] = Translator.trans("ticket.date.custom", {}, 'frontend');
+        settings.locale["applyLabel"] = Translator.trans("ticket.date.label.apply", {}, 'frontend');
+        settings.locale["cancelLabel"] = Translator.trans("ticket.date.label.cancel", {}, 'frontend');
         return JQselector.daterangepicker({
             ranges: settings.ranges,
             locale: settings.locale,

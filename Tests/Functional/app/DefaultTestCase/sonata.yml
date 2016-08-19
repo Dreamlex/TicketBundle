@@ -33,6 +33,13 @@ sonata_media:
         local:
             directory:  "%kernel.root_dir%/../web/uploads/media"
             create:     false
+sonata_classification:
+    class:
+        tag:          Dreamlex\TicketBundle\Tests\Functional\Sonata\ClassificationBundle\Entity\Tag
+        category:     Dreamlex\TicketBundle\Tests\Functional\Sonata\ClassificationBundle\Entity\Category
+        collection:   Dreamlex\TicketBundle\Tests\Functional\Sonata\ClassificationBundle\Entity\Collection
+        context:      Dreamlex\TicketBundle\Tests\Functional\Sonata\ClassificationBundle\Entity\Context
+        media:        Dreamlex\TicketBundle\Tests\Functional\Sonata\MediaBundle\Entity\Media
 
 sonata_translation:
     locales: [en, ru]
@@ -41,10 +48,3 @@ sonata_translation:
     gedmo:
         enabled: true
 
-sonata_classification:
-    class:
-        tag:          Dreamlex\TicketBundle\Tests\Functional\Sonata\ClassificationBundle\Entity\Tag
-        category:     Dreamlex\TicketBundle\Tests\Functional\Sonata\ClassificationBundle\Entity\Category
-        collection:   Dreamlex\TicketBundle\Tests\Functional\Sonata\ClassificationBundle\Entity\Collection
-        context:      Dreamlex\TicketBundle\Tests\Functional\Sonata\ClassificationBundle\Entity\Context
-        media:        Dreamlex\TicketBundle\Tests\Functional\Sonata\MediaBundle\Entity\Media
