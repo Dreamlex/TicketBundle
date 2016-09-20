@@ -1,5 +1,6 @@
-/// <reference path="/var/www/sell-mmo.loc/typings/index.d.ts" />
-declare var Translator: BazingaTranslator;
+/// <reference path="../../../../../../../../typings/index.d.ts" />
+
+declare var Translator: any;
 abstract class Ticket {
     grid: string;
     form: string;

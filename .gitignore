@@ -1,5 +1,4 @@
-# Created by .ignore support plugin (hsz.mobi)
 .idea/
-vendor/
+/vendor/
 /composer.lock
 /Tests/Functional/web/uploads/media/ticket/
