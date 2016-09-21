@@ -6,7 +6,7 @@
  * Time: 16:13
  */
 
-namespace Dreamlex\TicketBundle\Tests\Functional;
+namespace Dreamlex\Bundle\TicketBundle\Tests\Functional;
 
 
 use Doctrine\Common\DataFixtures\Executor\ORMExecutor;

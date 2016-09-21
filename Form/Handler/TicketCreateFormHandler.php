@@ -6,7 +6,7 @@
  * Time: 13:51
  */
 
-namespace Dreamlex\TicketBundle\Form\Handler;
+namespace Dreamlex\Bundle\TicketBundle\Form\Handler;
 
 use Dreamlex\TicketBundle\Entity\Manager\TicketManager;
 use Dreamlex\TicketBundle\Entity\Ticket;

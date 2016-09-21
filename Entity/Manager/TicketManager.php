@@ -6,7 +6,7 @@
  * Time: 13:56
  */
 
-namespace Dreamlex\TicketBundle\Entity\Manager;
+namespace Dreamlex\Bundle\TicketBundle\Entity\Manager;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use Dreamlex\TicketBundle\Entity\Message;

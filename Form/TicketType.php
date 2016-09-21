@@ -1,6 +1,6 @@
 <?php
 
-namespace Dreamlex\TicketBundle\Form;
+namespace Dreamlex\Bundle\TicketBundle\Form;
 
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;

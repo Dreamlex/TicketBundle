@@ -1,6 +1,6 @@
 <?php
 
-namespace Dreamlex\TicketBundle\Tests\Functional;
+namespace Dreamlex\Bundle\TicketBundle\Tests\Functional;
 
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\DependencyInjection\Container;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Dreamlex\TicketBundle\Controller;
+namespace Dreamlex\Bundle\TicketBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;

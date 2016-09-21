@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Dreamlex\TicketBundle\Tests\Functional;
+namespace Dreamlex\Bundle\TicketBundle\Tests\Functional;
 
 use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;

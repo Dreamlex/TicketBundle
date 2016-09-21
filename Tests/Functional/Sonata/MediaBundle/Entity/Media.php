@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Dreamlex\TicketBundle\Tests\Functional\Sonata\MediaBundle\Entity;
+namespace Dreamlex\Bundle\TicketBundle\Tests\Functional\Sonata\MediaBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Sonata\MediaBundle\Entity\BaseMedia as BaseMedia;

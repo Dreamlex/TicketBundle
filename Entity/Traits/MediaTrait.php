@@ -6,7 +6,7 @@
  * Time: 11:21
  */
 
-namespace Dreamlex\TicketBundle\Entity\Traits;
+namespace Dreamlex\Bundle\TicketBundle\Entity\Traits;
 
 
 trait MediaTrait

@@ -1,6 +1,6 @@
 <?php
 
-namespace Dreamlex\TicketBundle\DependencyInjection;
+namespace Dreamlex\Bundle\TicketBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;

@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Dreamlex\TicketBundle\Tests\Functional\Sonata\ClassificationBundle\Entity;
+namespace Dreamlex\Bundle\TicketBundle\Tests\Functional\Sonata\ClassificationBundle\Entity;
 
 use Sonata\ClassificationBundle\Entity\BaseCollection as BaseCollection;
 

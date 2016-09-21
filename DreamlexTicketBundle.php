@@ -1,6 +1,6 @@
 <?php
 
-namespace Dreamlex\TicketBundle;
+namespace Dreamlex\Bundle\TicketBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Dreamlex\TicketBundle\Controller;
+namespace Dreamlex\Bundle\TicketBundle\Controller;
 
 use APY\DataGridBundle\Grid\Action\RowAction;
 use APY\DataGridBundle\Grid\Row;

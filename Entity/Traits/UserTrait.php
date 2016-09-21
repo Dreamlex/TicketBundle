@@ -6,7 +6,7 @@
  * Time: 11:41
  */
 
-namespace Dreamlex\TicketBundle\Entity\Traits;
+namespace Dreamlex\Bundle\TicketBundle\Entity\Traits;
 
 use Dreamlex\TicketBundle\Entity\Ticket;
 

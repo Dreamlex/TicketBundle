@@ -6,7 +6,7 @@
  * Time: 16:16
  */
 
-namespace Dreamlex\TicketBundle\EventListner;
+namespace Dreamlex\Bundle\TicketBundle\EventListner;
 
 use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
 

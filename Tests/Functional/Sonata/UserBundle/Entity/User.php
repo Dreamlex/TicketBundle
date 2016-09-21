@@ -1,6 +1,6 @@
 <?php
 
-namespace Dreamlex\TicketBundle\Tests\Functional\Sonata\UserBundle\Entity;
+namespace Dreamlex\Bundle\TicketBundle\Tests\Functional\Sonata\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Dreamlex\Bundle\NewsBundle\Entity\News;

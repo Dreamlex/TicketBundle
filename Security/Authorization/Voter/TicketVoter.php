@@ -6,7 +6,7 @@
  * Time: 17:55
  */
 
-namespace Dreamlex\TicketBundle\Security\Authorization\Voter;
+namespace Dreamlex\Bundle\TicketBundle\Security\Authorization\Voter;
 
 use Dreamlex\TicketBundle\Entity\Ticket;
 use Symfony\Component\Security\Core\User\UserInterface as User;

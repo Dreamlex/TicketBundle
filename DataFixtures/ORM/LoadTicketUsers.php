@@ -6,7 +6,7 @@
  * Time: 10:18
  */
 
-namespace Dreamlex\TicketBundle\DataFixtures\ORM;
+namespace Dreamlex\Bundle\TicketBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\FixtureInterface;

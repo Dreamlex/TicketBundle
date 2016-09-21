@@ -1,6 +1,6 @@
 <?php
 
-namespace Dreamlex\TicketBundle\Tests\Functional\app;
+namespace Dreamlex\Bundle\TicketBundle\Tests\Functional\app;
 
 // get the autoload file
 $dir = __DIR__;

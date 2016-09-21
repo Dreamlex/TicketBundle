@@ -6,7 +6,7 @@
  * Time: 10:50
  */
 
-namespace Dreamlex\TicketBundle\Form\Type;
+namespace Dreamlex\Bundle\TicketBundle\Form\Type;
 
 use Sonata\MediaBundle\Form\DataTransformer\ProviderDataTransformer;
 use Sonata\MediaBundle\Form\Type\MediaType;

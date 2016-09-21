@@ -6,7 +6,7 @@
  * Time: 11:36
  */
 
-namespace Dreamlex\TicketBundle\Provider;
+namespace Dreamlex\Bundle\TicketBundle\Provider;
 
 use Sonata\MediaBundle\Provider\ImageProvider;
 use Sonata\MediaBundle\Model\MediaInterface;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Dreamlex\TicketBundle\Admin;
+namespace Dreamlex\Bundle\TicketBundle\Admin;
 
 use Dreamlex\TicketBundle\Entity\Message;
 use Dreamlex\TicketBundle\Entity\Ticket;

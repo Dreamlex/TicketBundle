@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Dreamlex\TicketBundle\Tests\Functional\Sonata\UserBundle;
+namespace Dreamlex\Bundle\TicketBundle\Tests\Functional\Sonata\UserBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

@@ -38,11 +38,9 @@
     "symfony/assetic-bundle": "^2.8"
   },
   "autoload": {
-    "psr-0": {
-      "Dreamlex\\TicketBundle": ""
-    }
+    "psr-4": { "Dreamlex\\Bundle\\TicketBundle": "" }
   },
-  "target-dir": "Dreamlex/TicketBundle",
+  "target-dir": "Dreamlex/Bundle/TicketBundle",
   "extra": {
     "branch-alias": {
       "dev-master": "1.0.x-dev"

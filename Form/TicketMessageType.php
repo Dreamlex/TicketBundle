@@ -1,6 +1,6 @@
 <?php
 
-namespace Dreamlex\TicketBundle\Form;
+namespace Dreamlex\Bundle\TicketBundle\Form;
 
 use Dreamlex\TicketBundle\Entity\Message;
 use Dreamlex\TicketBundle\Form\Type\FileMediaType;

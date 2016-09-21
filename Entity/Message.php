@@ -1,5 +1,5 @@
 <?php
-namespace Dreamlex\TicketBundle\Entity;
+namespace Dreamlex\Bundle\TicketBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 //use Dreamlex\TicketBundle\Tests\Functional\Bundle\MediaBundle\Entity\Media; //TODO Зависимость
