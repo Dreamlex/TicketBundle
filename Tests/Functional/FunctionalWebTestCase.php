@@ -53,7 +53,7 @@ class FunctionalWebTestCase extends WebTestCase
     {
         require_once __DIR__.'/app/AppKernel.php';
 
-        return 'Dreamlex\TicketBundle\Tests\Functional\app\AppKernel';
+        return 'Dreamlex\Bundle\TicketBundle\Tests\Functional\app\AppKernel';
     }
 
     protected function setUp()

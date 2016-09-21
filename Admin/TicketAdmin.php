@@ -2,8 +2,8 @@
 
 namespace Dreamlex\Bundle\TicketBundle\Admin;
 
-use Dreamlex\TicketBundle\Entity\Message;
-use Dreamlex\TicketBundle\Entity\Ticket;
+use Dreamlex\Bundle\TicketBundle\Entity\Message;
+use Dreamlex\Bundle\TicketBundle\Entity\Ticket;
 use JMS\DiExtraBundle\Annotation\Inject;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -95,7 +95,7 @@ class TicketAdmin extends AbstractAdmin
                 'box_class' => 'box box-solid box-warning',
             ])
             ->add('category', EntityType::class, [
-                    'class' => 'Dreamlex\TicketBundle\Entity\Category',
+                    'class' => 'Dreamlex\Bundle\TicketBundle\Entity\Category',
                     'label' => 'ticket.label.form.category.title',
                     'choice_label' => 'title',
                 ]

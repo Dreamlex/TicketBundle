@@ -8,8 +8,8 @@
 
 namespace Dreamlex\Bundle\TicketBundle\Form\Handler;
 
-use Dreamlex\TicketBundle\Entity\Manager\TicketManager;
-use Dreamlex\TicketBundle\Entity\Ticket;
+use Dreamlex\Bundle\TicketBundle\Entity\Manager\TicketManager;
+use Dreamlex\Bundle\TicketBundle\Entity\Ticket;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 

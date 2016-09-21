@@ -34,7 +34,7 @@ class Category implements TranslatableInterface
     private $position;
 
     /**
-     * @ORM\OneToMany(targetEntity="Dreamlex\TicketBundle\Entity\Ticket", mappedBy="category")
+     * @ORM\OneToMany(targetEntity="Dreamlex\Bundle\TicketBundle\Entity\Ticket", mappedBy="category")
      */
     private $tickets;
 

@@ -8,7 +8,7 @@
 
 namespace Dreamlex\Bundle\TicketBundle\Security\Authorization\Voter;
 
-use Dreamlex\TicketBundle\Entity\Ticket;
+use Dreamlex\Bundle\TicketBundle\Entity\Ticket;
 use Symfony\Component\Security\Core\User\UserInterface as User;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\AccessDecisionManager;

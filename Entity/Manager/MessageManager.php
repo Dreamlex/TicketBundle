@@ -9,8 +9,8 @@
 namespace Dreamlex\Bundle\TicketBundle\Entity\Manager;
 
 use Doctrine\Common\Persistence\ObjectManager;
-use Dreamlex\TicketBundle\Entity\Message;
-use Dreamlex\TicketBundle\Entity\Ticket;
+use Dreamlex\Bundle\TicketBundle\Entity\Message;
+use Dreamlex\Bundle\TicketBundle\Entity\Ticket;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 /**

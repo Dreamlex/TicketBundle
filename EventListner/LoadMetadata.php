@@ -12,7 +12,7 @@ use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
 
 /**
  * Class LoadMetadata
- * @package Dreamlex\TicketBundle\EventListner
+ * @package Dreamlex\Bundle\TicketBundle\EventListner
  */
 class LoadMetadata {
     protected $userRepository;
@@ -34,7 +34,7 @@ class LoadMetadata {
         $classMetadata = $eventArgs->getClassMetadata();
         $class_name = $classMetadata->getName();
 
-        if($class_name == "Dreamlex\TicketBundle\Entity\Ticket") {
+        if($class_name == "Dreamlex\Bundle\TicketBundle\Entity\Ticket") {
 
             // The following is to map ORM with PHP
             $mapping = array(
@@ -64,7 +64,7 @@ class LoadMetadata {
             $classMetadata->mapManyToOne($mapping);
             $classMetadata->mapManyToOne($mapping2);
         }
-        if($class_name == "Dreamlex\TicketBundle\Entity\Message") {
+        if($class_name == "Dreamlex\Bundle\TicketBundle\Entity\Message") {
 
             // The following is to map ORM with PHP
             $mapping = array(

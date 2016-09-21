@@ -11,7 +11,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class TicketType
- * @package Dreamlex\TicketBundle\Form
+ * @package Dreamlex\Bundle\TicketBundle\Form
  */
 class TicketType extends AbstractType
 {
@@ -23,7 +23,7 @@ class TicketType extends AbstractType
     {
         $builder
             ->add('category', EntityType::class, [
-                    'class' => 'Dreamlex\TicketBundle\Entity\Category',
+                    'class' => 'Dreamlex\Bundle\TicketBundle\Entity\Category',
                     'label' => 'ticket.label.form.category.title',
                     'choice_label' => 'title',
                 ]
@@ -47,7 +47,7 @@ class TicketType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'Dreamlex\TicketBundle\Entity\Ticket',
+            'data_class' => 'Dreamlex\Bundle\TicketBundle\Entity\Ticket',
             'show_legend' => false,
         ]);
     }

@@ -11,8 +11,8 @@ namespace Dreamlex\Bundle\TicketBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Dreamlex\TicketBundle\Entity\Message;
-use Dreamlex\TicketBundle\Entity\Ticket;
+use Dreamlex\Bundle\TicketBundle\Entity\Message;
+use Dreamlex\Bundle\TicketBundle\Entity\Ticket;
 use Sonata\MediaBundle\Model\Media;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -22,7 +22,7 @@ use Symfony\Component\Yaml\Yaml;
 
 /**
  * Class LoadTicket
- * @package Dreamlex\TicketBundle\DataFixtures\ORM
+ * @package Dreamlex\Bundle\TicketBundle\DataFixtures\ORM
  */
 class LoadTicket extends AbstractFixture implements ContainerAwareInterface, OrderedFixtureInterface
 {

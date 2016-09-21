@@ -2,8 +2,8 @@
 
 namespace Dreamlex\Bundle\TicketBundle\Form;
 
-use Dreamlex\TicketBundle\Entity\Message;
-use Dreamlex\TicketBundle\Form\Type\FileMediaType;
+use Dreamlex\Bundle\TicketBundle\Entity\Message;
+use Dreamlex\Bundle\TicketBundle\Form\Type\FileMediaType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -13,7 +13,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class TicketMessageType
- * @package Dreamlex\TicketBundle\Form
+ * @package Dreamlex\Bundle\TicketBundle\Form
  */
 class TicketMessageType extends AbstractType
 {
@@ -107,7 +107,7 @@ class TicketMessageType extends AbstractType
     {
         $resolver->setDefaults(
             [
-                'data_class' => 'Dreamlex\TicketBundle\Entity\Message',
+                'data_class' => 'Dreamlex\Bundle\TicketBundle\Entity\Message',
                 'show_legend' => false,
             ]
         );

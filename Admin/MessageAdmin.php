@@ -2,9 +2,9 @@
 
 namespace Dreamlex\Bundle\TicketBundle\Admin;
 
-use Dreamlex\TicketBundle\Entity\Message;
-use Dreamlex\TicketBundle\Entity\Ticket;
-use Dreamlex\TicketBundle\Form\Type\FileMediaType;
+use Dreamlex\Bundle\TicketBundle\Entity\Message;
+use Dreamlex\Bundle\TicketBundle\Entity\Ticket;
+use Dreamlex\Bundle\TicketBundle\Form\Type\FileMediaType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;

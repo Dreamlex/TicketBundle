@@ -1,9 +1,9 @@
 sonata_media:
     class:
-        media:  Dreamlex\TicketBundle\Tests\Functional\Sonata\MediaBundle\Entity\Media
-        category: Dreamlex\TicketBundle\Tests\Functional\Sonata\ClassificationBundle\Entity\Category
-        gallery: Dreamlex\TicketBundle\Tests\Functional\Sonata\MediaBundle\Entity\Gallery
-        gallery_has_media: Dreamlex\TicketBundle\Tests\Functional\Sonata\MediaBundle\Entity\GalleryHasMedia
+        media:  Dreamlex\Bundle\TicketBundle\Tests\Functional\Sonata\MediaBundle\Entity\Media
+        category: Dreamlex\Bundle\TicketBundle\Tests\Functional\Sonata\ClassificationBundle\Entity\Category
+        gallery: Dreamlex\Bundle\TicketBundle\Tests\Functional\Sonata\MediaBundle\Entity\Gallery
+        gallery_has_media: Dreamlex\Bundle\TicketBundle\Tests\Functional\Sonata\MediaBundle\Entity\GalleryHasMedia
     default_context: default
     db_driver: doctrine_orm # or doctrine_mongodb, doctrine_phpcr
     contexts:
@@ -35,11 +35,11 @@ sonata_media:
             create:     false
 sonata_classification:
     class:
-        tag:          Dreamlex\TicketBundle\Tests\Functional\Sonata\ClassificationBundle\Entity\Tag
-        category:     Dreamlex\TicketBundle\Tests\Functional\Sonata\ClassificationBundle\Entity\Category
-        collection:   Dreamlex\TicketBundle\Tests\Functional\Sonata\ClassificationBundle\Entity\Collection
-        context:      Dreamlex\TicketBundle\Tests\Functional\Sonata\ClassificationBundle\Entity\Context
-        media:        Dreamlex\TicketBundle\Tests\Functional\Sonata\MediaBundle\Entity\Media
+        tag:          Dreamlex\Bundle\TicketBundle\Tests\Functional\Sonata\ClassificationBundle\Entity\Tag
+        category:     Dreamlex\Bundle\TicketBundle\Tests\Functional\Sonata\ClassificationBundle\Entity\Category
+        collection:   Dreamlex\Bundle\TicketBundle\Tests\Functional\Sonata\ClassificationBundle\Entity\Collection
+        context:      Dreamlex\Bundle\TicketBundle\Tests\Functional\Sonata\ClassificationBundle\Entity\Context
+        media:        Dreamlex\Bundle\TicketBundle\Tests\Functional\Sonata\MediaBundle\Entity\Media
 
 sonata_translation:
     locales: [en, ru]

@@ -2,7 +2,7 @@
 namespace Dreamlex\Bundle\TicketBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-//use Dreamlex\TicketBundle\Tests\Functional\Bundle\MediaBundle\Entity\Media; //TODO Зависимость
+//use Dreamlex\Bundle\TicketBundle\Tests\Functional\Bundle\MediaBundle\Entity\Media; //TODO Зависимость
 //use SellMMO\Sonata\UserBundle\Entity\User; //TODO Зависимость
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
@@ -78,7 +78,7 @@ class Message
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Dreamlex\TicketBundle\Entity\Ticket", inversedBy="messages")
+     * @ORM\ManyToOne(targetEntity="Dreamlex\Bundle\TicketBundle\Entity\Ticket", inversedBy="messages")
      * @ORM\JoinColumn(name="ticket_id", referencedColumnName="id", nullable=false)
      */
     private $ticket;

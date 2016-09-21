@@ -9,7 +9,7 @@
             association mapping  : http://www.doctrine-project.org/projects/orm/2.0/docs/reference/association-mapping/en
     -->
     <entity
-        name="Dreamlex\TicketBundle\Tests\Functional\Sonata\ClassificationBundle\Entity\Context"
+        name="Dreamlex\Bundle\TicketBundle\Tests\Functional\Sonata\ClassificationBundle\Entity\Context"
         table="classification__context"
         repository-class="Doctrine\ORM\EntityRepository">
 

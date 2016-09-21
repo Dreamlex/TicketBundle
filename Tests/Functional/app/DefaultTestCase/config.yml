@@ -7,8 +7,8 @@ framework:
         enabled: true
 
 dreamlex_ticket:
-    user_class: Dreamlex\TicketBundle\Tests\Functional\Sonata\UserBundle\Entity\User
-    media_entity: Dreamlex\TicketBundle\Tests\Functional\Sonata\MediaBundle\Entity\Media
+    user_class: Dreamlex\Bundle\TicketBundle\Tests\Functional\Sonata\UserBundle\Entity\User
+    media_entity: Dreamlex\Bundle\TicketBundle\Tests\Functional\Sonata\MediaBundle\Entity\Media
 
 security:
     firewalls:
@@ -63,17 +63,17 @@ doctrine:
             DreamlexSonataClassificationBundle: ~
 #                    type: xml
 #                    dir: "../Sonata/ClassificationBundle/Resources/config/doctrine"
-#                    prefix: Dreamlex\TicketBundle\Tests\Functional\Sonata\ClassificationBundle\Entity
+#                    prefix: Dreamlex\Bundle\TicketBundle\Tests\Functional\Sonata\ClassificationBundle\Entity
 #                    is_bundle: true
 
 #                FOSUserBundle: ~
 #                DreamlexTicketBundle:
 #                    type: annotation
-#                    prefix: Dreamlex\TicketBundle\Entity
+#                    prefix: Dreamlex\Bundle\TicketBundle\Entity
 #                    dir: "%kernel.root_dir%/../../../Entity"
 #                ClassificationBundle:
 #                    type: xml
-#                    prefix: Dreamlex\TicketBundle\Tests\Functional\Bundle\ClassificationBundle\Entity
+#                    prefix: Dreamlex\Bundle\TicketBundle\Tests\Functional\Bundle\ClassificationBundle\Entity
 #                    dir: "%kernel.root_dir%/../Bundle/ClassificationBundle/Entity"
 
 
@@ -89,9 +89,9 @@ stof_doctrine_extensions:
 fos_user:
     db_driver:      orm # can be orm or odm
     firewall_name:  main
-    user_class:     Dreamlex\TicketBundle\Tests\Functional\Sonata\UserBundle\Entity\User
+    user_class:     Dreamlex\Bundle\TicketBundle\Tests\Functional\Sonata\UserBundle\Entity\User
     group:
-        group_class:   Dreamlex\TicketBundle\Tests\Functional\Sonata\UserBundle\Entity\Group
+        group_class:   Dreamlex\Bundle\TicketBundle\Tests\Functional\Sonata\UserBundle\Entity\Group
         group_manager: sonata.user.orm.group_manager                    # If you're using doctrine orm (use sonata.user.mongodb.user_manager for mongodb)
     service:
         user_manager: sonata.user.orm.user_manager                      # If you're using doctrine orm (use sonata.user.mongodb.group_manager for mongodb)

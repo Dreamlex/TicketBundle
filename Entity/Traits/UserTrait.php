@@ -8,13 +8,13 @@
 
 namespace Dreamlex\Bundle\TicketBundle\Entity\Traits;
 
-use Dreamlex\TicketBundle\Entity\Ticket;
+use Dreamlex\Bundle\TicketBundle\Entity\Ticket;
 
 
 trait UserTrait
 {
     /**
-     * @ORM\OneToMany(targetEntity="Dreamlex\TicketBundle\Entity\Ticket", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="Dreamlex\Bundle\TicketBundle\Entity\Ticket", mappedBy="user")
      */
     private $tickets;
 

@@ -12,7 +12,7 @@ use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Dreamlex\TicketBundle\Entity\Category;
+use Dreamlex\Bundle\TicketBundle\Entity\Category;
 use Gedmo\Translatable\Entity\Translation;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
