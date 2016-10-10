@@ -1,6 +1,6 @@
 /// <reference path="../../../../../../typings/index.d.ts" />
 
-declare var Translator: any;
+declare var Translator: BazingaTranslator;
 abstract class Ticket {
     grid: string;
     form: string;
