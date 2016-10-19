@@ -14,7 +14,6 @@ return array(
     new \Symfony\Bundle\SecurityBundle\SecurityBundle(),
     new \Symfony\Bundle\TwigBundle\TwigBundle(),
     new \Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
-//    new \Symfony\Bundle\MonologBundle\MonologBundle(),
     new \Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
     new \Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
     new \Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
@@ -32,6 +31,5 @@ return array(
     new \Dreamlex\Bundle\TicketBundle\Tests\Functional\Sonata\MediaBundle\DreamlexSonataMediaBundle(),
     new \Dreamlex\Bundle\TicketBundle\Tests\Functional\Sonata\UserBundle\DreamlexSonataUserBundle(),
     new \APY\DataGridBundle\APYDataGridBundle(),
-    new \Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle(),
     new \Symfony\Bundle\AsseticBundle\AsseticBundle(),
 );

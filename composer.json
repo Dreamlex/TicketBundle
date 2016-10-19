@@ -44,9 +44,7 @@
     "symfony/assetic-bundle": "^2.8"
   },
   "require-dev": {
-    "sensio/generator-bundle": "~3.0",
-    "phpunit/phpunit": "5.4.*",
-    "symfony/monolog-bundle": "~2.4"
+    "phpunit/phpunit": "5.4.*"
   },
   "autoload": {
     "psr-4": {
