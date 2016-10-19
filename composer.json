@@ -2,17 +2,23 @@
   "name": "dreamlex/ticket-bundle",
   "description": "Dreamlex ticket bundle",
   "type": "symfony-bundle",
+  "license": "MIT",
   "authors": [
     {
-      "name": "Dreamlex Team",
-      "email": "demo@company.com"
+      "name": "Oleksii Polivaniy",
+      "email": "alexndlm@gmail.com",
+      "role": "Developer"
+    },
+    {
+      "name": "ellementA",
+      "email": "ellementacc@gmail.com",
+      "role": "Developer"
     }
   ],
   "keywords": [
-    "tickets"
-  ],
-  "license": [
-    "MIT"
+    "ticket",
+    "help desk",
+    "support"
   ],
   "require": {
     "php": ">=5.3.9",
@@ -37,6 +43,9 @@
     "twig/extensions": "^1.3",
     "symfony/assetic-bundle": "^2.8"
   },
+  "require-dev": {
+    "phpunit/phpunit": "5.4.*"
+  },
   "autoload": {
     "psr-4": {
       "Dreamlex\\Bundle\\TicketBundle\\": ""
@@ -44,12 +53,7 @@
   },
   "extra": {
     "branch-alias": {
-      "dev-master": "1.0.x-dev"
+      "dev-master": "1.x-dev"
     }
-  },
-  "require-dev": {
-    "sensio/generator-bundle": "~3.0",
-    "phpunit/phpunit": "5.4.*",
-    "symfony/monolog-bundle": "~2.4"
   }
 }
