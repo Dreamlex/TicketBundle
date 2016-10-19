@@ -88,5 +88,5 @@ sonata_media:
 
 TODO
 --
-1. Translator type Bazinga in ticket.ts
-2. add `, {}, 'frontend'` in translations 
+
+1. add `, {}, 'frontend'` in translations 
