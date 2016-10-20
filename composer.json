@@ -20,12 +20,6 @@
     "help desk",
     "support"
   ],
-  "repositories": [
-    {
-      "type": "path",
-      "url": "/Users/alex/Documents/GitHub/Dreamlex/DreamlexCoreBundle"
-    }
-  ],
   "require": {
     "php": ">=5.3.9",
     "symfony/symfony": "2.8.*",

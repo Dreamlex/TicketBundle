@@ -32,7 +32,8 @@ use Symfony\Component\HttpKernel\Kernel;
 
 /**
  * Class AppKernel
- * @package Deamlex\Bundle\SystemdBundle\Tests\Functional\app
+ *
+ * @package Dreamlex\Bundle\TicketBundle\Tests\Functional\app
  */
 class AppKernel extends Kernel
 {
