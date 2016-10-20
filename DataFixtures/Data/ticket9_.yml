@@ -1,0 +1,19 @@
+category: "category-0"
+isRead: "0"
+subject: "ТЕстирование с созданием закрытого тикета"
+status: "open"
+priority: "high"
+createdAt: "now"
+user: "test-user"
+lastUser: "test-user"
+messages:
+    message1:
+        user: "test-user"
+        status: "closed"
+        priority: "high"
+        createdAt: "now"
+        message: |
+                  а что будет если так сделать...
+
+        mediaFile: ""
+        mediaName: ""

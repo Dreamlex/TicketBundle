@@ -1,0 +1,19 @@
+category: "category-0"
+isRead: "0"
+subject: "Замена ластюзер"
+status: "open"
+priority: "high"
+createdAt: "now"
+user: "test-user"
+lastUser: "test-admin"
+messages:
+        message1:
+                    user: "test-user"
+                    status: "open"
+                    priority: "high"
+                    createdAt: "now"
+                    message: |
+                              заменил ластюзер на противоположный. что будет?)
+
+                    mediaFile: "p(35).jpg"
+                    mediaName: "p(32)"
