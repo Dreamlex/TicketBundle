@@ -1,6 +1,6 @@
 <?php
-
 namespace Dreamlex\Bundle\TicketBundle\Tests\Functional\app;
+
 
 // get the autoload file
 $dir = __DIR__;
@@ -8,12 +8,12 @@ $lastDir = null;
 while ($dir !== $lastDir) {
     $lastDir = $dir;
 
-    if (file_exists($dir.'/autoload.php')) {
+    if (is_file($dir.'/autoload.php')) {
         require_once $dir.'/autoload.php';
         break;
     }
 
-    if (file_exists($dir.'/autoload.php.dist')) {
+    if (is_file($dir.'/autoload.php.dist')) {
         require_once $dir.'/autoload.php.dist';
         break;
     }
@@ -31,14 +31,21 @@ use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpKernel\Kernel;
 
 /**
- * App Test Kernel for functional tests.
- *
+ * Class AppKernel
+ * @package Deamlex\Bundle\SystemdBundle\Tests\Functional\app
  */
 class AppKernel extends Kernel
 {
     private $testCase;
     private $rootConfig;
 
+    /**
+     * AppKernel constructor.
+     * @param string $testCase
+     * @param bool   $rootConfig
+     * @param string $environment
+     * @param bool   $debug
+     */
     public function __construct($testCase, $rootConfig, $environment, $debug)
     {
         if (!is_dir(__DIR__.'/'.$testCase)) {
@@ -47,7 +54,7 @@ class AppKernel extends Kernel
         $this->testCase = $testCase;
 
         $fs = new Filesystem();
-        if (!$fs->isAbsolutePath($rootConfig) && !file_exists($rootConfig = __DIR__.'/'.$testCase.'/'.$rootConfig)) {
+        if (!$fs->isAbsolutePath($rootConfig) && !is_file($rootConfig = __DIR__.'/'.$testCase.'/'.$rootConfig)) {
             throw new \InvalidArgumentException(sprintf('The root config "%s" does not exist.', $rootConfig));
         }
         $this->rootConfig = $rootConfig;
@@ -55,40 +62,73 @@ class AppKernel extends Kernel
         parent::__construct($environment, $debug);
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function getName()
+    {
+        if (null === $this->name) {
+            $this->name = parent::getName().md5($this->rootConfig);
+        }
+
+        return $this->name;
+    }
+
+    /**
+     * @return mixed
+     */
     public function registerBundles()
     {
-        if (!file_exists($filename = $this->getRootDir().'/'.$this->testCase.'/bundles.php')) {
+        if (!is_file($filename = $this->getRootDir().'/'.$this->testCase.'/bundles.php')) {
             throw new \RuntimeException(sprintf('The bundles file "%s" does not exist.', $filename));
         }
 
         return include $filename;
     }
 
+    /**
+     * @return string
+     */
     public function getRootDir()
     {
         return __DIR__;
     }
 
+    /**
+     * @return string
+     */
     public function getCacheDir()
     {
-        return $this->getRootDir().'/../temp/'.$this->testCase.'/cache/'.$this->environment;
+        return sys_get_temp_dir().'/'.Kernel::VERSION.'/'.$this->testCase.'/cache/'.$this->environment;
     }
 
+    /**
+     * @return string
+     */
     public function getLogDir()
     {
-        return $this->getRootDir().'/../temp/'.$this->testCase.'/logs';
+        return sys_get_temp_dir().'/'.Kernel::VERSION.'/'.$this->testCase.'/logs';
     }
 
+    /**
+     * @param LoaderInterface $loader
+     */
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
         $loader->load($this->rootConfig);
     }
 
+    /**
+     * @return string
+     */
     public function serialize()
     {
-        return serialize(array($this->testCase, $this->rootConfig, $this->getEnvironment(), $this->isDebug()));
+        return serialize([$this->testCase, $this->rootConfig, $this->getEnvironment(), $this->isDebug()]);
     }
 
+    /**
+     * @param string $str
+     */
     public function unserialize($str)
     {
         $a = unserialize($str);

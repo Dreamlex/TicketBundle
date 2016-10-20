@@ -1,13 +1,15 @@
 framework:
-    translator:      { fallbacks: [ru] }
-    secret: test
-    router: { resource: "%kernel.root_dir%/config/routing.yml" }
-    test: ~
+    secret:        test
+    csrf_protection:
+        enabled: true
+    router:        { resource: "%kernel.root_dir%/%kernel.test_case%/routing.yml" }
+    validation:    { enabled: true, enable_annotations: true }
     form: ~
-    validation:      { enable_annotations: true }
-    csrf_protection: ~
-    session:
-        storage_id: session.storage.mock_file
+    test: ~
     default_locale: ru
-    templating:
-            engines: [twig]
+    session:
+        storage_id:     session.storage.mock_file
+    profiler: { only_exceptions: false }
+
+services:
+    logger: { class: Psr\Log\NullLogger }
