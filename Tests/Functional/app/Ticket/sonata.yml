@@ -31,7 +31,7 @@ sonata_media:
     filesystem:
         local:
             directory:  "%kernel.root_dir%/../web/uploads/media"
-            create:     false
+            create:     true
 sonata_classification:
     class:
         tag:          Dreamlex\Bundle\TicketBundle\Tests\Functional\Sonata\ClassificationBundle\Entity\Tag
