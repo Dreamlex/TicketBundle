@@ -22,8 +22,14 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('dreamlex_ticket');
         $rootNode
             ->children()
-                ->scalarNode('user_class')->isRequired()->cannotBeEmpty()->end()
-                ->scalarNode('media_entity')->isRequired()->cannotBeEmpty()->end()
+                ->scalarNode('user_class')
+                    ->isRequired()
+                    ->cannotBeEmpty()
+                ->end()
+                ->scalarNode('media_entity')
+                    ->isRequired()
+                    ->cannotBeEmpty()
+                ->end()
             ->end();
 
         return $treeBuilder;

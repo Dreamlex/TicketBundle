@@ -7,24 +7,23 @@ createdAt: "-1 day"
 user: "test-user"
 lastUser: "test-user"
 messages:
-        message1:
-                    user: "test-user"
-                    status: "open"
-                    priority: "high"
-                    createdAt: "-1 day"
-                    message: |
-                              Такого никнейма нет в игре, посмотрите плс.<script>alert( 'Вредный скрипт!' );</script> Это я туплю, или не так записано
-                              Спасибо!
-                    mediaFile: "p(35).jpg"
-                    mediaName: "p(35)"
-        message2:
-                    user: "test-admin"
-                    status: "open"
-                    priority: "low"
-                    createdAt: "now"
-                    message: |
-                              Мы рекомендуем <script>alert( 'Вредный скрипт!' );</script>копировать все никнеймы, чтобы избежать провтыков
+    message1:
+        user: "test-user"
+        status: "open"
+        priority: "high"
+        createdAt: "-1 day"
+        message: |
+                  Такого никнейма нет в игре, посмотрите плс.<script>alert( 'Вредный скрипт!' );</script> Это я туплю, или не так записано
+                  Спасибо!
+        mediaFile: "35.jpg"
+        mediaName: "35"
+    message2:
+        user: "test-admin"
+        status: "open"
+        priority: "low"
+        createdAt: "now"
+        message: |
+                  Мы рекомендуем <script>alert( 'Вредный скрипт!' );</script>копировать все никнеймы, чтобы избежать провтыков
 
-                    mediaFile: "p(36).jpg"
-                    mediaName: "p(36)"
-        
+        mediaFile: "36.jpg"
+        mediaName: "36"

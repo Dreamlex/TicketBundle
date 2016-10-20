@@ -1,6 +1,6 @@
 imports:
     - { resource: ../config/default.yml }
-    - { resource: routing.yml }
+    - { resource: parameters.yml }
     - { resource: services.yml }
     - { resource: sonata.yml }
 
@@ -43,11 +43,11 @@ twig:
 
 doctrine:
     dbal:
-          driver:   pdo_sqlite
-          path:     '%kernel.cache_dir%/db.sqlite'
-          charset:  UTF8
-          types:
-              json: Sonata\Doctrine\Types\JsonType
+        driver:   pdo_sqlite
+        path:     '%kernel.cache_dir%/db.sqlite'
+        charset:  UTF8
+        types:
+            json: Sonata\Doctrine\Types\JsonType
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
         naming_strategy: doctrine.orm.naming_strategy.underscore
@@ -59,25 +59,6 @@ doctrine:
                 prefix: Gedmo\Translatable\Entity
                 # make sure vendor library location is correct
                 dir: "%kernel.root_dir%/../../../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translatable/Entity"
-
-            SonataClassificationBundle: ~
-#
-            DreamlexSonataClassificationBundle: ~
-#                    type: xml
-#                    dir: "../Sonata/ClassificationBundle/Resources/config/doctrine"
-#                    prefix: Dreamlex\Bundle\TicketBundle\Tests\Functional\Sonata\ClassificationBundle\Entity
-#                    is_bundle: true
-
-#                FOSUserBundle: ~
-#                DreamlexTicketBundle:
-#                    type: annotation
-#                    prefix: Dreamlex\Bundle\TicketBundle\Entity
-#                    dir: "%kernel.root_dir%/../../../Entity"
-#                ClassificationBundle:
-#                    type: xml
-#                    prefix: Dreamlex\Bundle\TicketBundle\Tests\Functional\Bundle\ClassificationBundle\Entity
-#                    dir: "%kernel.root_dir%/../Bundle/ClassificationBundle/Entity"
-
 
 stof_doctrine_extensions:
     default_locale: ru

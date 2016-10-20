@@ -8,9 +8,10 @@
 
 namespace Dreamlex\Bundle\TicketBundle\Provider;
 
-use Sonata\MediaBundle\Provider\ImageProvider;
 use Sonata\MediaBundle\Model\MediaInterface;
+use Sonata\MediaBundle\Provider\ImageProvider;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilder;
 
 class TicketImageProvider extends ImageProvider
@@ -26,22 +27,17 @@ class TicketImageProvider extends ImageProvider
     public function buildMediaType(FormBuilder $formBuilder)
     {
         if ($formBuilder->getOption('context') !== 'api') {
-            $formBuilder->add('binaryContent', 'file', array(
+            $formBuilder->add('binaryContent', FileType::class, array(
                 'required' => true,
                 'label' => false,
             ));
         }
-        // for files uploading
-//        else {
-//            $formBuilder->add('binaryContent', 'file');
-//            $formBuilder->add('contentType')
-//           ;
-//        }
     }
 
     /**
      * @param MediaInterface $media
-     * @param $format
+     * @param                $format
+     *
      * @return string
      */
     public function generateCustomUrl(MediaInterface $media, $format)
@@ -58,6 +54,7 @@ class TicketImageProvider extends ImageProvider
 
     /**
      * @param MediaInterface $media
+     *
      * @return string
      * @internal param $format
      */
@@ -67,7 +64,11 @@ class TicketImageProvider extends ImageProvider
     }
 
     /**
-     * @param Router $router
+     * @param MediaInterface $media
+     * @param string         $format
+     *
+     * @return string
+     * @internal param Router $router
      */
     public function generatePublicUrl(MediaInterface $media, $format)
     {

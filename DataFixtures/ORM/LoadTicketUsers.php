@@ -17,6 +17,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Class LoadTicketUsers
+ *
  * @package Dreamlex\Bundle\TicketBundle\DataFixtures\ORM
  */
 class LoadTicketUsers extends AbstractFixture implements FixtureInterface, ContainerAwareInterface, OrderedFixtureInterface
@@ -42,6 +43,7 @@ class LoadTicketUsers extends AbstractFixture implements FixtureInterface, Conta
 
     /**
      * @param ObjectManager $om
+     *
      * @throws \Symfony\Component\DependencyInjection\Exception\ServiceCircularReferenceException
      * @throws \Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException
      */
@@ -51,7 +53,7 @@ class LoadTicketUsers extends AbstractFixture implements FixtureInterface, Conta
         $userManager = $this->container->get('fos_user.user_manager');
         $user = $userManager->findUserByUsername('test-user');
 
-        if (\is_null($user)) {
+        if (null === $user) {
             $user = $userManager->createUser();
             $user->setUsername('test-user')
                 ->setEmail('testuser@mail.us')
@@ -63,7 +65,7 @@ class LoadTicketUsers extends AbstractFixture implements FixtureInterface, Conta
         $this->addReference('test-user', $user);
 
         $userAdmin = $userManager->findUserByUsername('test-admin');
-        if (\is_null($userAdmin)) {
+        if (null === $userAdmin) {
             $userAdmin = $userManager->createUser();
             $userAdmin->setUsername('test-admin')
                 ->setEmail('testadmin@mail.us')

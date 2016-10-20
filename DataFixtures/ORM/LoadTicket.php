@@ -13,6 +13,7 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Dreamlex\Bundle\TicketBundle\Entity\Message;
 use Dreamlex\Bundle\TicketBundle\Entity\Ticket;
+use Dreamlex\Bundle\TicketBundle\Tests\Functional\Sonata\ClassificationBundle\Entity\Category;
 use Sonata\MediaBundle\Model\Media;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -22,6 +23,7 @@ use Symfony\Component\Yaml\Yaml;
 
 /**
  * Class LoadTicket
+ *
  * @package Dreamlex\Bundle\TicketBundle\DataFixtures\ORM
  */
 class LoadTicket extends AbstractFixture implements ContainerAwareInterface, OrderedFixtureInterface
@@ -50,16 +52,8 @@ class LoadTicket extends AbstractFixture implements ContainerAwareInterface, Ord
      */
     public function load(ObjectManager $om)
     {
-        $this->loadTicketData($om);
-    }
-
-    /**
-     * @param ObjectManager $om
-     */
-    public function loadTicketData(ObjectManager $om)
-    {
         $finder = new Finder();
-        $finder->name('Ticket*.yml')->in(__DIR__.'/../TicketData')->sortByName();
+        $finder->name('ticket*.yml')->in(__DIR__.'/../Data')->sortByName();
 
         foreach ($finder as $file) {
             $ticket = Yaml::parse(file_get_contents($file));
@@ -67,7 +61,7 @@ class LoadTicket extends AbstractFixture implements ContainerAwareInterface, Ord
             $this->setTicketParameters($ticketEntity, $ticket);
             $om->persist($ticketEntity);
             $messages = $ticket['messages'];
-            if (!empty($messages) && is_array($messages)) {
+            if (is_array($messages)) {
                 foreach ($messages as $item) {
                     $message = new Message();
                     if (!empty($item['message'])) {
@@ -87,12 +81,9 @@ class LoadTicket extends AbstractFixture implements ContainerAwareInterface, Ord
                     $om->persist($message);
                 }
             }
-            $om->flush();
         }
 
-
-        //END message
-
+        $om->flush();
     }
 
     /**
@@ -101,10 +92,8 @@ class LoadTicket extends AbstractFixture implements ContainerAwareInterface, Ord
      */
     public function setMessageImage(Message $message, array $item)
     {
-        $imageFile = new File(__DIR__.'/../TicketImages/'.$item['mediaFile']);
-//        var_dump($imageFile);
-//        exit();
-        $mediaManager = $this->getMediaManager();
+        $imageFile = new File(__DIR__.'/../Data/images/'.$item['mediaFile']);
+        $mediaManager = $this->container->get('sonata.media.manager.media');
 
         /** @var Media $image */
         $image = $mediaManager->create();
@@ -115,15 +104,6 @@ class LoadTicket extends AbstractFixture implements ContainerAwareInterface, Ord
         $image->setProviderName('sonata.media.provider.ticket_image');
         $mediaManager->save($image);
         $message->setMedia($image);
-    }
-
-    /**
-     * @return \Sonata\MediaBundle\Entity\MediaManager
-     *
-     */
-    public function getMediaManager()
-    {
-        return $this->container->get('sonata.media.manager.media');
     }
 
     /**

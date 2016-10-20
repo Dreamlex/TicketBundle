@@ -7,12 +7,12 @@ createdAt: "now"
 user: "test-admin"
 lastUser: "test-admin"
 messages:
-        message1:
-                    user: "test-admin"
-                    status: "open"
-                    priority: "high"
-                    createdAt: "now"
-                    message: |
-                              Добрый день! Это оператор Вася. Я смотрю, вы взяли заказ на выполнение, но клиент позвонил и поменял способ передачи. Я сейчас вам поменяю его с админки
-                    mediaFile: ""
-                    mediaName: ""
+    message1:
+        user: "test-admin"
+        status: "open"
+        priority: "high"
+        createdAt: "now"
+        message: |
+                  Добрый день! Это оператор Вася. Я смотрю, вы взяли заказ на выполнение, но клиент позвонил и поменял способ передачи. Я сейчас вам поменяю его с админки
+        mediaFile: ""
+        mediaName: ""

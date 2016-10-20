@@ -7,6 +7,7 @@ framework:
     form: ~
     test: ~
     default_locale: ru
+    translator:      { fallbacks: [ru] }
     session:
         storage_id:     session.storage.mock_file
     profiler: { only_exceptions: false }
