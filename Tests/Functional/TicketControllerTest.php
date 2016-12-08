@@ -1,8 +1,8 @@
 <?php
 namespace Dreamlex\Bundle\TicketBundle\Tests\Functional;
 
-use Dreamlex\Bundle\CoreBundle\Tests\FixtureAwareTestCaseTrait;
-use Dreamlex\Bundle\CoreBundle\Tests\WebTestCase;
+use Dreamlex\Bundle\CoreBundle\Test\FixtureAwareTestCaseTrait;
+use Dreamlex\Bundle\CoreBundle\Test\WebTestCase;
 use Dreamlex\Bundle\TicketBundle\DataFixtures\ORM\LoadTicket;
 use Dreamlex\Bundle\TicketBundle\DataFixtures\ORM\LoadTicketCategories;
 use Dreamlex\Bundle\TicketBundle\DataFixtures\ORM\LoadTicketUsers;
